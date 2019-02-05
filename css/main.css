@@ -4,8 +4,8 @@
     --search-BG-color: rgba(24, 24, 24, 0.349);
     --box-BG-color: #ebebeb;
 
-    --box-width: 32%;
-    --box-height: 100%;
+    --box-width: 31%;
+    --box-height: 90%;
 }
 
 html, body {
@@ -53,6 +53,29 @@ div.main {
     height: 90.4vh; /* It's odd, I know */
 }
 
+/* Boxes-Global */
+.box-header {
+    width: 100%;
+    height: 40px;
+    color: black;
+    display: block;
+
+    border-bottom: #363b43 solid 1px;
+}
+
+div.container {
+    width: 96%;
+    height: 450px;
+    clear: left;
+
+
+    position: absolute;          /* Used to center DIV vertically */
+    top: 50%;
+    transform: translateY(-45%);
+
+    border: #363b43 solid 1px;
+}
+
 /* Left Box 'To Do' */
 #left-box {
     background-color: var(--box-BG-color);
@@ -62,6 +85,11 @@ div.main {
     display: inline-flex;
     justify-items: left;
     margin-left: 20px;
+    padding: 4px;
+
+    position: relative;          /* Used to center DIV vertically */
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 /* Right Box 'In Progress' */
@@ -74,6 +102,11 @@ div.main {
     justify-items: center;
     margin-right: 3px;
     margin-left: 3px;
+    padding: 4px;
+
+    position: relative;          /* Used to center DIV vertically */
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 /* Right Box 'Completed' */
@@ -85,4 +118,9 @@ div.main {
     display: inline-flex;
     justify-items: right;
     margin-right: 3px;
+    padding: 4px;
+
+    position: relative;          /* Used to center DIV vertically */
+    top: 50%;
+    transform: translateY(-50%);
 }
