@@ -1,9 +1,10 @@
 <!-- 
     Tasker.io
     A task managment system
+    This is the landing page, after the user has logged in.
     Created by: Callum-James Smith (cs18804)
  -->
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <head>
 
     <!-- Meta stuffs -->
@@ -26,6 +27,10 @@
         <div id="search">
             <!-- search goes here -->
         </div>
+        
+        <button type="submit" id="login">Login</button>
+        <p>Logged In</p>
+
     </header>
 
     <div class="container">
