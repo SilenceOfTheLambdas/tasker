@@ -1,6 +1,6 @@
 <!-- 
     Tasker.io
-    A task managment system
+    A task management system
     This is the landing page, after the user has logged in.
     Created by: Callum-James Smith (cs18804)
  -->
