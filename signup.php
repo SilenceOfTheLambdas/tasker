@@ -4,9 +4,15 @@
     This is the login page.
     Created by: Callum-James Smith (cs18804)
  -->
+
+<!-- PHP Include -->
+<?php
+    include('signupPHP.php');
+?>
+
  <!DOCTYPE html>
  <head>
- 
+     
      <!-- Meta stuffs -->
      <meta type='description' content='A task management website.'>
  
@@ -15,6 +21,7 @@
      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
      
      <title>Task Manager</title>
+
  </head>
  
  <body>
@@ -29,12 +36,11 @@
      <div class="loginBox">
          <form id="LoginForm" action="" method="post">
              <h1 id="Sign In">Sign Up</h1>
-             Firstname<input type="text" name="nameUID" id="fnameInput" placeholder="Firstname...">
-             Lastname<input type="text" name="nameUID" id="lnameInput" placeholder="Lastname...">
-             Email<input type="email" name="emailUID" id="emailInput" placeholder="Email..."><br/>
-             Password<input type="password" name="passUID" id="passInput" placeholder="Password..."><br>
-             Password<input type="password" name="passUID" id="passInput" placeholder="Re-enter password..."><br>
-             <button class="standard" type="submit">Submit</button>
+             Firstname<input type="text" name="name" id="name" placeholder="Firstname..."><br/>
+             Email<input type="email" name="email" id="email" placeholder="Email..."><br/>
+             Password<input type="password" name="password" id="password" placeholder="Password..."><br>
+             <input name="action" type="hidden" value="signup">
+             <input type="submit" value="Signup">
          </form>
      </div>
  

@@ -4,7 +4,19 @@
     This is the landing page, after the user has logged in.
     Created by: Callum-James Smith (cs18804)
  -->
- <!DOCTYPE html>
+
+<!-- Checks to see if the user has a session -->
+<?php 
+    include('signupPHP.php');
+    session_start(); 
+    if ($LoggedIn == false) {
+    } else { 
+        echo "Please log in to see this page";
+        header("Location: index.php");
+    }
+?>
+
+<!DOCTYPE html>
 <head>
 
     <!-- Meta stuffs -->
