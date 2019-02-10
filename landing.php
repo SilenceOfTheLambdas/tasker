@@ -8,12 +8,12 @@
 <!-- Checks to see if the user has a session -->
 <?php 
     include('signupPHP.php');
+    include('login.php');
     session_start(); 
-    if ($LoggedIn == false) {
-    } else { 
-        echo "Please log in to see this page";
-        header("Location: index.php");
-    }
+    // if ($_SESSION == false) {
+    //     echo("You must be logged in to see this page!");
+    //     header("Location: index.php?error=nosession");
+    // } 
 ?>
 
 <!DOCTYPE html>

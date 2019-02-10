@@ -4,13 +4,11 @@
     This is the login page.
     Created by: Callum-James Smith (cs18804)
  -->
-
-<!-- PHP Include -->
+ <!DOCTYPE html>
+ <!-- PHP Include -->
 <?php
     include('signupPHP.php');
 ?>
-
- <!DOCTYPE html>
  <head>
      
      <!-- Meta stuffs -->
@@ -34,13 +32,13 @@
      </header>
  
      <div class="loginBox">
-         <form id="LoginForm" action="" method="post">
+         <form id="LoginForm" action="signupPHP.php" method="post">
              <h1 id="Sign In">Sign Up</h1>
-             Firstname<input type="text" name="name" id="name" placeholder="Firstname..."><br/>
-             Email<input type="email" name="email" id="email" placeholder="Email..."><br/>
-             Password<input type="password" name="password" id="password" placeholder="Password..."><br>
-             <input name="action" type="hidden" value="signup">
-             <input type="submit" value="Signup">
+             <input type="text" name="name" placeholder="Name..."><br>
+             <input type="email" name="email" placeholder="Email..."><br>
+             <input type="password" name="passowrd" placeholder="Password..."><br>
+             <input type="Password" name="password-repeat" placeholder="Re-enter password..."><br>
+             <button type="submit" name='signup-submit'>Sign Up</button>
          </form>
      </div>
  
