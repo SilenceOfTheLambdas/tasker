@@ -41,6 +41,9 @@ if (isset($_POST['signin-submit']))
 
                 header("Location: landing.php?signin=success");
                 exit();
+            } else {
+                header("Location: index.php?error=invaliddetails");
+                exit();
             }
 
         } else {

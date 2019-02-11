@@ -53,8 +53,9 @@ if (isset($_POST['signup-submit'])) // Checks to see if user clicked "signup"
         exit();
     }
     else {
+
         mysqli_query($connection, "INSERT INTO users(name,email,password) VALUES('".$name."','".$email."','".$HashedPassword."')");
-        $_SESSION = true;
-        header("Location: landing.php");
+        header("Location: index.php?signup=success");
+        exit();
     }
 }
