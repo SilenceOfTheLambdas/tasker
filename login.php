@@ -28,13 +28,17 @@ if (isset($_POST['signin-submit']))
         if ($DBEmailRows >= 1) // If a row exists the the username is correct
         {
 
-            $PasswordQuery ="SELECT password FROM users WHERE email='".$email."'";
+            $PasswordQuery ="SELECT * FROM users WHERE email='".$email."'";
             $DBPasswordSQL = mysqli_query($connection, $PasswordQuery);
             $row = mysqli_fetch_assoc($DBPasswordSQL);
             $PasswordCheck = password_verify($password, $row['password']);
 
             if ($PasswordCheck == true) // If so then check to see of the password for that user matches
             {
+                session_start();
+                $_SESSION['id'] = $row['id'];
+                $_SESSION['name'] = $row['name'];
+
                 header("Location: landing.php?signin=success");
                 exit();
             }

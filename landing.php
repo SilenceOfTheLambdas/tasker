@@ -7,14 +7,11 @@
 <!DOCTYPE html>
 <!-- Checks to see if the user has a session -->
 <?php 
-    include('signupPHP.php');
-    include('login.php');
-    session_start(); 
-    // TODO: Fix Session
-    if ($_SESSION == false) {
-        echo("You must be logged in to see this page!");
+    session_start();
+    if (!isset($_SESSION['name'])) {
         header("Location: index.php?error=nosession");
-    } 
+        exit();
+    }
 ?>
 <head>
 
@@ -40,7 +37,9 @@
         </div>
         
         <button type="submit" id="login">Login</button>
-        <p>Logged In</p>
+        <?php 
+            echo($_SESSION['name']."logged in");
+        ?>
 
     </header>
 
