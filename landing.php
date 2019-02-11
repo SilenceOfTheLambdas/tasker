@@ -4,19 +4,18 @@
     This is the landing page, after the user has logged in.
     Created by: Callum-James Smith (cs18804)
  -->
-
+<!DOCTYPE html>
 <!-- Checks to see if the user has a session -->
 <?php 
     include('signupPHP.php');
     include('login.php');
     session_start(); 
-    // if ($_SESSION == false) {
-    //     echo("You must be logged in to see this page!");
-    //     header("Location: index.php?error=nosession");
-    // } 
+    // TODO: Fix Session
+    if ($_SESSION == false) {
+        echo("You must be logged in to see this page!");
+        header("Location: index.php?error=nosession");
+    } 
 ?>
-
-<!DOCTYPE html>
 <head>
 
     <!-- Meta stuffs -->

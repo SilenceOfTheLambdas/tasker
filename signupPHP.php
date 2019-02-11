@@ -19,21 +19,33 @@ if (isset($_POST['signup-submit'])) // Checks to see if user clicked "signup"
         // ^ throws an error and re-applies the data back into the fields if available
         exit(); // Stop script from running
     }
-        if ($RowNumber >= 1) // If a row matching the email address is found
-        {
-            header("Location: signup.php?error=emailexists&name=".$name."&email=".$email);
-            // ^ throws an error and re-applies the data back into the fields if available
-            exit(); // Stop script from running
-        }else {
-            mysqli_query($connection, "INSERT INTO users(name,email,password) VALUES('".$name."','".$email."','".md5($password)."')");
-            header("Location: landing.php");
-            exit();
-        }
-    if ($password != $passwordRepeat)  // Checks to see if the password are the same
+    else if ($RowNumber >= 1) // If a row matching the email address is found
     {
-        header("Location: signup.php?error=passwordmismatch&name=".$name."&email=".$email);
+        header("Location: signup.php?error=emailexists&name=".$name."&email=".$email);
         // ^ throws an error and re-applies the data back into the fields if available
         exit(); // Stop script from running
     }
+    else if ($password != $passwordRepeat)  // Checks to see if the password are the same
+    {
+        header("Location: signup.php?error=passwordmismatch&name=".$name."&email=".$email);
+        // ^ throws an error and re-applies the data back into the fields if available
+        exit();
+    }
+    else if (!filter_var($email, FILTER_VALIDATE_EMAIL))
+    {
+        header("Location: signup.php?error=invalidemail&name=".$name);
+        // ^ throws an error and re-applies the data back into the fields if available
+        exit();
+    }
+    else if (!preg_match("/^[a-zA-Z0-9]*$/", $name)) // Checks to see if the username is valid (contains letters A-Z and integers 0-9)
+    {
+        header("Location: signup.php?error=invalidname&email=".$email);
+        // ^ throws an error and re-applies the data back into the fields if available
+        exit();
+    }
+    else {
+        mysqli_query($connection, "INSERT INTO users(name,email,password) VALUES('".$name."','".$email."','".md5($password)."')");
+        $_SESSION = true;
+        header("Location: landing.php");
+    }
 }
-?>
