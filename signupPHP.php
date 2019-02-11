@@ -1,4 +1,9 @@
 <?php 
+/**
+ * signupPHP.php
+ * This script controls the user signup process
+ * Created by: Callum-James Smith (cs18804)
+ */
 if (isset($_POST['signup-submit'])) // Checks to see if user clicked "signup"
 {
     require 'db.php'; // include the Database connection handler file
@@ -7,10 +12,14 @@ if (isset($_POST['signup-submit'])) // Checks to see if user clicked "signup"
     $email = $_POST['email']; // The email address given by the user
     $password = $_POST['password']; // The password given by the user
     $passwordRepeat = $_POST['password-repeat']; // The repeated version of the initial password, given by user
+    $HashedPassword = password_hash($password, PASSWORD_DEFAULT); // Hashes the password using BCRYPT
     
-    $query = "SELECT email FROM users WHERE email='".$email."'";
-    $result = mysqli_query($connection, $query);
-    $RowNumber = mysqli_num_rows($result);
+    $EmailQuery = "SELECT email FROM users WHERE email='".$email."'";
+    $NameQuery = "SELECT name FROM users WHERE name='".$name."'";
+    $EmailResult = mysqli_query($connection, $EmailQuery);
+    $NameResult = mysqli_query($connection, $NameQuery);
+    $EmailRowNumber = mysqli_num_rows($EmailResult);
+    $NameRowNumber = mysqli_num_rows($NameResult);
 
     if (empty($name) || empty($email) || empty($password) || empty($passwordRepeat))
     // Checks to see if any of the fields are empty
@@ -19,9 +28,9 @@ if (isset($_POST['signup-submit'])) // Checks to see if user clicked "signup"
         // ^ throws an error and re-applies the data back into the fields if available
         exit(); // Stop script from running
     }
-    else if ($RowNumber >= 1) // If a row matching the email address is found
+    else if ($EmailRowNumber >= 1 || $NameRowNumber >= 1) // If a row matching the email address is found
     {
-        header("Location: signup.php?error=emailexists&name=".$name."&email=".$email);
+        header("Location: signup.php?error=userexists");
         // ^ throws an error and re-applies the data back into the fields if available
         exit(); // Stop script from running
     }
@@ -44,7 +53,7 @@ if (isset($_POST['signup-submit'])) // Checks to see if user clicked "signup"
         exit();
     }
     else {
-        mysqli_query($connection, "INSERT INTO users(name,email,password) VALUES('".$name."','".$email."','".md5($password)."')");
+        mysqli_query($connection, "INSERT INTO users(name,email,password) VALUES('".$name."','".$email."','".$HashedPassword."')");
         $_SESSION = true;
         header("Location: landing.php");
     }

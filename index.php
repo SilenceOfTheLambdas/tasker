@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <!-- PHP Includes -->
 <?php
-    include('signupPHP.php');
+
 ?>
 <head>
 
@@ -31,13 +31,12 @@
     </header>
 
     <div class="loginBox">
-        <form id="LoginForm" action="" method="post">
+        <form id="LoginForm" action="login.php" method="post">
             <h1 id="Sign In">Sign In</h1>
             <input type="email" name="email" id="email" placeholder="Email..."><br/>
             <input type="password" name="password" id="password" placeholder="Password..."><br>
-            <input name="action" type="hidden" value="login">
             <button type="submit" name="signin-submit">Sign In</button>
-            <a class="button" href="signup.php">Sign Up</a>
+            <button type="submit" name="signup-submit">Sign Up</button>
         </form>
     </div>
 
