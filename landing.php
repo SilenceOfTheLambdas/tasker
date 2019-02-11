@@ -61,7 +61,9 @@
             </div>
 
             <div class="addItem">
-                <button type="submit"><i class="far fa-plus-square"></i></button>
+                <form action="addItem.php" method="post">
+                    <button type="submit" name="add-item"><i class="far fa-plus-square"></i></button>
+                </form>
             </div>
         </div>
 
@@ -73,23 +75,16 @@
                 Consequuntur pariatur quas consectetur adipisci vitae corporis fuga possimus est dolores a, 
                 quod asperiores voluptas obcaecati eveniet ea aspernatur, mollitia doloremque porro.
             </div>
-
-            <div class="addItem">
-                <button type="submit"><i class="far fa-plus-square"></i></button>
-            </div>
         </div>
 
         <div class="box-3"> <!-- COMPLETED Box -->
             <h3 class="headerTitle">Completed</h3>
             <hr>
+
             <div class="item">
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
                 Consequuntur pariatur quas consectetur adipisci vitae corporis fuga possimus est dolores a, 
                 quod asperiores voluptas obcaecati eveniet ea aspernatur, mollitia doloremque porro.
-            </div>
-
-            <div class="addItem">
-                <button type="submit"><i class="far fa-plus-square"></i></button>
             </div>
         </div>
 
