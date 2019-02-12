@@ -1,6 +1,6 @@
 <?php
 /*
- * login.php
+ * login.inc.php
  * handles the login request from the user.
  * Created by: Callum-James Smith(cs18804)
 */
@@ -12,12 +12,15 @@ if (isset($_POST['signin-submit']))
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    if (empty($email) || empty($password))
+    if (empty($email))
     // Checks to see if any of the fields are empty
     {
-        header("Location: index.php?error=emptyfields&email=".$email);
+        header("Location: index.php?error=emptyemail");
         // ^ throws an error and re-applies the data back into the fields if available
         exit(); // Stop script from running
+    } else if (empty($password)) {
+        header("Location: index.php?error=emptypassword");
+        exit();
     }
     else // If fields are NOT empty
     {

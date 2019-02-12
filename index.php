@@ -3,11 +3,15 @@
     A task management system
     This is the login page.
     Created by: Callum-James Smith (cs18804)
+    files indicated with *.inc.php are used to process the information, these contain only php no HTML
  -->
 <!DOCTYPE html>
 <!-- PHP Includes -->
 <?php
-
+    session_start();
+    if (isset($_SESSION['name']) && isset($_SESSION['id'])) {
+        header("Location: landing.php");
+    }
 ?>
 <head>
 
@@ -30,14 +34,36 @@
         </div>
     </header>
 
-    <div class="loginBox">
-        <form id="LoginForm" action="login.inc.php" method="post">
-            <h1 id="Sign In">Sign In</h1>
-            <input type="email" name="email" id="email" placeholder="Email..."><br/>
-            <input type="password" name="password" id="password" placeholder="Password..."><br>
-            <button type="submit" name="signin-submit">Sign In</button>
-            <button type="submit" name="signup-submit">Sign Up</button>
-        </form>
+    <div class="wrapper">
+    
+        <div class="loginBox">
+
+            <form id="LoginForm" action="login.inc.php" method="post">
+
+                <h1 id="Sign In">Sign In</h1>
+                <input type="email" style="margin-bottom: 20px;" name="email" id="email" placeholder="Email..."><br/>
+                <input type="password" name="password" id="password" placeholder="Password..."><br>
+
+                <div class="formButtons">
+
+                    <div class='signup'>
+                        <form id="LoginForm" action="login.inc.php" method="post">
+                            <button id='signin-button' type="submit" name="signin-submit">Sign In</button>
+                        </form>
+                    </div>
+
+                    <div class="signup">
+                        <form id="LoginForm" action="login.inc.php" method="post">
+                            <button id='signup-button' type="submit" name="signup-submit">Sign Up</button>
+                        </form>
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
     </div>
 
 </body>

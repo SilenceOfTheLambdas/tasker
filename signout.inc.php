@@ -5,7 +5,7 @@
  * Created by: Callum-James Smith(cs18804)
  */
 
-if (isset($_POST['signout'])) // and, if the user selects the sign out button
+if (isset($_POST['signout'])) // if the user selects the sign out button
 {
     session_start(); // You must have session_start() whenever adjusting the values for $_SESSION
 

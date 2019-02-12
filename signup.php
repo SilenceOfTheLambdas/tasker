@@ -33,15 +33,32 @@
         </div>
     </header>
 
-    <div class="loginBox">
-        <form id="LoginForm" action="signup.inc.php" method="post">
-            <h1 id="Sign In">Sign Up</h1>
-            <input type="text" name="name" placeholder="Name..."><br>
-            <input type="email" name="email" placeholder="Email..."><br>
-            <input type="password" name="password" placeholder="Password..."><br>
-            <input type="Password" name="password-repeat" placeholder="Re-enter password..."><br>
-            <button type="submit" name='signup-submit'>Sign Up</button>
-        </form>
+    <div class="signupWrapper">
+    
+        <div class="signupBox">
+
+            <form id="LoginForm" action="signup.inc.php" method="post">
+
+                <h1 id="Sign In">Sign In</h1>
+                <input type="text" style="margin-bottom: 20px;" name="name" placeholder="Name..."><br>
+                <input type="email" style="margin-bottom: 20px;" name="email" placeholder="Email..."><br>
+                <input type="password" style="margin-bottom: 20px;" name="password" placeholder="Password..."><br>
+                <input type="Password" name="password-repeat" placeholder="Re-enter password..."><br>
+
+                <div class="formButtons">
+
+                    <div class="signup">
+                        <form id="LoginForm" action="signup.inc.php" method="post">
+                            <button id='signup-button-1' type="submit" name="signup-submit">Sign Up</button>
+                        </form>
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
     </div>
 
 </body>
