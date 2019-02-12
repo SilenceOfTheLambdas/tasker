@@ -7,11 +7,11 @@
 <!DOCTYPE html>
 <!-- Checks to see if the user has a session -->
 <?php 
-    // session_start();
-    // if (!isset($_SESSION['name'])) {
-    //     header("Location: index.php?error=nosession");
-    //     exit();
-    // }
+    session_start();
+    if (!isset($_SESSION['name'])) {
+        header("Location: index.php?error=nosession");
+        exit();
+    }
 ?>
 <head>
 
@@ -40,12 +40,12 @@
         <div id="user">
 
             <?php 
-                echo("<p id='userHello'>Hello, </p>"."<p>Callum</p>"); ?>
+                echo("<p id='userHello'>Hello, </p>".$_SESSION['name']); ?>
 
         </div>
 
         <div id="signout">
-            <form action="signout.php" method="post">
+            <form action="signout.inc.php" method="post">
                 <button class="signout" type="submit" name="signout">Sign Out</button>
             </form>
         </div>

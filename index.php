@@ -31,7 +31,7 @@
     </header>
 
     <div class="loginBox">
-        <form id="LoginForm" action="login.php" method="post">
+        <form id="LoginForm" action="login.inc.php" method="post">
             <h1 id="Sign In">Sign In</h1>
             <input type="email" name="email" id="email" placeholder="Email..."><br/>
             <input type="password" name="password" id="password" placeholder="Password..."><br>

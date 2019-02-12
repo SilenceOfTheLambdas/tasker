@@ -6,7 +6,7 @@
  -->
  <!DOCTYPE html>
 <?php
-    include('signupPHP.php');
+    include('signup.inc.php');
 ?>
 <head>
      
@@ -34,7 +34,7 @@
     </header>
 
     <div class="loginBox">
-        <form id="LoginForm" action="signupPHP.php" method="post">
+        <form id="LoginForm" action="signup.inc.php" method="post">
             <h1 id="Sign In">Sign Up</h1>
             <input type="text" name="name" placeholder="Name..."><br>
             <input type="email" name="email" placeholder="Email..."><br>
