@@ -30,7 +30,7 @@
     <header>
         <div id="logo">
             <!-- Logo goes here -->
-            <h1 class="logo">Task.io</h1>
+            <h1 class="logo">Tasker.io</h1>
         </div>
 
         <div id="search">
@@ -69,11 +69,24 @@
                 quod asperiores voluptas obcaecati eveniet ea aspernatur, mollitia doloremque porro.
             </div>
 
+            <?php 
+
+                if (isset($_POST['add-item'])) {
+                    echo("<form action='addItem.inc.php' method='post'> <input type='text' name='title'> <button type='submit' name='add-title'>Submit</button> </form>");
+                }
+                if (isset($_SESSION['newItem'])) {
+                    echo($_SESSION['newItem']);
+                }
+            ?>
+
             <div class="addItem">
-                <form action="addItem.php" method="post">
+
+                <form action="landing.php" method="post">
                     <button type="submit" name="add-item"><i class="far fa-plus-square"></i></button>
                 </form>
+
             </div>
+
         </div>
 
         <div class="box-2"> <!-- IN PROGRESS Box -->
@@ -95,6 +108,7 @@
                 Consequuntur pariatur quas consectetur adipisci vitae corporis fuga possimus est dolores a, 
                 quod asperiores voluptas obcaecati eveniet ea aspernatur, mollitia doloremque porro.
             </div>
+
         </div>
 
     </div>

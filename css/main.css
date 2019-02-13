@@ -20,6 +20,7 @@ html, body {
     margin: 0;
     padding: 0;
     font-family: 'IBM Plex Sans Condensed', sans-serif;
+    background-color: var(--button-BG-color);
 }
 
 @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans+Condensed');
@@ -30,11 +31,12 @@ h1#signin {
     text-align: center;
 }
 
-div.wrapper {
+div.wrapper /* Wrapper for index.php */
+{
     display: flex;
     flex-direction: column;
     width: 40%;
-    height: 40vh;
+    height: auto;
     background: var(--button-BG-color);
 
     position: relative;
@@ -42,7 +44,6 @@ div.wrapper {
     transform: translateY(50%);
 
     margin: 0 auto;
-    box-shadow: #363b43 2px 5px 2px;
     color: white;
 }
 
@@ -58,8 +59,22 @@ div.signupWrapper {
     transform: translateY(25%);
 
     margin: 0 auto;
-    box-shadow: #363b43 2px 5px 2px;
     color: white;
+}
+
+@media screen and (max-width: 635px) /* when the screen reaches less than 635px */
+{
+
+    div.wrapper {
+        width: 100%;
+        height: 100%;
+        box-shadow: none;
+    }
+    div.signupWrapper {
+        width: 100%;
+        height: 100%;
+        box-shadow: none;
+    }
 }
 
 div.signupBox {
@@ -104,7 +119,7 @@ div.signupBox form input:focus {
 
 div.loginBox {
     width: 100%;
-    height: 100%;
+    height: 80%;
 
     text-align: center;
 
@@ -149,12 +164,11 @@ div.formButtons {
     margin-top: 40px;
 
     width: 100%;
-    height: auto;
+    height: 20%;
 }
 
 div.signin {
     width: 100%;
-    height: 100%;
     flex-basis: 50%;
     background: var(--button-BG-color);
     color: white;
@@ -251,6 +265,7 @@ header {
     height: 60px;
     display: flex;
     flex-direction: row;
+    box-shadow: black 2px 2px 2px;
 }
 
 /* Logo Section */
@@ -264,15 +279,20 @@ header {
     height: 100%;
     flex-basis: 10%;
 }
+h1.logo {
+    position: relative;          /* Used to center DIV vertically */
+    top: 50%;
+    transform: translateY(-100%);
+}
 
 /* Search Section */
 #search {
     background-color: var(--search-BG-color);
     color: white;
 
-    width: 500px;
+    width: 100%;
     height: 80%;
-    
+
     position: relative;          /* Used to center DIV vertically */
     top: 50%;
     transform: translateY(-50%);
@@ -321,7 +341,8 @@ div.container {
     clear: both;
 }
 
-.headerTitle {
+.headerTitle /* header title for the boxes */
+{
     text-align: center;
 }
 

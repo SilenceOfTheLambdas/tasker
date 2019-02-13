@@ -29,7 +29,7 @@
     <header>
         <div id="logo">
             <!-- Logo goes here -->
-            <h1 class="logo">Task.io</h1>
+            <h1 class="logo">Tasker.io</h1>
         </div>
     </header>
 
@@ -39,7 +39,7 @@
 
             <form id="LoginForm" action="signup.inc.php" method="post">
 
-                <h1 id="Sign In">Sign In</h1>
+                <h1 id="Sign In" style="text-decoration: underline white;">Sign Up</h1>
                 <input type="text" style="margin-bottom: 20px;" name="name" placeholder="Name..."><br>
                 <input type="email" style="margin-bottom: 20px;" name="email" placeholder="Email..."><br>
                 <input type="password" style="margin-bottom: 20px;" name="password" placeholder="Password..."><br>

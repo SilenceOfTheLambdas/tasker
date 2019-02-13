@@ -40,7 +40,7 @@
 
             <form id="LoginForm" action="login.inc.php" method="post">
 
-                <h1 id="Sign In">Sign In</h1>
+                <h1 id="Sign In" style="text-decoration: underline white;">Sign In</h1>
                 <input type="email" style="margin-bottom: 20px;" name="email" id="email" placeholder="Email..."><br/>
                 <input type="password" name="password" id="password" placeholder="Password..."><br>
 
