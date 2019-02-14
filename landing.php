@@ -58,21 +58,80 @@
             <h3 class="headerTitle">To Do</h3>
             <hr>
             <div class="item">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                Consequuntur pariatur quas consectetur adipisci vitae corporis fuga possimus est dolores a, 
-                quod asperiores voluptas obcaecati eveniet ea aspernatur, mollitia doloremque porro.
+
+                <div class="task-title">
+                    <h1 class="taskTitle">Task Title</h1>
+                    <hr class="taskTitle">
+                </div>
+
+                <div class="task-desc">
+                    <p class="task-desc">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam, laboriosam! 
+                    Hic earum cupiditate assumenda accusamus praesentium iure nisi error iusto.</p>
+                </div>
+
             </div>
 
             <div class="item">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                Consequuntur pariatur quas consectetur adipisci vitae corporis fuga possimus est dolores a, 
-                quod asperiores voluptas obcaecati eveniet ea aspernatur, mollitia doloremque porro.
+
+                <div class="title-wrapper">
+
+                    <div class="task-title">
+                        <h1 class="taskTitle">Task Title</h1>
+                    </div>
+
+                    <div class="task-priority">
+                        <p class="task-priority">Medium</p>
+                    </div>
+                </div>
+                <hr class="taskTitle">
+                <div class="task-desc">
+                    <p class="task-desc">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam, laboriosam! 
+                    Hic earum cupiditate assumenda accusamus praesentium iure nisi error iusto.</p>
+                </div>
+
+                <div class="task-date-time">
+                    <p class="task-date-time">14/02/2019</p>
+                </div>
+
             </div>
 
             <?php 
 
+                $ProjectSQL = "SELECT project_name FROM projects WHERE user_id='".$_SESSION['id']."'";
+                $Project_Name = mysqli_query($connection, $ProjectSQL);
+                $ProjectNameRows = mysqli_num_rows($Project_Name);
+
+                if ($ProjectNameRows <= 0) {
+                    echo(
+                        '<form action="newProject.inc.php" method="post">
+                            <h3>Please make a new project</h3>
+                            <input type="text" name="project-name">
+                            <button type="submit" name="add-project">Add Project</button>
+                        </form>'
+                    );
+                }
+
                 if (isset($_POST['add-item'])) {
-                    echo("<form action='addItem.inc.php' method='post'> <input type='text' name='title'> <button type='submit' name='add-title'>Submit</button> </form>");
+                    echo(
+                        '<form action="addItem.inc.php" method="post">
+                            ''
+                            Title<input type="text" name="title" placeholder="Title..."><br/>
+                            Description<input type="text" name="task-desc" placeholder="Description..."><br/>
+                            Date<input type="date" name="task-date"><br/>
+                            Time<input type="time" name="task-time"><br/>
+                            <select name="task-state">
+                                <option name="To Do">To Do</option>
+                                <option name="In Progress">In Progress</option>
+                                <option name="Completed">Completed</option>
+                            </select>
+                            <select name="task-priority">
+                                <option name="high">High</option>
+                                <option name="medium">Medium</option>
+                                <option name="low">Low</option>
+                            </select>
+                            <button type="submit" name="add-task">Add Task</button>
+                        </form>'
+                    );
                 }
                 if (isset($_SESSION['newItem'])) {
                     echo($_SESSION['newItem']);

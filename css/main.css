@@ -275,7 +275,7 @@ header {
     text-align: center;
     color: white;
     
-    width: 125px;
+    width: auto;
     height: 100%;
     flex-basis: 10%;
 }
@@ -366,11 +366,43 @@ div.box-3 {
     box-shadow: #363b43 2px 5px 2px;
 }
 
+/* TASKS */
 div.item {
     margin: 8px;
     padding: 2px;
     background: var(--task-BG-color);
     box-shadow: #363b43 2px 2px 1px;
+}
+/* Task Title */
+
+div.title-wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+div.task-title {
+    flex-basis: 70%;
+}
+
+h1.taskTitle {
+    font-size: 20px;
+    width: 50%;
+}
+
+/* Task Priority */
+div.task-priority {
+    flex-basis: 30%;
+}
+
+p.task-priority {
+    text-align: center;
+}
+
+hr.taskTitle {
+    border: 0;
+    height: 1px;
+    background: #333;
+    background-image: linear-gradient(to right, rgb(48, 48, 48), #333, rgb(48, 48, 48));
 }
 
 /* BUTTONS!!! */
