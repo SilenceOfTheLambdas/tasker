@@ -5,7 +5,7 @@ require 'db.php';
 if (isset($_POST['add-task'])) {
     session_start();
 
-    $id = $_POST['project-id'];
+    $project_name = $_POST['project-names'];
     $title = $_POST['title'];
     $date = $_POST['task-date'];
     $time = $_POST['task-time'];
@@ -13,17 +13,18 @@ if (isset($_POST['add-task'])) {
     $priority = $_POST['task-priority'];
     $desc = $_POST['task-desc'];
 
-    $sql = "SELECT projectID FROM tasks WHERE projectID='".$id."'";
+    $ProjectID = mysqli_query($connection, "SELECT projectID FROM projects WHERE project_name='".$project_name."'");
+    $Project_ID = mysqli_fetch_assoc($ProjectID); // This variable stores all of the data performed from the query above, into a nice little array.
+    $ID = $Project_ID['projectID']; // THIS IS THE ID!
+
+    $sql = "SELECT projectID FROM tasks WHERE projectID='".$Project_ID."'";
     $ProjectIDQuery = mysqli_query($connection, $sql);
     $ProjectIDRows = mysqli_num_rows($ProjectIDQuery);
 
-    if ($ProjectIDRows <= 0) {
-        echo("A project with this ID does not exist!");
-        header("Location: landing.php?error=projectDoesNotExist");
-        exit();
-    }
+    mysqli_query($connection, "INSERT INTO tasks(projectID,task_title,task_date,task_time,task_state,task_priority,task_desc) VALUES('".$ID."','".$title."','".$date."', '".$time."', '".$state."', '".$priority."', '".$desc."')");
 
-    mysqli_query($connection, "INSERT INTO tasks(projectID,task_title,task_date,task_time,task_state,task_priority,task_desc) VALUES('".$id."','".$title."','".$date."', '".$time."', '".$state."', '".$priority."', '".$desc."')");
+    $titleSQL = mysqli_query($connection, "SELECT task_title FROM tasks WHERE projectID='".$ID."'");
+    
 
     $titleString ='
     <div class="item">
@@ -52,7 +53,7 @@ if (isset($_POST['add-task'])) {
     </div>';
     $_SESSION['newItem'] = $titleString;
     $_SESSION['item-added'] = true;
-    header("Location: landing.php?item-added");
+    header("Location: landing.php?item-added?");
     exit();
 
 }

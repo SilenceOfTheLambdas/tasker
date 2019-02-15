@@ -57,45 +57,12 @@
         <div class="box-1"> <!-- TODO Box -->
             <h3 class="headerTitle">To Do</h3>
             <hr>
-            <div class="item">
-
-                <div class="task-title">
-                    <h1 class="taskTitle">Task Title</h1>
-                    <hr class="taskTitle">
-                </div>
-
-                <div class="task-desc">
-                    <p class="task-desc">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam, laboriosam! 
-                    Hic earum cupiditate assumenda accusamus praesentium iure nisi error iusto.</p>
-                </div>
-
-            </div>
-
-            <div class="item">
-
-                <div class="title-wrapper">
-
-                    <div class="task-title">
-                        <h1 class="taskTitle">Task Title</h1>
-                    </div>
-
-                    <div class="task-priority">
-                        <p class="task-priority">Medium</p>
-                    </div>
-                </div>
-                <hr class="taskTitle">
-                <div class="task-desc">
-                    <p class="task-desc">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam, laboriosam! 
-                    Hic earum cupiditate assumenda accusamus praesentium iure nisi error iusto.</p>
-                </div>
-
-                <div class="task-date-time">
-                    <p class="task-date-time">14/02/2019</p>
-                </div>
-
-            </div>
 
             <?php 
+            /**
+             * This part checks to see if the user has any projects, if not they are forced to make one.
+             */
+                require 'db.php';
 
                 $ProjectSQL = "SELECT project_name FROM projects WHERE user_id='".$_SESSION['id']."'";
                 $Project_Name = mysqli_query($connection, $ProjectSQL);
@@ -111,10 +78,23 @@
                     );
                 }
 
-                if (isset($_POST['add-item'])) {
-                    echo(
-                        '<form action="addItem.inc.php" method="post">
-                            ''
+                if (isset($_POST['add-item'])) 
+                /**
+                 * Checks to see if the user has selected the option to add a task.
+                 * if so, then it prints out a form asking the user to fill in details about it.
+                 * 
+                 * Vars:
+                 *  $TopForm = This contains the top part of the form including the <select> element.
+                 *  $RestOfForm = This contains the rest of the form (from the project name list down).
+                 */
+                {
+                    
+                    $TopForm = '<form action="addItem.inc.php" method="post">
+                    <select name="project-names">';
+
+                    $RestOfForm = 
+                        '
+                            </select>
                             Title<input type="text" name="title" placeholder="Title..."><br/>
                             Description<input type="text" name="task-desc" placeholder="Description..."><br/>
                             Date<input type="date" name="task-date"><br/>
@@ -130,12 +110,38 @@
                                 <option name="low">Low</option>
                             </select>
                             <button type="submit" name="add-task">Add Task</button>
-                        </form>'
-                    );
+                        </form>';
+                    $ListOfProjects = mysqli_query($connection, "SELECT * FROM projects"); // The query that selects all of the data from table `projects`.
+
+                    $row = mysqli_fetch_array($ListOfProjects); // This variable stores all of the data performed from the query above, into a nice little array.
+
+                    $project_names[] = $row['project_name']; // Store a new variable that only stores values in the column 'project_name'.
+
+                    echo($TopForm); // Prints out the top of the form
+
+                    foreach ($project_names as $name) // loops through each item in the array.
+                    {
+                        echo('<option value="'.$name.'">'.$name.'</option>'); // then prints out an <option> tag with the name placed in.
+                    }
+                    echo($RestOfForm); // prints out the rest if the form.
                 }
-                if (isset($_SESSION['newItem'])) {
+
+                $Tasks = "SELECT * FROM tasks ";
+                $TasksQuery = mysqli_query($connection, $Tasks);
+                $NumberOfTasks = mysqli_num_rows($TasksQuery);
+
+                $ProjectID = mysqli_query($connection, "SELECT projectID FROM projects");
+                $Project_ID = mysqli_fetch_assoc($ProjectID); // This variable stores all of the data performed from the query above, into a nice little array.
+                $ID = $Project_ID['projectID']; // THIS IS THE ID!
+                $TaskIDQuery = mysqli_query($connection, "SELECT task_id FROM tasks WHERE projectID='".$ID."'");
+                $TaskIDAssoc = mysqli_fetch_assoc($TaskIDQuery);
+                $TaskID = $TaskIDAssoc['task_id'];
+                if (isset($_SESSION['item-added'])) {
+                    // Prints out the new task once created
                     echo($_SESSION['newItem']);
                 }
+                $i = 0;
+                echo($_SESSION['newItem']);
             ?>
 
             <div class="addItem">
