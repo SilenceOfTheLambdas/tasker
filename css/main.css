@@ -352,6 +352,11 @@ div.project-selector {
     flex-basis: 10%;
 }
 
+div.container-wrapper {
+    width: 32%;
+    height: 60px;
+}
+
 /* Container */
 div.container {
     display: flex;
@@ -370,7 +375,7 @@ div.container {
 div.box-1 { /* To DO */
     background: var(--box-BG-color);
     flex-basis: 32%;
-    height: 85vh;
+    height: 75vh;
     clear: both;
     overflow: auto;
     border: white solid 2px;
@@ -380,7 +385,7 @@ div.box-2 { /* In Progress */
     background: var(--box-BG-color);
     flex-basis: 32%;
     clear: both;
-    height: 85vh;
+    height: 81vh;
     overflow: auto;
     border: white solid 2px;
 }
@@ -388,7 +393,7 @@ div.box-2 { /* In Progress */
 div.box-3 { /* Completed */
     background: var(--box-BG-color);
     flex-basis: 32%;
-    height: 85vh;
+    height: 81vh;
     overflow: auto;
     border: white solid 2px;
 }
@@ -470,3 +475,21 @@ button {
     width: 100%;
     font-size: 28px;
 }
+
+/* Adding Item */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 99;
+    left: 0;
+    top: 0;
+
+    margin: 0 auto;
+    overflow: auto;
+    height: 40vh;
+    width: 60%;
+    background-color: #E95378;
+}
+
+
