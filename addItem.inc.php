@@ -22,13 +22,13 @@ if (isset($_POST['add-task'])) {
     $Project_ID = mysqli_fetch_assoc($ProjectID); // This variable stores all of the data performed from the query above, into a nice little array.
     $ID = $Project_ID['projectID']; // THIS IS THE ID!
 
-    $sql = "SELECT projectID FROM tasks WHERE projectID='".$Project_ID."'";
+    $sql = "SELECT projectID FROM tasks WHERE projectID='".$_GET['add-item']."'";
     $ProjectIDQuery = mysqli_query($connection, $sql);
     $ProjectIDRows = mysqli_num_rows($ProjectIDQuery);
 
     mysqli_query($connection, "INSERT INTO tasks(projectID,task_title,task_date,task_time,task_state,task_priority,task_desc) VALUES('".$ID."','".$title."','".$date."', '".$time."', '".$state."', '".$priority."', '".$desc."')");
 
-    $titleSQL = mysqli_query($connection, "SELECT task_title FROM tasks WHERE projectID='".$ID."'");
+    $titleSQL = mysqli_query($connection, "SELECT task_title FROM tasks WHERE projectID='".$_GET['add-item']."'");
     
 
     $titleString ='
@@ -58,7 +58,7 @@ if (isset($_POST['add-task'])) {
     </div>';
     $_SESSION['newItem'] = $titleString;
     $_SESSION['item-added'] = true;
-    header("Location: landing.php?item-added?");
+    header("Location: landing.php?item-added");
     exit();
 
 }

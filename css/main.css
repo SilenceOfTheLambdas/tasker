@@ -476,20 +476,35 @@ button {
     font-size: 28px;
 }
 
-/* Adding Item */
+/* Adding Items */
 
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 99;
-    left: 0;
-    top: 0;
-
-    margin: 0 auto;
-    overflow: auto;
-    height: 40vh;
-    width: 60%;
-    background-color: #E95378;
+form.add-item {
+    width: 100%;
+    height: auto;
+    background: var(--header-BG-color);
 }
 
+form.add-item input {
+    font-size: 2em;
+    color: white;
 
+    background-color: transparent; 
+    border-style: solid; 
+    border-width: 0px 0px 1px 0px; 
+    border-color: white;
+    margin-bottom: 4px;
+}
+
+form.add-item select {
+    background: var(--search-BG-color);
+    border: none;
+    width: auto;
+    height: 4vh;
+    color: white;
+}
+
+form.add-item button {
+    background: #E95378;
+    border: none;
+    color: white;
+}

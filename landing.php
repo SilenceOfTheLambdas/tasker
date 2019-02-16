@@ -35,9 +35,10 @@
         
         <div class="project-selector">
                 <?php 
-                    require 'db.php';
+					require 'db.php';
+					$_SESSION['project_id'] = array();
                     if (empty($_GET['projects'])) {
-                        $PROJECT_NAME_SQL = "SELECT project_name FROM projects WHERE user_id='".$_SESSION['id']."'";
+                        $PROJECT_NAME_SQL = "SELECT * FROM projects WHERE user_id='".$_SESSION['id']."'";
                     } else {
                         $PROJECT_NAME_SQL = "SELECT project_name FROM projects WHERE user_id='".$_SESSION['id']."' ORDER BY project_name='".$_GET['projects']."' DESC";
                     }
@@ -49,7 +50,7 @@
                     ');
 
                     while ($PROJECT_NAME_ROW = $PROJECT_NAME_RESULT-> fetch_assoc()) {
-                        $project_title = $PROJECT_NAME_ROW['project_name'];
+						$project_title = $PROJECT_NAME_ROW['project_name'];
                         echo('<option value="'.$project_title.'" >'.$project_title.'</option>');
                     }
                     echo('</select></form>');
@@ -79,8 +80,8 @@
         <div class="container-wrapper">
             <h3 class="headerTitle">To Do</h3>
             <hr>
-            <div class="box-1"> <!-- TODO Box -->
-                <?php 
+			<div class="box-1"> <!-- TODO Box -->
+            	<?php 
                 /**
                  * This part checks to see if the user has any projects, if not they are forced to make one.
                  */
@@ -93,7 +94,7 @@
                     if ($ProjectNameRows <= 0) // If the user does not have any projects, they are forced to make one
                     {
                         echo(
-                            '<form action="newProject.inc.php" method="post">
+                            '<form class="add-item" action="newProject.inc.php" method="post">
                                 <h3>Please make a new project</h3>
                                 <input type="text" name="project-name">
                                 <button type="submit" name="add-project">Add Project</button>
@@ -102,7 +103,7 @@
                         exit();
                     }
 
-                    if (isset($_POST['add-item'])) 
+                    if (isset($_GET['add-item'])) 
                     /**
                      * Checks to see if the user has selected the option to add a task.
                      * if so, then it prints out a form asking the user to fill in details about it.
@@ -113,14 +114,14 @@
                      */
                     {
                         
-                        $TopForm = '<form action="addItem.inc.php" method="post">';
+                        $TopForm = '<form class="add-item" action="addItem.inc.php" method="post">';
 
                         $RestOfForm = 
                                 '
-                                    Title<input type="text" name="title" placeholder="Title..."><br/>
-                                    Description<input type="text" name="task-desc" placeholder="Description..."><br/>
-                                    Date<input type="date" name="task-date"><br/>
-                                    Time<input type="time" name="task-time"><br/>
+                                    <input type="text" name="title" placeholder="Title..."><br/>
+                                    <input type="text" name="task-desc" placeholder="Description..."><br/>
+                                    <input type="date" name="task-date"><br/>
+                                    <input type="time" name="task-time"><br/>
                                 <select name="task-state">
                                     <option name="To Do">To Do</option>
                                     <option name="In Progress">In Progress</option>
@@ -141,16 +142,61 @@
 
                         echo($TopForm); // Prints out the top of the form
                         echo($RestOfForm); // prints out the rest if the form.
-                    }
-                    
+					}
+
+					if (isset($_GET['edit-task'])) {
+						require 'db.php';
+					
+						$TaskTitle = $_GET['edit-task'];
+					
+						// Obtain task details
+						$sql = "SELECT *in FROM tasks WHERE task_title='".$TaskTitle."'";
+						$result = $connection-> query($sql);
+						if ($result-> num_rows <= 0) {
+							echo('<p>You Do Not Have Any Tasks</p>');
+						}
+						$row = $result-> fetch_assoc();
+						$task_id = $row['task_id'];
+						$task_priority = $row['task_priority'];
+						$task_desc = $row['task_desc'];
+						$task_date = $row['task_date'];
+						$task_time = $row['task_time'];
+						$task_state = $row['task_state'];
+					
+						
+						$FormString = '
+							<form action="edit-task.inc.php" method="get">
+								<input type="text" name="title" value="'.$TaskTitle.'" placeholder="Title..."><br/>
+								<input type="text" name="task-desc" value="'.$task_desc.'" placeholder="Description..."><br/>
+								<input type="date" name="task-date" value="'.$task_date.'"><br/>
+								<input type="time" name="task-time" value="'.$task_time.'"><br/>
+								<select name="task-state" value="'.$task_state.'">
+									<option name="To Do">To Do</option>
+									<option name="In Progress">In Progress</option>
+									<option name="Completed">Completed</option>
+								</select>
+								<select name="task-priority" value="'.$task_priority.'">
+									<option name="high">High</option>
+									<option name="medium">Medium</option>
+									<option name="low">Low</option>
+								</select>
+								<button type="submit" name="finnish-edit" value="'.$task_id.'">Finnish</button>
+							</form>';
+					
+						echo($FormString);
+					
+						
+					}
+					
                     if (empty($_GET['projects'])) {
                         $ProjectID = mysqli_query($connection, "SELECT * FROM projects WHERE user_id='".$_SESSION['id']."'");
                     }else {
                         $ProjectID = mysqli_query($connection, "SELECT * FROM projects WHERE project_name='".$_GET['projects']."'");
                     }
                     $Project_ID = mysqli_fetch_assoc($ProjectID); // This variable stores all of the data performed from the query above, into a nice little array.
-                    $ID = intval($Project_ID['projectID']); // THIS IS THE ID!
-                    $sql = "SELECT task_title,task_date,task_time,task_state,task_priority,task_desc FROM tasks WHERE projectID=".intval($ID)." ORDER BY tasks.task_date ASC";  
+					$ID = intval($Project_ID['projectID']); // THIS IS THE ID!
+					$_SESSION['project-id'] = $ID;
+                    $sql = "SELECT task_title,task_date,task_time,task_state,task_priority,task_desc FROM tasks WHERE projectID=".intval($ID)." ORDER BY tasks.task_date ASC";
                     $result = $connection-> query($sql);
 
                     if ($result-> num_rows <= 0) {
@@ -175,7 +221,12 @@
                     
                                 <div class="task-priority">
                                     <p class="task-priority">'.$task_priority.'</p>
-                                </div>
+								</div>
+								
+								<form action="landing.php" method="get">
+								<button type="submit" name="edit-task" value="'.$task_title.'"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
+								</form>
+								
                     
                             </div>
                             <hr class="taskTitle">
@@ -192,12 +243,13 @@
                         }
                     }
 
-                ?>
+				?>
+			
 			</div>
 				<div class="addItem">
 
-					<form action="landing.php" method="post">
-						<button class="add-item-button" type="submit" name="add-item"><i class="far fa-plus-square"></i></button>
+					<form action="landing.php" method="get">
+						<button class="add-item-button" type="submit" name="add-item" value="<?php echo($_SESSION['project-id']); ?>" id="add-item"><i class="far fa-plus-square"></i></button>
 					</form>
 
 				</div>
