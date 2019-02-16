@@ -140,11 +140,12 @@
                     // Prints out the new task once created
                     echo($_SESSION['newItem']);
                 }
-                $sql = "SELECT task_title,task_date,task_time,task_state,task_priority,task_desc FROM tasks";
+                $sql = "SELECT task_title,task_date,task_time,task_state,task_priority,task_desc FROM tasks WHERE projectID='".$ID."'";
                 $result = $connection-> query($sql);
 
                 if ($result-> num_rows > 0) {
-                    while ($row = $result-> fetch_assoc()) {
+                    while ($row = $result-> fetch_assoc()) // While there is data in the table
+                    {
                         $task_title = $row['task_title'];
                         $task_priority = $row['task_priority'];
                         $task_desc = $row['task_desc'];

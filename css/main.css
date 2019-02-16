@@ -346,24 +346,30 @@ div.container {
     text-align: center;
 }
 
-div.box-1 {
+div.box-1 { /* To DO */
+    background: var(--box-BG-color);
+    flex-basis: 32%;
+    height: 85vh;
+    clear: both;
+    box-shadow: #363b43 2px 5px 2px;
+    overflow: auto;
+}
+
+div.box-2 { /* In Progress */
     background: var(--box-BG-color);
     flex-basis: 32%;
     clear: both;
     box-shadow: #363b43 2px 5px 2px;
+    height: 85vh;
+    overflow: auto;
 }
 
-div.box-2 {
-    background: var(--box-BG-color);
-    flex-basis: 32%;
-    clear: both;
-    box-shadow: #363b43 2px 5px 2px;
-}
-
-div.box-3 {
+div.box-3 { /* Completed */
     background: var(--box-BG-color);
     flex-basis: 32%;
     box-shadow: #363b43 2px 5px 2px;
+    height: 85vh;
+    overflow: auto;
 }
 
 /* TASKS */
@@ -371,7 +377,7 @@ div.item {
     margin: 8px;
     padding: 2px;
     background: var(--task-BG-color);
-    box-shadow: #363b43 2px 2px 1px;
+    box-shadow: #363b43 2px 2px 1px
 }
 /* Task Title */
 
