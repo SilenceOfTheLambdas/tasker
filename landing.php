@@ -138,9 +138,9 @@
                 $TaskID = $TaskIDAssoc['task_id'];
                 if (isset($_SESSION['item-added'])) {
                     // Prints out the new task once created
-                    echo($_SESSION['newItem']);
+                    // echo($_SESSION['newItem']);
                 }
-                $sql = "SELECT task_title,task_date,task_time,task_state,task_priority,task_desc FROM tasks WHERE projectID='".$ID."'";
+                $sql = "SELECT task_title,task_date,task_time,task_state,task_priority,task_desc FROM tasks WHERE projectID='".$ID."' ORDER BY tasks.task_date ASC";
                 $result = $connection-> query($sql);
 
                 if ($result-> num_rows > 0) {
