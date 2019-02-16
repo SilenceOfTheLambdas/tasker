@@ -32,6 +32,25 @@
             <!-- Logo goes here -->
             <h1 class="logo">Tasker.io</h1>
         </div>
+        
+        <div class="project-selector">
+                <?php 
+                    require 'db.php';
+                    $PROJECT_NAME_SQL = "SELECT project_name FROM projects WHERE user_id='".$_SESSION['id']."' ORDER BY project_name='".$_GET['projects']."' DESC";
+                    $PROJECT_NAME_RESULT = $connection-> query($PROJECT_NAME_SQL);
+
+                    echo('
+                    <form name="ProjectSelection" action="landing.php" method="get">
+                        <select name="projects" id="project_selector" onchange="this.form.submit()">
+                    ');
+
+                    while ($PROJECT_NAME_ROW = $PROJECT_NAME_RESULT-> fetch_assoc()) {
+                        $project_title = $PROJECT_NAME_ROW['project_name'];
+                        echo('<option value="'.$project_title.'" >'.$project_title.'</option>');
+                    }
+                    echo('</select></form>');
+                ?>
+        </div>
 
         <div id="search">
             <!-- search goes here -->
@@ -68,7 +87,8 @@
                 $Project_Name = mysqli_query($connection, $ProjectSQL);
                 $ProjectNameRows = mysqli_num_rows($Project_Name);
 
-                if ($ProjectNameRows <= 0) {
+                if ($ProjectNameRows <= 0) // If the user does not have any projects, they are forced to make one
+                {
                     echo(
                         '<form action="newProject.inc.php" method="post">
                             <h3>Please make a new project</h3>
@@ -125,21 +145,15 @@
                     }
                     echo($RestOfForm); // prints out the rest if the form.
                 }
-
-                $Tasks = "SELECT * FROM tasks ";
-                $TasksQuery = mysqli_query($connection, $Tasks);
-                $NumberOfTasks = mysqli_num_rows($TasksQuery);
-
-                $ProjectID = mysqli_query($connection, "SELECT projectID FROM projects");
+                
+                if (empty($_GET['projects'])) {
+                    $ProjectID = mysqli_query($connection, "SELECT * FROM projects");
+                }else {
+                    $ProjectID = mysqli_query($connection, "SELECT * FROM projects WHERE project_name='".$_GET['projects']."'");
+                }
                 $Project_ID = mysqli_fetch_assoc($ProjectID); // This variable stores all of the data performed from the query above, into a nice little array.
                 $ID = $Project_ID['projectID']; // THIS IS THE ID!
-                $TaskIDQuery = mysqli_query($connection, "SELECT task_id FROM tasks WHERE projectID='".$ID."'");
-                $TaskIDAssoc = mysqli_fetch_assoc($TaskIDQuery);
-                $TaskID = $TaskIDAssoc['task_id'];
-                if (isset($_SESSION['item-added'])) {
-                    // Prints out the new task once created
-                    // echo($_SESSION['newItem']);
-                }
+                
                 $sql = "SELECT task_title,task_date,task_time,task_state,task_priority,task_desc FROM tasks WHERE projectID='".$ID."' ORDER BY tasks.task_date ASC";
                 $result = $connection-> query($sql);
 
@@ -194,22 +208,14 @@
         <div class="box-2"> <!-- IN PROGRESS Box -->
             <h3 class="headerTitle">In Progress</h3>
             <hr>
-            <div class="item">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                Consequuntur pariatur quas consectetur adipisci vitae corporis fuga possimus est dolores a, 
-                quod asperiores voluptas obcaecati eveniet ea aspernatur, mollitia doloremque porro.
-            </div>
+
         </div>
 
         <div class="box-3"> <!-- COMPLETED Box -->
             <h3 class="headerTitle">Completed</h3>
             <hr>
 
-            <div class="item">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                Consequuntur pariatur quas consectetur adipisci vitae corporis fuga possimus est dolores a, 
-                quod asperiores voluptas obcaecati eveniet ea aspernatur, mollitia doloremque porro.
-            </div>
+
 
         </div>
 

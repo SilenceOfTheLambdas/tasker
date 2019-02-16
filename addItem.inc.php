@@ -13,6 +13,12 @@ if (isset($_POST['add-task'])) {
     $priority = $_POST['task-priority'];
     $desc = $_POST['task-desc'];
 
+    if (empty($title) || empty($date) || empty($state) || empty($priority) || empty($desc)) {
+        echo("You are missing items!");
+        header("Location: landing.php?error=missingitems&title=".$title."&date=".$date."&state=".$state."&priority=".$priority."&desc=".$desc);
+        exit();
+    }
+
     $ProjectID = mysqli_query($connection, "SELECT projectID FROM projects WHERE project_name='".$project_name."'");
     $Project_ID = mysqli_fetch_assoc($ProjectID); // This variable stores all of the data performed from the query above, into a nice little array.
     $ID = $Project_ID['projectID']; // THIS IS THE ID!

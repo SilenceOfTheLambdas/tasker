@@ -285,6 +285,24 @@ h1.logo {
     transform: translateY(-100%);
 }
 
+/* Project Selection */
+div.project-selector {
+
+    flex-basis: 5%;
+}
+
+#project_selector {
+    position: relative;          /* Used to center DIV vertically */
+    top: 50%;
+    transform: translateX(50%) translateY(25%);
+
+    background: var(--search-BG-color);
+    border: none;
+    width: auto;
+    height: 4vh;
+    color: white;
+}
+
 /* Search Section */
 #search {
     background-color: var(--search-BG-color);
