@@ -140,8 +140,44 @@
                     // Prints out the new task once created
                     echo($_SESSION['newItem']);
                 }
-                $i = 0;
-                echo($_SESSION['newItem']);
+                $sql = "SELECT task_title,task_date,task_time,task_state,task_priority,task_desc FROM tasks";
+                $result = $connection-> query($sql);
+
+                if ($result-> num_rows > 0) {
+                    while ($row = $result-> fetch_assoc()) {
+                        $task_title = $row['task_title'];
+                        $task_priority = $row['task_priority'];
+                        $task_desc = $row['task_desc'];
+                        $task_date = $row['task_date'];
+                        $task_time = $row['task_time'];
+                        echo('
+                        <div class="item">
+
+                        <div class="title-wrapper">
+                
+                            <div class="task-title">
+                                <h1 class="taskTitle">'.$task_title.'</h1>
+                            </div>
+                
+                            <div class="task-priority">
+                                <p class="task-priority">'.$task_priority.'</p>
+                            </div>
+                
+                        </div>
+                        <hr class="taskTitle">
+                
+                        <div class="task-desc">
+                            <p class="task-desc">'.$task_desc.'</p>
+                        </div>
+                
+                        <div class="task-date-time">
+                            <p class="task-date-time">'.$task_date.' '.$task_time.'</p>
+                        </div>
+                
+                    </div>');
+                    }
+                }
+
             ?>
 
             <div class="addItem">
