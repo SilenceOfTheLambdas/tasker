@@ -5,25 +5,26 @@ Created by: Callum-James Smith (cs18804)
 
 :root /* The variables */
 {
-    --header-BG-color: #009F93;
-    --logo-BG-color: #363b43;
+    --background-color: #1F2229;
+    --header-BG-color:  #404a67;
+    --logo-BG-color: #404a67;
     --search-BG-color: rgba(24, 24, 24, 0.349);
-    --box-BG-color: #ebebeb;
+    --box-BG-color: #ebebeb00;
     --button-BG-color: rgb(3, 113, 113);
-    --task-BG-color: #00B9AE;
+    --task-BG-color: #ebebeb;
 
     --box-width: 31%;
     --box-height: 90%;
 }
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
 
 html, body {
     margin: 0;
     padding: 0;
-    font-family: 'IBM Plex Sans Condensed', sans-serif;
-    background-color: var(--button-BG-color);
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--background-color);
+    color: white;
 }
-
-@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans+Condensed');
 
 /* LOGIN PAGE */
 
@@ -37,7 +38,7 @@ div.wrapper /* Wrapper for index.php */
     flex-direction: column;
     width: 40%;
     height: auto;
-    background: var(--button-BG-color);
+    background: var(--background-color);
 
     position: relative;
     top: 50%;
@@ -52,7 +53,7 @@ div.signupWrapper {
     flex-direction: column;
     width: 40%;
     height: 60vh;
-    background: var(--button-BG-color);
+    background: var(--background-color);
 
     position: relative;
     top: 50%;
@@ -84,7 +85,7 @@ div.signupBox {
     text-align: center;
 
     flex-basis: 80%;
-    background: var(--button-BG-color);
+    background: var(--background-color);
     display: flex;
     flex-direction: column;
 }
@@ -99,6 +100,7 @@ div.signupBox form input {
     width: 100%;
     height: auto;
     font-size: 3em;
+    color: white;
 
     background-color: transparent; 
     border-style: solid; 
@@ -124,7 +126,7 @@ div.loginBox {
     text-align: center;
 
     flex-basis: 80%;
-    background: var(--button-BG-color);
+    background: var(--background-color);
     display: flex;
     flex-direction: column;
 }
@@ -139,6 +141,7 @@ div.loginBox form input {
     width: 100%;
     height: auto;
     font-size: 3em;
+    color: white;
 
     background-color: transparent; 
     border-style: solid; 
@@ -170,7 +173,7 @@ div.formButtons {
 div.signin {
     width: 100%;
     flex-basis: 50%;
-    background: var(--button-BG-color);
+    background: var(--background-color);
     color: white;
 }
 
@@ -178,14 +181,14 @@ div.signup {
     width: 100%;
     height: 100%;
     flex-basis: 100%;
-    background: var(--button-BG-color);
+    background: var(--background-color);
     color: white;
 }
 
 #signin-button {
 
     width: 100%;
-    background: var(--button-BG-color);
+    background: var(--background-color);
     height: 80px;
     margin: 0 none;
     padding: 0 none;
@@ -212,7 +215,7 @@ div.signup {
 #signup-button {
 
     width: 100%;
-    background: var(--button-BG-color);
+    background: var(--background-color);
     height: 80px;
     margin: 0 none;
     padding: 0 none;
@@ -225,7 +228,7 @@ div.signup {
 #signup-button-1 {
 
     width: 100%;
-    background: var(--button-BG-color);
+    background: var(--background-color);
     height: 80px;
     margin: 0 none;
     padding: 0 none;
@@ -294,7 +297,7 @@ div.project-selector {
 #project_selector {
     position: relative;          /* Used to center DIV vertically */
     top: 50%;
-    transform: translateX(50%) translateY(25%);
+    transform: translateX(50%) translateY(35%);
 
     background: var(--search-BG-color);
     border: none;
@@ -322,7 +325,7 @@ div.project-selector {
 
 /* User Section */
 #user {
-    background-color: var(--button-BG-color);
+    background-color: var(--header-BG-color);
     color: white;
     text-align: center;
 
@@ -339,7 +342,7 @@ div.project-selector {
 }
 
 #signout {
-    background-color: white;
+    background-color: var(--header-BG-color);
     color: black;
 
     width: auto;
@@ -369,25 +372,25 @@ div.box-1 { /* To DO */
     flex-basis: 32%;
     height: 85vh;
     clear: both;
-    box-shadow: #363b43 2px 5px 2px;
     overflow: auto;
+    border: white solid 2px;
 }
 
 div.box-2 { /* In Progress */
     background: var(--box-BG-color);
     flex-basis: 32%;
     clear: both;
-    box-shadow: #363b43 2px 5px 2px;
     height: 85vh;
     overflow: auto;
+    border: white solid 2px;
 }
 
 div.box-3 { /* Completed */
     background: var(--box-BG-color);
     flex-basis: 32%;
-    box-shadow: #363b43 2px 5px 2px;
     height: 85vh;
     overflow: auto;
+    border: white solid 2px;
 }
 
 /* TASKS */
@@ -395,7 +398,8 @@ div.item {
     margin: 8px;
     padding: 2px;
     background: var(--task-BG-color);
-    box-shadow: #363b43 2px 2px 1px
+    box-shadow: black 2px 2px 1px;
+    color: rgb(14, 14, 14);
 }
 /* Task Title */
 
@@ -436,12 +440,20 @@ div.addItem {
     flex-flow: column nowrap;
 }
 
+button.add-item-button {
+    background: #E95378;
+    border: none;
+    color: white;
+    width: 100%;
+    margin-top: 20px;
+}
+
 button.signout {
     width: 100%;
     height: 60px;
 
     font-size: 28px;
-    background: var(--button-BG-color);
+    background: var(--header-BG-color);
     border-style: none;
     color: white;
 
@@ -449,7 +461,7 @@ button.signout {
 }
 
 button.signout:hover {
-    background: rgba(3, 113, 113, 0.699);
+    background: rgba(0, 0, 0, 0.486);
     cursor: pointer;
 }
 

@@ -41,8 +41,24 @@
             <form id="LoginForm" action="login.inc.php" method="post">
 
                 <h1 id="Sign In" style="text-decoration: underline white;">Sign In</h1>
-                <input type="email" style="margin-bottom: 20px;" name="email" id="email" placeholder="Email..."><br/>
-                <input type="password" name="password" id="password" placeholder="Password..."><br>
+                <?php 
+                    if (isset($_GET['error'])) {
+                        if (isset($_GET['email'])) {
+                            echo('<input type="email" style="margin-bottom: 20px;" name="email" id="email" value="'.$_GET['email'].'" placeholder="Email..."><br/>');
+                        } else {
+                            echo('<input type="email" style="margin-bottom: 20px;" name="email" id="email" placeholder="Email..."><br/>');
+                        }
+                        echo('<input style="border-color: red;" type="password" name="password" id="password" placeholder="Please enter password..."><br>');
+                    }
+                    elseif (isset($_GET['emptyemail'])) {
+                        echo('<input style="border-color: red; margin-bottom: 20px;" type="email" name="email" id="email" placeholder="Please enter email..."><br/>');
+                        echo('<input type="password" name="password" id="password" placeholder="Password..."><br>');
+                    }
+                    else {
+                        echo('<input type="email" style="margin-bottom: 20px;" name="email" id="email" placeholder="Email..."><br/>');
+                        echo('<input type="password" name="password" id="password" placeholder="Password..."><br>');
+                    }
+                ?>
 
                 <div class="formButtons">
 

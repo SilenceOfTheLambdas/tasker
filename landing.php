@@ -36,7 +36,11 @@
         <div class="project-selector">
                 <?php 
                     require 'db.php';
-                    $PROJECT_NAME_SQL = "SELECT project_name FROM projects WHERE user_id='".$_SESSION['id']."' ORDER BY project_name='".$_GET['projects']."' DESC";
+                    if (empty($_GET['projects'])) {
+                        $PROJECT_NAME_SQL = "SELECT project_name FROM projects WHERE user_id='".$_SESSION['id']."'";
+                    } else {
+                        $PROJECT_NAME_SQL = "SELECT project_name FROM projects WHERE user_id='".$_SESSION['id']."' ORDER BY project_name='".$_GET['projects']."' DESC";
+                    }
                     $PROJECT_NAME_RESULT = $connection-> query($PROJECT_NAME_SQL);
 
                     echo('
@@ -96,6 +100,7 @@
                             <button type="submit" name="add-project">Add Project</button>
                         </form>'
                     );
+                    exit();
                 }
 
                 if (isset($_POST['add-item'])) 
@@ -109,16 +114,14 @@
                  */
                 {
                     
-                    $TopForm = '<form action="addItem.inc.php" method="post">
-                    <select name="project-names">';
+                    $TopForm = '<form action="addItem.inc.php" method="post">';
 
                     $RestOfForm = 
-                        '
-                            </select>
-                            Title<input type="text" name="title" placeholder="Title..."><br/>
-                            Description<input type="text" name="task-desc" placeholder="Description..."><br/>
-                            Date<input type="date" name="task-date"><br/>
-                            Time<input type="time" name="task-time"><br/>
+                            '
+                                Title<input type="text" name="title" placeholder="Title..."><br/>
+                                Description<input type="text" name="task-desc" placeholder="Description..."><br/>
+                                Date<input type="date" name="task-date"><br/>
+                                Time<input type="time" name="task-time"><br/>
                             <select name="task-state">
                                 <option name="To Do">To Do</option>
                                 <option name="In Progress">In Progress</option>
@@ -138,25 +141,23 @@
                     $project_names[] = $row['project_name']; // Store a new variable that only stores values in the column 'project_name'.
 
                     echo($TopForm); // Prints out the top of the form
-
-                    foreach ($project_names as $name) // loops through each item in the array.
-                    {
-                        echo('<option value="'.$name.'">'.$name.'</option>'); // then prints out an <option> tag with the name placed in.
-                    }
                     echo($RestOfForm); // prints out the rest if the form.
                 }
                 
                 if (empty($_GET['projects'])) {
-                    $ProjectID = mysqli_query($connection, "SELECT * FROM projects");
+                    $ProjectID = mysqli_query($connection, "SELECT * FROM projects WHERE user_id='".$_SESSION['id']."'");
                 }else {
                     $ProjectID = mysqli_query($connection, "SELECT * FROM projects WHERE project_name='".$_GET['projects']."'");
                 }
                 $Project_ID = mysqli_fetch_assoc($ProjectID); // This variable stores all of the data performed from the query above, into a nice little array.
-                $ID = $Project_ID['projectID']; // THIS IS THE ID!
-                
-                $sql = "SELECT task_title,task_date,task_time,task_state,task_priority,task_desc FROM tasks WHERE projectID='".$ID."' ORDER BY tasks.task_date ASC";
+                $ID = intval($Project_ID['projectID']); // THIS IS THE ID!
+                echo($ID);
+                $sql = "SELECT task_title,task_date,task_time,task_state,task_priority,task_desc FROM tasks WHERE projectID=".intval($ID)." ORDER BY tasks.task_date ASC";  
                 $result = $connection-> query($sql);
 
+                if ($result-> num_rows <= 0) {
+                    echo('<p>You Do Not Have Any Tasks</p>');
+                }
                 if ($result-> num_rows > 0) {
                     while ($row = $result-> fetch_assoc()) // While there is data in the table
                     {
@@ -198,7 +199,7 @@
             <div class="addItem">
 
                 <form action="landing.php" method="post">
-                    <button type="submit" name="add-item"><i class="far fa-plus-square"></i></button>
+                    <button class="add-item-button" type="submit" name="add-item"><i class="far fa-plus-square"></i></button>
                 </form>
 
             </div>

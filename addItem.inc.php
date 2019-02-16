@@ -5,7 +5,6 @@ require 'db.php';
 if (isset($_POST['add-task'])) {
     session_start();
 
-    $project_name = $_POST['project-names'];
     $title = $_POST['title'];
     $date = $_POST['task-date'];
     $time = $_POST['task-time'];
@@ -19,7 +18,7 @@ if (isset($_POST['add-task'])) {
         exit();
     }
 
-    $ProjectID = mysqli_query($connection, "SELECT projectID FROM projects WHERE project_name='".$project_name."'");
+    $ProjectID = mysqli_query($connection, "SELECT projectID FROM projects WHERE user_id='".$_SESSION['id']."'");
     $Project_ID = mysqli_fetch_assoc($ProjectID); // This variable stores all of the data performed from the query above, into a nice little array.
     $ID = $Project_ID['projectID']; // THIS IS THE ID!
 
