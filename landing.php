@@ -43,7 +43,7 @@
                         $PROJECT_NAME_SQL = "SELECT project_name FROM projects WHERE user_id='".$_SESSION['id']."' ORDER BY project_name='".$_GET['projects']."' DESC";
                     }
 
-                    $last_project_name_sql = "SELECT project_name FROM projects,users WHERE user_id='".$_SESSION['id']."' AND projectID=users.last_project"; // Selects the project ID
+                    $last_project_name_sql = "SELECT * FROM projects,users WHERE user_id='".$_SESSION['id']."' AND projectID=users.last_project"; // Selects the project ID
                     $last_project_name_result = $connection-> query($last_project_name_sql);
                     $last_project__name_row = $last_project_name_result-> fetch_assoc();
                     $LastSelectedProjectName = $last_project__name_row['project_name'];
@@ -55,8 +55,10 @@
                     ');
 
                     while ($PROJECT_NAME_ROW = $PROJECT_NAME_RESULT-> fetch_assoc()) {
-						$project_title = $PROJECT_NAME_ROW['project_name'];
+                        $project_title = $PROJECT_NAME_ROW['project_name'];
                         echo('<option value="'.$project_title.'" >'.$project_title.'</option>');
+                        
+                        $_SESSION['last_project'] = $last_project__name_row['project_name']; // Create a global session variable
                     }
                     echo('</select></form>');
                 ?>
@@ -169,7 +171,8 @@
 					
 						
 						$FormString = '
-							<form action="edit-task.inc.php" method="get">
+                            <form action="edit-task.inc.php" method="get">
+                                
 								<input type="text" name="title" value="'.$TaskTitle.'" placeholder="Title..."><br/>
 								<input type="text" name="task-desc" value="'.$task_desc.'" placeholder="Description..."><br/>
 								<input type="date" name="task-date" value="'.$task_date.'"><br/>
@@ -262,8 +265,8 @@
 			</div>
 				<div class="addItem">
 
-					<form action="landing.php" method="get">
-						<button class="add-item-button" type="submit" name="add-item" id="add-item"><i class="far fa-plus-square"></i></button>
+					<form method="get">
+						<button class="add-item-button" type="submit" name="add-item" value="<?php echo($_SESSION['last_project']) ?>" id="add-item"><i class="far fa-plus-square"></i></button>
 					</form>
 
 				</div>

@@ -27,7 +27,7 @@ if (isset($_POST['add-task'])) {
     $ProjectIDQuery = mysqli_query($connection, $sql);
     $ProjectIDRows = mysqli_num_rows($ProjectIDQuery);
 
-    mysqli_query($connection, "INSERT INTO tasks(projectID,task_title,task_date,task_time,task_state,task_priority,task_desc) VALUES(".$ID.",'".$title."','".$date."', '".$time."', '".$state."', '".$priority."', '".$desc."')");
+    mysqli_query($connection, "INSERT INTO tasks(projectID,task_title,task_date,task_time,task_state,task_priority,task_desc) VALUES(3,'".$title."','".$date."', '".$time."', '".$state."', '".$priority."', '".$desc."')");
 
     $titleSQL = mysqli_query($connection, "SELECT task_title FROM tasks WHERE projectID='".$_GET['add-item']."'");
     
