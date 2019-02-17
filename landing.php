@@ -42,11 +42,16 @@
                     } else {
                         $PROJECT_NAME_SQL = "SELECT project_name FROM projects WHERE user_id='".$_SESSION['id']."' ORDER BY project_name='".$_GET['projects']."' DESC";
                     }
+
+                    $last_project_name_sql = "SELECT project_name FROM projects,users WHERE user_id='".$_SESSION['id']."' AND projectID=users.last_project"; // Selects the project ID
+                    $last_project_name_result = $connection-> query($last_project_name_sql);
+                    $last_project__name_row = $last_project_name_result-> fetch_assoc();
+                    $LastSelectedProjectName = $last_project__name_row['project_name'];
                     $PROJECT_NAME_RESULT = $connection-> query($PROJECT_NAME_SQL);
 
                     echo('
                     <form name="ProjectSelection" action="landing.php" method="get">
-                        <select name="projects" id="project_selector" onchange="this.form.submit()">
+                        <select name="projects" value="'.$LastSelectedProjectName.'" id="project_selector" onchange="this.form.submit()">
                     ');
 
                     while ($PROJECT_NAME_ROW = $PROJECT_NAME_RESULT-> fetch_assoc()) {
@@ -102,7 +107,6 @@
                         );
                         exit();
                     }
-
                     if (isset($_GET['add-item'])) 
                     /**
                      * Checks to see if the user has selected the option to add a task.
@@ -150,7 +154,7 @@
 						$TaskTitle = $_GET['edit-task'];
 					
 						// Obtain task details
-						$sql = "SELECT *in FROM tasks WHERE task_title='".$TaskTitle."'";
+						$sql = "SELECT * FROM tasks WHERE task_title='".$TaskTitle."'";
 						$result = $connection-> query($sql);
 						if ($result-> num_rows <= 0) {
 							echo('<p>You Do Not Have Any Tasks</p>');
@@ -186,17 +190,27 @@
 						echo($FormString);
 					
 						
-					}
+                    }
 					
                     if (empty($_GET['projects'])) {
                         $ProjectID = mysqli_query($connection, "SELECT * FROM projects WHERE user_id='".$_SESSION['id']."'");
                     }else {
                         $ProjectID = mysqli_query($connection, "SELECT * FROM projects WHERE project_name='".$_GET['projects']."'");
                     }
+
                     $Project_ID = mysqli_fetch_assoc($ProjectID); // This variable stores all of the data performed from the query above, into a nice little array.
 					$ID = intval($Project_ID['projectID']); // THIS IS THE ID!
-					$_SESSION['project-id'] = $ID;
-                    $sql = "SELECT task_title,task_date,task_time,task_state,task_priority,task_desc FROM tasks WHERE projectID=".intval($ID)." ORDER BY tasks.task_date ASC";
+                    $_SESSION['project-id'] = $ID;
+
+                    // Stores the users last selected project in a table
+                    $StoreLastSelectedObject = mysqli_query($connection, "UPDATE users SET last_project = '".$ID."' WHERE users.id='".$_SESSION['id']."'");
+
+                    $last_project_sql = "SELECT last_project FROM users WHERE id='".$_SESSION['id']."'"; // Selects the project ID
+                    $last_project_result = $connection-> query($last_project_sql);
+                    $last_project_row = $last_project_result-> fetch_assoc();
+                    $LastSelectedProject = $last_project_row['last_project'];
+
+                    $sql = "SELECT task_title,task_date,task_time,task_state,task_priority,task_desc FROM tasks WHERE projectID=".intval($LastSelectedProject)." ORDER BY tasks.task_date ASC";
                     $result = $connection-> query($sql);
 
                     if ($result-> num_rows <= 0) {
@@ -249,7 +263,7 @@
 				<div class="addItem">
 
 					<form action="landing.php" method="get">
-						<button class="add-item-button" type="submit" name="add-item" value="<?php echo($_SESSION['project-id']); ?>" id="add-item"><i class="far fa-plus-square"></i></button>
+						<button class="add-item-button" type="submit" name="add-item" id="add-item"><i class="far fa-plus-square"></i></button>
 					</form>
 
 				</div>

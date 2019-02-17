@@ -18,15 +18,16 @@ if (isset($_POST['add-task'])) {
         exit();
     }
 
-    $ProjectID = mysqli_query($connection, "SELECT projectID FROM projects WHERE user_id='".$_SESSION['id']."'");
-    $Project_ID = mysqli_fetch_assoc($ProjectID); // This variable stores all of the data performed from the query above, into a nice little array.
-    $ID = $Project_ID['projectID']; // THIS IS THE ID!
+    $ProjectID = "SELECT * FROM projects,users WHERE user_id=".$_SESSION['id']." AND projectID=users.last_project";
+    $projectID_result = $connection-> query($ProjectID);
+    $projectID_row = $projectID_result-> fetch_assoc();
+    $ID = intval($projectID_row['last_project']);
 
     $sql = "SELECT projectID FROM tasks WHERE projectID='".$_GET['add-item']."'";
     $ProjectIDQuery = mysqli_query($connection, $sql);
     $ProjectIDRows = mysqli_num_rows($ProjectIDQuery);
 
-    mysqli_query($connection, "INSERT INTO tasks(projectID,task_title,task_date,task_time,task_state,task_priority,task_desc) VALUES('".$ID."','".$title."','".$date."', '".$time."', '".$state."', '".$priority."', '".$desc."')");
+    mysqli_query($connection, "INSERT INTO tasks(projectID,task_title,task_date,task_time,task_state,task_priority,task_desc) VALUES(".$ID.",'".$title."','".$date."', '".$time."', '".$state."', '".$priority."', '".$desc."')");
 
     $titleSQL = mysqli_query($connection, "SELECT task_title FROM tasks WHERE projectID='".$_GET['add-item']."'");
     
