@@ -29,10 +29,6 @@ html, body {
 
 /* LOGIN PAGE */
 
-h1#signin {
-    text-align: center;
-}
-
 div.wrapper /* Wrapper for index.php */
 {
     display: flex;
@@ -346,7 +342,7 @@ div.new-project {
     color: white;
 }
 
-div.new-project a button {
+div.new-project > a > button {
     background: var(--search-BG-color);
     border: none;
     color: white;
@@ -544,7 +540,7 @@ form.add-item {
     background: var(--header-BG-color);
 }
 
-form.add-item input {
+form.add-item > input {
     font-size: 2em;
     color: white;
 
@@ -555,7 +551,7 @@ form.add-item input {
     margin-bottom: 4px;
 }
 
-form.add-item select {
+form.add-item > select {
     background: var(--search-BG-color);
     border: none;
     width: auto;
@@ -563,7 +559,7 @@ form.add-item select {
     color: white;
 }
 
-form.add-item button {
+form.add-item > button {
     background: #E95378;
     border: none;
     color: white;
