@@ -18,7 +18,8 @@ if (isset($_POST['signin-submit']))
         header("Location: index.php?emptyemail");
         // ^ throws an error and re-applies the data back into the fields if available
         exit(); // Stop script from running
-    } else if (empty($password)) {
+    } 
+    else if (empty($password)) {
         header("Location: index.php?error=emptypassword&email=".$email);
         exit();
     }

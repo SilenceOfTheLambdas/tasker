@@ -40,8 +40,25 @@
             <form id="LoginForm" action="signup.inc.php" method="post">
 
                 <h1 id="Sign In" style="text-decoration: underline white;">Sign Up</h1>
-                <input type="text" style="margin-bottom: 20px;" name="name" placeholder="Name..."><br>
-                <input type="email" style="margin-bottom: 20px;" name="email" placeholder="Email..."><br>
+                <?php
+                if (isset($_GET['error'])) // If there is an error
+                {
+                    if ($_GET['error'] == "invalidname") // If that error is equal to 'invalidname'
+                    {
+                        echo('<input style="border-color: red;" type="text" style="margin-bottom: 20px;" name="name" placeholder="Invalid Name..."><br>');
+                        echo('<input type="email" style="margin-bottom: 20px;" value="'.$_GET['email'].'" name="email" placeholder="Email..."><br>');
+                    } else // Otherwise, print name and email form normally
+                    {
+                        echo('<input type="text" style="margin-bottom: 20px;" name="name" placeholder="Name..."><br>');
+                        echo('<input type="email" style="margin-bottom: 20px;" name="email" placeholder="Email..."><br>');
+                    }
+                } 
+                else // if there is no error, print name an email normally
+                {
+                    echo('<input type="text" style="margin-bottom: 20px;" name="name" placeholder="Name..."><br>');
+                    echo('<input type="email" style="margin-bottom: 20px;" name="email" placeholder="Email..."><br>');
+                }
+                ?>
                 <input type="password" style="margin-bottom: 20px;" name="password" placeholder="Password..."><br>
                 <input type="Password" name="password-repeat" placeholder="Re-enter password..."><br>
 

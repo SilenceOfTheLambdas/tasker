@@ -5,6 +5,8 @@ require 'db.php';
 if (isset($_POST['add-task'])) {
     session_start();
 
+    $ProjectTitle = $_GET['add-task'];
+
     $title = $_POST['title'];
     $date = $_POST['task-date'];
     $time = $_POST['task-time'];
@@ -14,7 +16,7 @@ if (isset($_POST['add-task'])) {
 
     if (empty($title) || empty($date) || empty($state) || empty($priority) || empty($desc)) {
         echo("You are missing items!");
-        header("Location: landing.php?error=missingitems&title=".$title."&date=".$date."&state=".$state."&priority=".$priority."&desc=".$desc);
+        header("Location: landing.php?error=missingitems&title=".$title."&date=".$date."&state=".$state."&priority=".$priority."&desc=".$desc."?projects=".$_GET['projects']."");
         exit();
     }
 
@@ -27,7 +29,7 @@ if (isset($_POST['add-task'])) {
     $ProjectIDQuery = mysqli_query($connection, $sql);
     $ProjectIDRows = mysqli_num_rows($ProjectIDQuery);
 
-    mysqli_query($connection, "INSERT INTO tasks(projectID,task_title,task_date,task_time,task_state,task_priority,task_desc) VALUES(3,'".$title."','".$date."', '".$time."', '".$state."', '".$priority."', '".$desc."')");
+    mysqli_query($connection, "INSERT INTO tasks(projectID,task_title,task_date,task_time,task_state,task_priority,task_desc) VALUES('".$ID."','".$title."','".$date."', '".$time."', '".$state."', '".$priority."', '".$desc."')");
 
     $titleSQL = mysqli_query($connection, "SELECT task_title FROM tasks WHERE projectID='".$_GET['add-item']."'");
     

@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     
     <title>Task Manager</title>
+
 </head>
 
 <body>
@@ -36,12 +37,13 @@
         <div class="project-selector">
                 <?php 
 					require 'db.php';
-					$_SESSION['project_id'] = array();
+                    $_SESSION['project_id'] = array();
+                    
                     if (empty($_GET['projects'])) {
                         $PROJECT_NAME_SQL = "SELECT * FROM projects WHERE user_id='".$_SESSION['id']."'";
                     } else {
                         $PROJECT_NAME_SQL = "SELECT project_name FROM projects WHERE user_id='".$_SESSION['id']."' ORDER BY project_name='".$_GET['projects']."' DESC";
-                    }
+                        }
 
                     $last_project_name_sql = "SELECT * FROM projects,users WHERE user_id='".$_SESSION['id']."' AND projectID=users.last_project"; // Selects the project ID
                     $last_project_name_result = $connection-> query($last_project_name_sql);
@@ -64,6 +66,26 @@
                 ?>
         </div>
 
+        <div class="new-project">
+            <a href="#openModalProject"><button><i class="fas fa-plus"></i></button></a>
+        </div>
+
+        <div id="openModalProject" class="modalDialog">
+            <div>
+                <a href="#close" title="Close" class="close">X</a>
+                <h1>New Project</h1>
+                <?php 
+                    echo(
+                        '<form class="add-item" action="newProject.inc.php" method="post">
+                            <h3>Please make a new project</h3>
+                            <input type="text" name="project-name" placeholder="Project name...">
+                            <button type="submit" name="add-project">Add Project</button>
+                        </form>'
+                    );
+                ?>
+            </div>
+            </div>
+
         <div id="search">
             <!-- search goes here -->
         </div>
@@ -84,9 +106,12 @@
     </header>
 
     <div class="container">
+
         <div class="container-wrapper">
+
             <h3 class="headerTitle">To Do</h3>
             <hr>
+
 			<div class="box-1"> <!-- TODO Box -->
             	<?php 
                 /**
@@ -109,92 +134,7 @@
                         );
                         exit();
                     }
-                    if (isset($_GET['add-item'])) 
-                    /**
-                     * Checks to see if the user has selected the option to add a task.
-                     * if so, then it prints out a form asking the user to fill in details about it.
-                     * 
-                     * Vars:
-                     *  $TopForm = This contains the top part of the form including the <select> element.
-                     *  $RestOfForm = This contains the rest of the form (from the project name list down).
-                     */
-                    {
-                        
-                        $TopForm = '<form class="add-item" action="addItem.inc.php" method="post">';
-
-                        $RestOfForm = 
-                                '
-                                    <input type="text" name="title" placeholder="Title..."><br/>
-                                    <input type="text" name="task-desc" placeholder="Description..."><br/>
-                                    <input type="date" name="task-date"><br/>
-                                    <input type="time" name="task-time"><br/>
-                                <select name="task-state">
-                                    <option name="To Do">To Do</option>
-                                    <option name="In Progress">In Progress</option>
-                                    <option name="Completed">Completed</option>
-                                </select>
-                                <select name="task-priority">
-                                    <option name="high">High</option>
-                                    <option name="medium">Medium</option>
-                                    <option name="low">Low</option>
-                                </select>
-                                <button type="submit" name="add-task">Add Task</button>
-                            </form>';
-                        $ListOfProjects = mysqli_query($connection, "SELECT * FROM projects"); // The query that selects all of the data from table `projects`.
-
-                        $row = mysqli_fetch_array($ListOfProjects); // This variable stores all of the data performed from the query above, into a nice little array.
-
-                        $project_names[] = $row['project_name']; // Store a new variable that only stores values in the column 'project_name'.
-
-                        echo($TopForm); // Prints out the top of the form
-                        echo($RestOfForm); // prints out the rest if the form.
-					}
-
-					if (isset($_GET['edit-task'])) {
-						require 'db.php';
-					
-						$TaskTitle = $_GET['edit-task'];
-					
-						// Obtain task details
-						$sql = "SELECT * FROM tasks WHERE task_title='".$TaskTitle."'";
-						$result = $connection-> query($sql);
-						if ($result-> num_rows <= 0) {
-							echo('<p>You Do Not Have Any Tasks</p>');
-						}
-						$row = $result-> fetch_assoc();
-						$task_id = $row['task_id'];
-						$task_priority = $row['task_priority'];
-						$task_desc = $row['task_desc'];
-						$task_date = $row['task_date'];
-						$task_time = $row['task_time'];
-						$task_state = $row['task_state'];
-					
-						
-						$FormString = '
-                            <form action="edit-task.inc.php" method="get">
-                                
-								<input type="text" name="title" value="'.$TaskTitle.'" placeholder="Title..."><br/>
-								<input type="text" name="task-desc" value="'.$task_desc.'" placeholder="Description..."><br/>
-								<input type="date" name="task-date" value="'.$task_date.'"><br/>
-								<input type="time" name="task-time" value="'.$task_time.'"><br/>
-								<select name="task-state" value="'.$task_state.'">
-									<option name="To Do">To Do</option>
-									<option name="In Progress">In Progress</option>
-									<option name="Completed">Completed</option>
-								</select>
-								<select name="task-priority" value="'.$task_priority.'">
-									<option name="high">High</option>
-									<option name="medium">Medium</option>
-									<option name="low">Low</option>
-								</select>
-								<button type="submit" name="finnish-edit" value="'.$task_id.'">Finnish</button>
-							</form>';
-					
-						echo($FormString);
-					
-						
-                    }
-					
+	
                     if (empty($_GET['projects'])) {
                         $ProjectID = mysqli_query($connection, "SELECT * FROM projects WHERE user_id='".$_SESSION['id']."'");
                     }else {
@@ -206,9 +146,9 @@
                     $_SESSION['project-id'] = $ID;
 
                     // Stores the users last selected project in a table
-                    $StoreLastSelectedObject = mysqli_query($connection, "UPDATE users SET last_project = '".$ID."' WHERE users.id='".$_SESSION['id']."'");
+                    $StoreLastSelectedObject = mysqli_query($connection, "UPDATE users SET last_project = '".$ID."' WHERE id=".$_SESSION['id']."");
 
-                    $last_project_sql = "SELECT last_project FROM users WHERE id='".$_SESSION['id']."'"; // Selects the project ID
+                    $last_project_sql = "SELECT last_project FROM users WHERE id=".$_SESSION['id'].""; // Selects the project ID
                     $last_project_result = $connection-> query($last_project_sql);
                     $last_project_row = $last_project_result-> fetch_assoc();
                     $LastSelectedProject = $last_project_row['last_project'];
@@ -239,12 +179,8 @@
                                 <div class="task-priority">
                                     <p class="task-priority">'.$task_priority.'</p>
 								</div>
-								
-								<form action="landing.php" method="get">
-								<button type="submit" name="edit-task" value="'.$task_title.'"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
-								</form>
-								
-                    
+                                <a href="#openModalEdit"><button><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button></a>
+
                             </div>
                             <hr class="taskTitle">
                     
@@ -261,14 +197,104 @@
                     }
 
 				?>
+                <!-- Edit Task Modal Dialog -->
+                <div id=openModalEdit class="modalDialog">
+                    <div>
+                        <a href="#close" title="Close" class="close">X</a>
+                        <h1>Edit Task</h1>
+                        <?php
+                            require 'db.php';
+
+                            $TaskTitle = $_GET['edit-task'];
+                        
+                            // Obtain task details
+                            $sql = "SELECT * FROM tasks WHERE task_title='".$TaskTitle."'";
+                            $result = $connection-> query($sql);
+                            if ($result-> num_rows <= 0) {
+                                echo('<p>You Do Not Have Any Tasks</p>');
+                            }
+                            $row = $result-> fetch_assoc();
+                            $task_id = $row['task_id'];
+                            $task_priority = $row['task_priority'];
+                            $task_desc = $row['task_desc'];
+                            $task_date = $row['task_date'];
+                            $task_time = $row['task_time'];
+                            $task_state = $row['task_state'];
+                        
+                            
+                            $FormString = '
+                                <form action="edit-task.inc.php" method="get">
+                                    
+                                    <input type="text" name="title" value="'.$TaskTitle.'" placeholder="Title..."><br/>
+                                    <input type="text" name="task-desc" value="'.$task_desc.'" placeholder="Description..."><br/>
+                                    <input type="date" name="task-date" value="'.$task_date.'"><br/>
+                                    <input type="time" name="task-time" value="'.$task_time.'"><br/>
+                                    
+                                    <select name="task-state" value="'.$task_state.'">
+                                        <option name="To Do">To Do</option>
+                                        <option name="In Progress">In Progress</option>
+                                        <option name="Completed">Completed</option>
+                                    </select>
+                                    
+                                    <select name="task-priority" value="'.$task_priority.'">
+                                        <option name="high">High</option>
+                                        <option name="medium">Medium</option>
+                                        <option name="low">Low</option>
+                                    </select>
+                                    
+                                    <button type="submit" name="finnish-edit" value="'.$task_id.'">Finnish</button>
+                                    
+                                </form>';
+                        
+                            echo($FormString);
+                        ?>
+                    </div>
+                </div>
 			
 			</div>
 				<div class="addItem">
-
-					<form method="get">
-						<button class="add-item-button" type="submit" name="add-item" value="<?php echo($_SESSION['last_project']) ?>" id="add-item"><i class="far fa-plus-square"></i></button>
-					</form>
-
+					
+					<a href="#openModal" id="open-modal"><button class="add-item-button" id="add-item"><i class="far fa-plus-square"></i></button></a>
+                    
+                    <div id="openModal" class="modalDialog" style="display: none;">
+                        <div>
+                            <a href="#close" title="Close" class="close">X</a>
+                            <h1>Add Task</h1>
+                            <?php
+                                $TopForm = '<form class="add-item" action="addItem.inc.php" method="post">';
+                                $RestOfForm = 
+                                           '    <input type="text" name="title" placeholder="Title..."><br/>
+                                                <textarea class="description" name="task-desc" cols="26" rows="6" placeholder="Description..."></textarea><br/>
+                                                <input type="date" name="task-date" placeholder="Choose a due date.."><br/>
+                                                <input type="time" name="task-time"><br/>
+        
+                                                <select name="task-state">
+                                                    <option name="To Do">To Do</option>
+                                                    <option name="In Progress">In Progress</option>
+                                                    <option name="Completed">Completed</option>
+                                                </select>
+        
+                                                <select name="task-priority">
+                                                    <option name="high">High</option>
+                                                    <option name="medium">Medium</option>
+                                                    <option name="low">Low</option>
+                                                </select>
+        
+                                                <button type="submit" name="add-task">Add Task</button>
+        
+                                            </form>';
+                                $ListOfProjects = mysqli_query($connection, "SELECT * FROM projects"); // The query that selects all of the data from table `projects`.
+        
+                                $row = mysqli_fetch_array($ListOfProjects); // This variable stores all of the data performed from the query above, into a nice little array.
+        
+                                $project_names[] = $row['project_name']; // Store a new variable that only stores values in the column 'project_name'.
+        
+                                echo($TopForm); // Prints out the top of the form
+                                echo($RestOfForm); // prints out the rest if the form.
+                            ?>
+                        </div>
+                    </div>
+					
 				</div>
             </div>
         <div class="container-wrapper">
@@ -290,5 +316,11 @@
     </div>
 
 </body>
-
+<script>
+document.getElementById("open-modal").onclick = function() // Stop the modal boxes from appearing quickly every time the page is refreshed
+{
+    var modal = document.getElementById("openModal");
+    modal.style.display = 'block';
+}
+</script>
 </html>

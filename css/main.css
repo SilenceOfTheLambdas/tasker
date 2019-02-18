@@ -17,11 +17,12 @@ Created by: Callum-James Smith (cs18804)
     --box-height: 90%;
 }
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
 
 html, body {
     margin: 0;
     padding: 0;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Source Code Pro', monospace;
     background-color: var(--background-color);
     color: white;
 }
@@ -239,6 +240,46 @@ div.signup {
     flex: 2;
 }
 
+input[type="time"]::-webkit-input-placeholder {
+    color: rgba(255, 255, 255, 0.404);
+    border: none;
+    }
+     
+    input:-moz-placeholder { /* Firefox 18- */
+    color: rgba(255, 255, 255, 0.404); 
+    border: none; 
+    }
+     
+    input::-moz-placeholder {  /* Firefox 19+ */
+    color: rgba(255, 255, 255, 0.404);  
+    border: none;
+    }
+     
+    input:-ms-input-placeholder {  
+    color: rgba(255, 255, 255, 0.404); 
+    border: none;
+    }
+
+textarea::-webkit-input-placeholder {
+    color: rgba(255, 255, 255, 0.404);
+    border: none;
+    }
+     
+    input:-moz-placeholder { /* Firefox 18- */
+    color: rgba(255, 255, 255, 0.404); 
+    border: none; 
+    }
+     
+    input::-moz-placeholder {  /* Firefox 19+ */
+    color: rgba(255, 255, 255, 0.404);  
+    border: none;
+    }
+     
+    input:-ms-input-placeholder {  
+    color: rgba(255, 255, 255, 0.404); 
+    border: none;
+    }
+
 input::-webkit-input-placeholder {
     color: rgba(255, 255, 255, 0.404);
     border: none;
@@ -292,6 +333,25 @@ h1.logo {
 div.project-selector {
 
     flex-basis: 5%;
+}
+
+div.new-project {
+    position: relative;          /* Used to center DIV vertically */
+    top: 50%;
+    transform: translateX(225%) translateY(-40%);
+
+    border: none;
+    width: auto;
+    height: 4vh;
+    color: white;
+}
+
+div.new-project a button {
+    background: var(--search-BG-color);
+    border: none;
+    color: white;
+    height: auto;
+    width: auto;
 }
 
 #project_selector {
@@ -507,4 +567,71 @@ form.add-item button {
     background: #E95378;
     border: none;
     color: white;
+}
+
+/* Adding Item Modal Box */
+
+.modalDialog {
+    position: fixed;
+    display: block;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0,0,0,0.8);
+	z-index: 99999;
+	opacity:0;
+	-webkit-transition: opacity 400ms ease-in;
+	-moz-transition: opacity 400ms ease-in;
+	transition: opacity 400ms ease-in;
+	pointer-events: none;
+}
+
+.modalDialog:target {
+    opacity:1;
+    display: block;
+	pointer-events: auto;
+}
+
+.modalDialog > div {
+	width: 400px;
+    position: relative;
+    display: block;
+	margin: 10% auto;
+	padding: 5px 20px 13px 20px;
+	border-radius: 2px;
+	background: #fff;
+	background: var(--header-BG-color);
+}
+
+.close {
+	background: #606061;
+	color: #FFFFFF;
+	line-height: 25px;
+	position: absolute;
+	right: -12px;
+	text-align: center;
+	top: -10px;
+	width: 24px;
+	text-decoration: none;
+	font-weight: bold;
+	-webkit-border-radius: 12px;
+	-moz-border-radius: 12px;
+	border-radius: 12px;
+	-moz-box-shadow: 1px 1px 3px #000;
+	-webkit-box-shadow: 1px 1px 3px #000;
+	box-shadow: 1px 1px 3px #000;
+}
+
+.close:hover { background: #E95378; }
+
+textarea.description {
+    font-size: 2em;
+    color: white;
+
+    background-color: transparent; 
+    border-style: solid; 
+    border-width: 0px 0px 1px 0px; 
+    border-color: white;
+    margin-bottom: 4px;
 }

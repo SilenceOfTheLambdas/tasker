@@ -9,7 +9,8 @@
 <!-- PHP Includes -->
 <?php
     session_start();
-    if (isset($_SESSION['name']) && isset($_SESSION['id'])) {
+    if (isset($_SESSION['name']) && isset($_SESSION['id'])) // If the user already has a session, log them in
+    {
         header("Location: landing.php");
     }
 ?>
@@ -23,6 +24,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     
     <title>Task Manager</title>
+    
 </head>
 
 <body>
@@ -42,19 +44,26 @@
 
                 <h1 id="Sign In" style="text-decoration: underline white;">Sign In</h1>
                 <?php 
-                    if (isset($_GET['error'])) {
-                        if (isset($_GET['email'])) {
+                    if (isset($_GET['error'])) // If there is an error
+                    {
+                        if (isset($_GET['email'])) // If email is passed on
+                        {
                             echo('<input type="email" style="margin-bottom: 20px;" name="email" id="email" value="'.$_GET['email'].'" placeholder="Email..."><br/>');
-                        } else {
+                            echo('<input style="border-color: red;" type="password" name="password" id="password" placeholder="Please enter password..."><br>');
+                        } 
+                        else // if not return form as normal
+                        {
                             echo('<input type="email" style="margin-bottom: 20px;" name="email" id="email" placeholder="Email..."><br/>');
+                            echo('<input type="password" name="password" id="password" placeholder="Password..."><br>');
                         }
-                        echo('<input style="border-color: red;" type="password" name="password" id="password" placeholder="Please enter password..."><br>');
                     }
-                    elseif (isset($_GET['emptyemail'])) {
+                    elseif (isset($_GET['emptyemail'])) // If the user does not enter an email
+                    {
                         echo('<input style="border-color: red; margin-bottom: 20px;" type="email" name="email" id="email" placeholder="Please enter email..."><br/>');
                         echo('<input type="password" name="password" id="password" placeholder="Password..."><br>');
                     }
-                    else {
+                    else // Otherwise, print form normally
+                    {
                         echo('<input type="email" style="margin-bottom: 20px;" name="email" id="email" placeholder="Email..."><br/>');
                         echo('<input type="password" name="password" id="password" placeholder="Password..."><br>');
                     }
