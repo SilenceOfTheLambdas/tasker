@@ -388,9 +388,16 @@ div.new-project > a > button {
     flex-basis: 10%;
 }
 
-div.container-wrapper {
-    width: 32%;
+div.to-do-container-wrapper {
+    width: 45%;
     height: 60px;
+    flex-basis: 70%;
+}
+
+div.completed-container-wrapper {
+    width: 45%;
+    height: 60px;
+    flex-basis: 20%;
 }
 
 /* Container */
@@ -398,7 +405,7 @@ div.container {
     display: flex;
     justify-content: space-around;
     flex-flow: row wrap;
-    height: 85vh;
+    height: 65vh;
     margin-top: 10px;
     clear: both;
 }
@@ -406,30 +413,22 @@ div.container {
 .headerTitle /* header title for the boxes */
 {
     text-align: center;
+    height: 5px;
 }
 
 div.box-1 { /* To DO */
     background: var(--box-BG-color);
-    flex-basis: 32%;
-    height: 75vh;
+    flex-basis: 80%;
+    height: 65vh;
     clear: both;
-    overflow: auto;
-    border: white solid 2px;
-}
-
-div.box-2 { /* In Progress */
-    background: var(--box-BG-color);
-    flex-basis: 32%;
-    clear: both;
-    height: 81vh;
     overflow: auto;
     border: white solid 2px;
 }
 
 div.box-3 { /* Completed */
     background: var(--box-BG-color);
-    flex-basis: 32%;
-    height: 81vh;
+    flex-basis: 20%;
+    height: 75vh;
     overflow: auto;
     border: white solid 2px;
 }

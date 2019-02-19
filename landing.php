@@ -109,7 +109,7 @@
 
     <div class="container">
 
-        <div class="container-wrapper">
+        <div class="to-do-container-wrapper">
 
             <h3 class="headerTitle">To Do</h3>
             <hr>
@@ -136,6 +136,50 @@
                         );
                         exit();
                     }
+
+                    if (isset($_GET['edit-task'])) {
+						require 'db.php';
+					
+						$TaskTitle = $_GET['edit-task'];
+					
+						// Obtain task details
+						$sql = "SELECT * FROM tasks WHERE task_title='".$TaskTitle."'";
+						$result = $connection-> query($sql);
+						if ($result-> num_rows <= 0) {
+							echo('<p>You Do Not Have Any Tasks</p>');
+						}
+						$row = $result-> fetch_assoc();
+						$task_id = $row['task_id'];
+						$task_priority = $row['task_priority'];
+						$task_desc = $row['task_desc'];
+						$task_date = $row['task_date'];
+						$task_time = $row['task_time'];
+						$task_state = $row['task_state'];
+					
+						
+						$FormString = '
+							<form class="add-item" action="edit-task.inc.php" method="get">
+								<input type="text" name="title" value="'.$TaskTitle.'" placeholder="Title..."><br/>
+								<textarea class="description" value="'.$task_desc.'" name="task-desc" cols="26" rows="6" placeholder="Description..."></textarea><br/>
+								<input type="date" name="task-date" value="'.$task_date.'"><br/>
+								<input type="time" name="task-time" value="'.$task_time.'"><br/>
+								<select name="task-state" value="'.$task_state.'">
+									<option name="To Do">To Do</option>
+									<option name="In Progress">In Progress</option>
+									<option name="Completed">Completed</option>
+								</select>
+								<select name="task-priority" value="'.$task_priority.'">
+									<option name="high">High</option>
+									<option name="medium">Medium</option>
+									<option name="low">Low</option>
+								</select>
+								<button type="submit" name="finnish-edit" value="'.$task_id.'">Finnish</button>
+							</form>';
+					
+						echo($FormString);
+					
+						
+					}
 	
                     if (empty($_GET['projects'])) {
                         $ProjectID = mysqli_query($connection, "SELECT * FROM projects WHERE user_id='".$_SESSION['id']."'");
@@ -169,6 +213,7 @@
                             $task_desc = $row['task_desc'];
                             $task_date = $row['task_date'];
                             $task_time = $row['task_time'];
+                            
                             echo('
                             <div class="item">
 
@@ -181,7 +226,10 @@
                                 <div class="task-priority">
                                     <p class="task-priority">'.$task_priority.'</p>
 								</div>
-                                <a href="#openModalEdit"><button><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button></a>
+                                
+                                <form action="landing.php" method="get">
+								    <button type="submit" name="edit-task" value="'.$task_title.'"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
+								</form>
 
                             </div>
                             <hr class="taskTitle">
@@ -196,62 +244,7 @@
                     
                         </div>');
                         }
-                    }
-
-				?>
-                <!-- Edit Task Modal Dialog -->
-                <div id=openModalEdit class="modalDialog">
-                    <div>
-                        <a href="#close" title="Close" class="close">X</a>
-                        <h1>Edit Task</h1>
-                        <?php
-                            require 'db.php';
-
-                            $TaskTitle = $_GET['edit-task'];
-                        
-                            // Obtain task details
-                            $sql = "SELECT * FROM tasks WHERE task_title='".$TaskTitle."'";
-                            $result = $connection-> query($sql);
-                            if ($result-> num_rows <= 0) {
-                                echo('<p>You Do Not Have Any Tasks</p>');
-                            }
-                            $row = $result-> fetch_assoc();
-                            $task_id = $row['task_id'];
-                            $task_priority = $row['task_priority'];
-                            $task_desc = $row['task_desc'];
-                            $task_date = $row['task_date'];
-                            $task_time = $row['task_time'];
-                            $task_state = $row['task_state'];
-                        
-                            
-                            $FormString = '
-                                <form action="edit-task.inc.php" method="get">
-                                    
-                                    <input type="text" name="title" value="'.$TaskTitle.'" placeholder="Title..."><br/>
-                                    <input type="text" name="task-desc" value="'.$task_desc.'" placeholder="Description..."><br/>
-                                    <input type="date" name="task-date" value="'.$task_date.'"><br/>
-                                    <input type="time" name="task-time" value="'.$task_time.'"><br/>
-                                    
-                                    <select name="task-state" value="'.$task_state.'">
-                                        <option name="To Do">To Do</option>
-                                        <option name="In Progress">In Progress</option>
-                                        <option name="Completed">Completed</option>
-                                    </select>
-                                    
-                                    <select name="task-priority" value="'.$task_priority.'">
-                                        <option name="high">High</option>
-                                        <option name="medium">Medium</option>
-                                        <option name="low">Low</option>
-                                    </select>
-                                    
-                                    <button type="submit" name="finnish-edit" value="'.$task_id.'">Finnish</button>
-                                    
-                                </form>';
-                        
-                            echo($FormString);
-                        ?>
-                    </div>
-                </div>
+                    } ?>
 			
 			</div>
 
@@ -295,18 +288,11 @@
 				</div>
             </div>
 
-        <div class="container-wrapper">
-            <h3 class="headerTitle">In Progress</h3>
-            <hr>
-            <div class="box-2"> <!-- IN PROGRESS Box -->
 
-            </div>
-        </div>
-
-        <div class="container-wrapper">
+        <div class="completed-container-wrapper">
             <h3 class="headerTitle">Completed</h3>
             <hr>
-            <div class="box-2"> <!-- Completed Box -->
+            <div class="box-3"> <!-- Completed Box -->
 
             </div>
         </div>
