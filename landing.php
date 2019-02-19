@@ -252,51 +252,47 @@
                 </div>
 			
 			</div>
-				<div class="addItem">
+
+				<div class="addItem">  <!-- This holds the add item div-->
 					
-					<a href="#openModal" id="open-modal"><button class="add-item-button" id="add-item"><i class="far fa-plus-square"></i></button></a>
+					<a href="#openModal" id="open-modal"><button class="add-item-button" id="add-item"><i class="far fa-plus-square"></i></button></a> <!-- button to activate modal -->
                     
-                    <div id="openModal" class="modalDialog" style="display: none;">
-                        <div>
-                            <a href="#close" title="Close" class="close">X</a>
+                    <div id="openModal" class="modalDialog" style="display: none;"> <!-- The modal box that holds everything -->
+                        <div> <!-- the element inside -->
+                            <a href="#close" title="Close" class="close">X</a> <!-- The close button -->
                             <h1>Add Task</h1>
-                            <?php
-                                $TopForm = '<form class="add-item" action="addItem.inc.php" method="post">';
-                                $RestOfForm = 
-                                           '    <input type="text" name="title" placeholder="Title..."><br/>
-                                                <textarea class="description" name="task-desc" cols="26" rows="6" placeholder="Description..."></textarea><br/>
-                                                <input type="date" name="task-date" placeholder="Choose a due date.."><br/>
-                                                <input type="time" name="task-time"><br/>
+                            <?php /**
+                             * This prints out the form that allows a new task to be added to the database.
+                             * All data from this form is sent to addItem.inc.php for processing.
+                             */
+                                echo('<form class="add-item" action="addItem.inc.php" method="post">
+                                        <input type="text" name="title" placeholder="Title..."><br/>
+                                        <textarea class="description" name="task-desc" cols="26" rows="6" placeholder="Description..."></textarea><br/>
+                                        <input type="date" name="task-date" placeholder="Choose a due date.."><br/>
+                                        <input type="time" name="task-time"><br/>
         
-                                                <select name="task-state">
-                                                    <option name="To Do">To Do</option>
-                                                    <option name="In Progress">In Progress</option>
-                                                    <option name="Completed">Completed</option>
-                                                </select>
+                                        <select name="task-state">
+                                            <option name="To Do">To Do</option>
+                                            <option name="In Progress">In Progress</option>
+                                            <option name="Completed">Completed</option>
+                                        </select>
         
-                                                <select name="task-priority">
-                                                    <option name="high">High</option>
-                                                    <option name="medium">Medium</option>
-                                                    <option name="low">Low</option>
-                                                </select>
+                                        <select name="task-priority">
+                                            <option name="high">High</option>
+                                            <option name="medium">Medium</option>
+                                            <option name="low">Low</option>
+                                        </select>
         
-                                                <button type="submit" name="add-task">Add Task</button>
+                                        <button type="submit" name="add-task">Add Task</button>
         
-                                            </form>';
-                                $ListOfProjects = mysqli_query($connection, "SELECT * FROM projects"); // The query that selects all of the data from table `projects`.
-        
-                                $row = mysqli_fetch_array($ListOfProjects); // This variable stores all of the data performed from the query above, into a nice little array.
-        
-                                $project_names[] = $row['project_name']; // Store a new variable that only stores values in the column 'project_name'.
-        
-                                echo($TopForm); // Prints out the top of the form
-                                echo($RestOfForm); // prints out the rest if the form.
+                                    </form>');
                             ?>
                         </div>
                     </div>
 					
 				</div>
             </div>
+
         <div class="container-wrapper">
             <h3 class="headerTitle">In Progress</h3>
             <hr>
