@@ -18,6 +18,14 @@ if (isset($_POST['add-task'])) {
         echo("You are missing items!");
         header("Location: landing.php?error=missingitems&title=".$title."&date=".$date."&state=".$state."&priority=".$priority."&desc=".$desc."?projects=".$_GET['projects']."");
         exit();
+    } 
+
+    $TitleQuery = mysqli_query($connection, "SELECT task_title FROM tasks WHERE task_title='".$title."'");
+    $TitleRowNum = mysqli_num_rows($TitleQuery);
+
+    if ($TitleRowNum > 0) {
+        header("Location: landing.php#openModal&error=nametaken");
+        exit();
     }
 
     $ProjectID = "SELECT * FROM projects,users WHERE user_id=".$_SESSION['id']." AND projectID=users.last_project";

@@ -69,10 +69,10 @@
         </div>
 
         <div class="new-project">
-            <a href="#openModalProject"><button><i class="fas fa-plus"></i></button></a>
+            <a href="#openModalProject" id="open-modal-project"><button><i class="fas fa-plus"></i></button></a>
         </div>
 
-        <div id="openModalProject" class="modalDialog">
+        <div id="openModalProject" style="display: none;" class="modalDialog">
             <div>
                 <a href="#close" title="Close" class="close">X</a>
                 <h1>New Project</h1>
@@ -179,6 +179,17 @@
 						echo($FormString);
 					
 						
+                    }
+                    
+                    if (isset($_GET['delete-task'])) {
+                        require 'db.php';
+
+					
+                        $TaskTitle = $_GET['delete-task'];
+                        
+                        $sql = mysqli_query($connection, "DELETE FROM tasks WHERE task_title='".$TaskTitle."'");
+					
+						
 					}
 	
                     if (empty($_GET['projects'])) {
@@ -199,7 +210,7 @@
                     $last_project_row = $last_project_result-> fetch_assoc();
                     $LastSelectedProject = $last_project_row['last_project'];
 
-                    $sql = "SELECT task_title,task_date,task_time,task_state,task_priority,task_desc FROM tasks WHERE projectID=".intval($LastSelectedProject)." ORDER BY tasks.task_date ASC";
+                    $sql = "SELECT task_title,task_date,task_time,task_state,task_priority,task_desc FROM tasks WHERE projectID=".intval($LastSelectedProject)." AND task_state='To Do' ORDER BY tasks.task_date ASC";
                     $result = $connection-> query($sql);
 
                     if ($result-> num_rows <= 0) {
@@ -228,7 +239,7 @@
 								</div>
                                 
                                 <form action="landing.php" method="get">
-								    <button type="submit" name="edit-task" value="'.$task_title.'"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
+								    <button class="edit-buttons" type="submit" name="edit-task" value="'.$task_title.'"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
 								</form>
 
                             </div>
@@ -260,7 +271,14 @@
                              * This prints out the form that allows a new task to be added to the database.
                              * All data from this form is sent to addItem.inc.php for processing.
                              */
+                            $NameTaken = "";
+                                if (isset($_GET['error'])) {
+                                    if (strcmp($_GET['error'], "nametaken")) {
+                                        $NameTaken = "<p>Name Taken in project!<p>";
+                                    }
+                                }
                                 echo('<form class="add-item" action="addItem.inc.php" method="post">
+                                        '.$NameTaken.'
                                         <input type="text" name="title" placeholder="Title..."><br/>
                                         <textarea class="description" name="task-desc" cols="26" rows="6" placeholder="Description..."></textarea><br/>
                                         <input type="date" name="task-date" placeholder="Choose a due date.."><br/>
@@ -341,7 +359,7 @@
                                 </div>
                                 
                                 <form action="landing.php" method="get">
-                                    <button type="submit" name="delete-task" value="'.$task_title.'"><span class="edit-task"><i class="fas fa-times"></i></span></button>
+                                    <button class="edit-buttons" type="submit" name="delete-task" value="'.$task_title.'"><span class="edit-task"><i class="fas fa-times"></i></span></button>
                                 </form>
 
                             </div>
@@ -369,6 +387,11 @@
 document.getElementById("open-modal").onclick = function() // Stop the modal boxes from appearing quickly every time the page is refreshed
 {
     var modal = document.getElementById("openModal");
+    modal.style.display = 'block';
+}
+document.getElementById("open-modal-project").onclick = function() // Stop the modal boxes from appearing quickly every time the page is refreshed
+{
+    var modal = document.getElementById("openModalProject");
     modal.style.display = 'block';
 }
 </script>

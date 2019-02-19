@@ -641,3 +641,24 @@ textarea.description {
     border-color: white;
     margin-bottom: 4px;
 }
+
+.edit-buttons {
+    background: transparent;
+    border: none;
+}
+
+.edit-buttons:hover {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.edit-buttons i {
+    color: #E95378;
+    font-size: 1em;
+}
+
+.edit-buttons i:hover {
+    color: rgb(153, 53, 78);
+    font-size: 1em;
+}
