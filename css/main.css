@@ -236,26 +236,6 @@ div.signup {
     flex: 2;
 }
 
-input[type="time"]::-webkit-input-placeholder {
-    color: rgba(255, 255, 255, 0.404);
-    border: none;
-    }
-     
-    input:-moz-placeholder { /* Firefox 18- */
-    color: rgba(255, 255, 255, 0.404); 
-    border: none; 
-    }
-     
-    input::-moz-placeholder {  /* Firefox 19+ */
-    color: rgba(255, 255, 255, 0.404);  
-    border: none;
-    }
-     
-    input:-ms-input-placeholder {  
-    color: rgba(255, 255, 255, 0.404); 
-    border: none;
-    }
-
 textarea::-webkit-input-placeholder {
     color: rgba(255, 255, 255, 0.404);
     border: none;
