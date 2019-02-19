@@ -3,6 +3,8 @@
     A task management system
     This is the landing page, after the user has logged in.
     Created by: Callum-James Smith (cs18804)
+
+    TODO: Remove (In progress) section, new plan.
  -->
 <!DOCTYPE html>
 <!-- Checks to see if the user has a session -->
