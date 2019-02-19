@@ -341,7 +341,7 @@
                                 </div>
                                 
                                 <form action="landing.php" method="get">
-                                    <button type="submit" name="edit-task" value="'.$task_title.'"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
+                                    <button type="submit" name="delete-task" value="'.$task_title.'"><span class="edit-task"><i class="fas fa-times"></i></span></button>
                                 </form>
 
                             </div>
