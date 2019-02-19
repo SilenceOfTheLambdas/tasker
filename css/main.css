@@ -524,7 +524,7 @@ form.edit-item {
     background: var(--header-BG-color);
 }
 
-form.add-item, form.edit-item > input {
+form.add-item > input {
     font-size: 2em;
     color: white;
 
@@ -535,7 +535,18 @@ form.add-item, form.edit-item > input {
     margin-bottom: 4px;
 }
 
-form.add-item, form.edit-item > select {
+form.edit-item > input {
+    font-size: 2em;
+    color: white;
+
+    background-color: transparent; 
+    border-style: solid; 
+    border-width: 0px 0px 1px 0px; 
+    border-color: white;
+    margin-bottom: 4px;
+}
+
+form.add-item > select {
     background: var(--search-BG-color);
     border: none;
     width: auto;
@@ -543,7 +554,21 @@ form.add-item, form.edit-item > select {
     color: white;
 }
 
-form.add-item, form.edit-item > button {
+form.edit-item > select {
+    background: var(--search-BG-color);
+    border: none;
+    width: auto;
+    height: 4vh;
+    color: white;
+}
+
+form.add-item > button {
+    background: #E95378;
+    border: none;
+    color: white;
+}
+
+form.add-item > button {
     background: #E95378;
     border: none;
     color: white;
@@ -574,14 +599,15 @@ form.add-item, form.edit-item > button {
 }
 
 .modalDialog > div {
-	width: 400px;
+	width: 450px;
     position: relative;
     display: block;
 	margin: 10% auto;
 	padding: 5px 20px 13px 20px;
 	border-radius: 2px;
 	background: #fff;
-	background: var(--header-BG-color);
+    background: var(--header-BG-color);
+    transform: translateY(-25%);
 }
 
 .close {

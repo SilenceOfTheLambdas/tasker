@@ -160,7 +160,7 @@
 						$FormString = '
 							<form class="edit-item" action="edit-task.inc.php" method="get">
 								<input type="text" name="title" value="'.$TaskTitle.'" placeholder="Title..."><br/>
-								<textarea class="description" value="'.$task_desc.'" name="task-desc" cols="26" rows="6" placeholder="Description..."></textarea><br/>
+								<textarea class="description" name="task-desc" cols="26" rows="6" placeholder="Description...">'.$task_desc.'</textarea><br/>
 								<input type="date" name="task-date" value="'.$task_date.'"><br/>
 								<input type="time" name="task-time" value="'.$task_time.'"><br/>
 								<select name="task-state" value="'.$task_state.'">
@@ -293,7 +293,72 @@
             <h3 class="headerTitle">Completed</h3>
             <hr>
             <div class="box-3"> <!-- Completed Box -->
+                   <?php
+                    if (empty($_GET['projects'])) {
+                        $ProjectID = mysqli_query($connection, "SELECT * FROM projects WHERE user_id='".$_SESSION['id']."'");
+                    }else {
+                        $ProjectID = mysqli_query($connection, "SELECT * FROM projects WHERE project_name='".$_GET['projects']."'");
+                    }
+                    $Project_ID = mysqli_fetch_assoc($ProjectID); // This variable stores all of the data performed from the query above, into a nice little array.
+                    $ID = intval($Project_ID['projectID']); // THIS IS THE ID!
+                    $_SESSION['project-id'] = $ID;
 
+                    // Stores the users last selected project in a table
+                    $StoreLastSelectedObject = mysqli_query($connection, "UPDATE users SET last_project = '".$ID."' WHERE id=".$_SESSION['id']."");
+
+                    $last_project_sql = "SELECT last_project FROM users WHERE id=".$_SESSION['id'].""; // Selects the project ID
+                    $last_project_result = $connection-> query($last_project_sql);
+                    $last_project_row = $last_project_result-> fetch_assoc();
+                    $LastSelectedProject = $last_project_row['last_project'];
+
+                    $sql = "SELECT * FROM tasks WHERE projectID=".intval($LastSelectedProject)." AND task_state='Completed'";
+                    $result = $connection-> query($sql);
+
+                    if ($result-> num_rows <= 0) {
+                        echo('<p>You Do Not Have Any Tasks</p>');
+                    }
+                    if ($result-> num_rows > 0) {
+                        while ($row = $result-> fetch_assoc()) // While there is data in the table
+                        {
+                            $task_title = $row['task_title'];
+                            $task_priority = $row['task_priority'];
+                            $task_desc = $row['task_desc'];
+                            $task_date = $row['task_date'];
+                            $task_time = $row['task_time'];
+                            $TaskState = $row['task_state'];
+                            
+                            echo('
+                            <div class="item">
+
+                            <div class="title-wrapper">
+                    
+                                <div class="task-title">
+                                    <h1 class="taskTitle">'.$task_title.'</h1>
+                                </div>
+                    
+                                <div class="task-priority">
+                                    <p class="task-priority">'.$task_priority.'</p>
+                                </div>
+                                
+                                <form action="landing.php" method="get">
+                                    <button type="submit" name="edit-task" value="'.$task_title.'"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
+                                </form>
+
+                            </div>
+                            <hr class="taskTitle">
+                    
+                            <div class="task-desc">
+                                <p class="task-desc">'.$task_desc.'</p>
+                            </div>
+                    
+                            <div class="task-date-time">
+                                <p class="task-date-time">'.$task_date.' '.$task_time.'</p>
+                            </div>
+                    
+                        </div>');
+                            
+                        }
+                    } ?>
             </div>
         </div>
 
