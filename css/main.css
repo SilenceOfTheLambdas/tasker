@@ -513,13 +513,19 @@ button {
 
 /* Adding Items */
 
-form.add-item {
+form.add-item{
     width: 100%;
     height: auto;
     background: var(--header-BG-color);
 }
 
-form.add-item > input {
+form.edit-item {
+    width: 100%;
+    height: 100%;
+    background: var(--header-BG-color);
+}
+
+form.add-item, form.edit-item > input {
     font-size: 2em;
     color: white;
 
@@ -530,7 +536,7 @@ form.add-item > input {
     margin-bottom: 4px;
 }
 
-form.add-item > select {
+form.add-item, form.edit-item > select {
     background: var(--search-BG-color);
     border: none;
     width: auto;
@@ -538,7 +544,7 @@ form.add-item > select {
     color: white;
 }
 
-form.add-item > button {
+form.add-item, form.edit-item > button {
     background: #E95378;
     border: none;
     color: white;

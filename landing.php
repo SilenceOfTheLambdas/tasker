@@ -158,7 +158,7 @@
 					
 						
 						$FormString = '
-							<form class="add-item" action="edit-task.inc.php" method="get">
+							<form class="edit-item" action="edit-task.inc.php" method="get">
 								<input type="text" name="title" value="'.$TaskTitle.'" placeholder="Title..."><br/>
 								<textarea class="description" value="'.$task_desc.'" name="task-desc" cols="26" rows="6" placeholder="Description..."></textarea><br/>
 								<input type="date" name="task-date" value="'.$task_date.'"><br/>
