@@ -26,7 +26,7 @@
     <header>
         <div id="logo">
             <!-- Logo goes here -->
-            <h1 class="logo">Tasker.io</h1>
+            <img class="logo" src="img/tasker-logo.png" alt="Tasker.io logo">
         </div>
     </header>
 

@@ -126,6 +126,13 @@
             <div class="box-3"> <!-- Completed Box -->
                    <?php
                         PrintCompletedTasks();
+
+                        if (isset($_GET['complete-task'])) {
+                            require 'db.php';
+
+                            $Task_title = $_GET['complete-task'];
+                            mysqli_query($connection, "UPDATE tasks SET task_state='Completed' WHERE task_title='".$Task_title."'");
+                        }
                     ?>
             </div>
         </div>

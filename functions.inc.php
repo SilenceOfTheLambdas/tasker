@@ -319,7 +319,8 @@ function PrintTasks() {
             $task_priority = $row['task_priority'];
             $task_desc = $row['task_desc'];
             $task_date = $row['task_date'];
-            $task_date = date('D-d-M-Y', strtotime($row['task_date']));
+            $task_state = $row['task_state'];
+            $task_date = date('D-d-M-Y', strtotime($row['task_date'])); // Reformats the time
             $task_time = $row['task_time'];
             
             if ($task_priority == "High") {
@@ -350,6 +351,10 @@ function PrintTasks() {
                     <div class="task-date-time">
                         <p class="task-date-time">'.$task_date.' '.$task_time.'</p>
                     </div>
+
+                    <form action="landing.php" method="get">
+                        <button class="complete-buttons" type="submit" name="complete-task" value="'.$task_title.'"><span class="complete-task"><i class="fas fa-check"></i></span></button>
+                    </form>
             
                 </div>');
             }
@@ -368,7 +373,7 @@ function PrintTasks() {
                         </div>
                         
                         <form action="landing.php" method="get">
-                            <button class="edit-buttons" type="submit" name="edit-task" value="'.$task_title.'"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
+                            <button class="complete-buttons" type="submit" name="edit-task" value="'.$task_title.'"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
                         </form>
 
                     </div>
@@ -381,6 +386,10 @@ function PrintTasks() {
                     <div class="task-date-time">
                         <p class="task-date-time">'.$task_date.' '.$task_time.'</p>
                     </div>
+
+                    <form action="landing.php" method="get">
+                        <button class="complete-buttons" type="submit" name="complete-task" value="'.$task_title.'"><span class="complete-task"><i class="fas fa-check"></i></span></button>
+                    </form>
             
                 </div>');
             }
@@ -412,6 +421,10 @@ function PrintTasks() {
                     <div class="task-date-time">
                         <p class="task-date-time">'.$task_date.' '.$task_time.'</p>
                     </div>
+
+                    <form action="landing.php" method="get">
+                        <button class="complete-buttons" type="submit" name="complete-task" value="'.$task_title.'"><span class="complete-task"><i class="fas fa-check"></i></span></button>
+                    </form>
             
                 </div>');
             }
