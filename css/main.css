@@ -5,12 +5,13 @@ Created by: Callum-James Smith (cs18804)
 
 :root /* The variables */
 {
-    --background-color: #1F2229;
-    --header-BG-color:  #404a67;
-    --logo-BG-color: #404a67;
+    --background-color: #1C1E26;
+    --header-BG-color:  #1C1E26;
+    --logo-BG-color: #1C1E26;
     --search-BG-color: rgba(24, 24, 24, 0.349);
     --box-BG-color: #ebebeb00;
-    --button-BG-color: rgb(3, 113, 113);
+    --button-BG-color: #E95678;
+    --button-hover-color: rgba(233, 86, 120, 0.39);
     --task-BG-color: #ebebeb;
 
     --box-width: 31%;
@@ -257,7 +258,7 @@ textarea::-webkit-input-placeholder {
 
 input::-webkit-input-placeholder {
     color: rgba(255, 255, 255, 0.404);
-    border: none;
+    border: none !important;
     }
      
     input:-moz-placeholder { /* Firefox 18- */
@@ -310,6 +311,13 @@ div.project-selector {
     flex-basis: 5%;
 }
 
+div.project-selector > form > select > option {
+    background: var(--header-BG-color);
+    border: none;
+    line-height: 4px;
+    font-size: 14px;
+}
+
 div.new-project {
     position: relative;          /* Used to center DIV vertically */
     top: 50%;
@@ -339,6 +347,11 @@ div.new-project > a > button {
     width: auto;
     height: 4vh;
     color: white;
+}
+
+#project_selector::selection {
+    border: none;
+    transition: ease-in 0.2s;
 }
 
 /* Search Section */
@@ -480,11 +493,17 @@ div.addItem {
 }
 
 button.add-item-button {
-    background: #E95378;
+    background: var(--button-BG-color);
+    cursor: pointer;
     border: none;
     color: white;
     width: 100%;
     margin-top: 20px;
+}
+
+button.add-item-button:hover {
+    background: var(--button-hover-color);
+    transition: ease-in 0.2s;
 }
 
 button.signout {
@@ -563,15 +582,17 @@ form.edit-item > select {
 }
 
 form.add-item > button {
-    background: #E95378;
+    background: var(--button-BG-color);
     border: none;
     color: white;
+    cursor: pointer;
 }
 
-form.add-item > button {
-    background: #E95378;
-    border: none;
-    color: white;
+form.add-item > button:hover {
+    
+    transition: ease-in 0.2s;
+    background: var(--button-hover-color);
+    cursor: pointer;
 }
 
 /* Adding Item Modal Box */
@@ -599,7 +620,7 @@ form.add-item > button {
 }
 
 .modalDialog > div {
-	width: 450px;
+	width: 20%;
     position: relative;
     display: block;
 	margin: 10% auto;
@@ -629,7 +650,11 @@ form.add-item > button {
 	box-shadow: 1px 1px 3px #000;
 }
 
-.close:hover { background: #E95378; }
+.close:hover { 
+    
+    background: var(--button-BG-color);
+    transition: ease-in 0.2s;
+}
 
 textarea.description {
     font-size: 2em;
@@ -654,11 +679,12 @@ textarea.description {
 }
 
 .edit-buttons i {
-    color: #E95378;
+    color: var(--button-BG-color);
     font-size: 1em;
 }
 
 .edit-buttons i:hover {
-    color: rgb(153, 53, 78);
+    transition: ease-in 0.2s;
+    color: var(--button-hover-color);
     font-size: 1em;
 }

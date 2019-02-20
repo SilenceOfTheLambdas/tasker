@@ -44,29 +44,8 @@
 
                 <h1 id="Sign In" style="text-decoration: underline white;">Sign In</h1>
                 <?php 
-                    if (isset($_GET['error'])) // If there is an error
-                    {
-                        if (isset($_GET['email'])) // If email is passed on
-                        {
-                            echo('<input type="email" style="margin-bottom: 20px;" name="email" id="email" value="'.$_GET['email'].'" placeholder="Email..."><br/>');
-                            echo('<input style="border-color: red;" type="password" name="password" id="password" placeholder="Please enter password..."><br>');
-                        } 
-                        else // if not return form as normal
-                        {
-                            echo('<input type="email" style="margin-bottom: 20px;" name="email" id="email" placeholder="Email..."><br/>');
-                            echo('<input type="password" name="password" id="password" placeholder="Password..."><br>');
-                        }
-                    }
-                    elseif (isset($_GET['emptyemail'])) // If the user does not enter an email
-                    {
-                        echo('<input style="border-color: red; margin-bottom: 20px;" type="email" name="email" id="email" placeholder="Please enter email..."><br/>');
-                        echo('<input type="password" name="password" id="password" placeholder="Password..."><br>');
-                    }
-                    else // Otherwise, print form normally
-                    {
-                        echo('<input type="email" style="margin-bottom: 20px;" name="email" id="email" placeholder="Email..."><br/>');
-                        echo('<input type="password" name="password" id="password" placeholder="Password..."><br>');
-                    }
+                    include 'functions.inc.php';
+                    LoginForm();
                 ?>
 
                 <div class="formButtons">

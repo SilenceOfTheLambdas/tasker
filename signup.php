@@ -4,10 +4,7 @@
     This is the signup page.
     Created by: Callum-James Smith (cs18804)
  -->
- <!DOCTYPE html>
-<?php
-    include('signup.inc.php');
-?>
+<!DOCTYPE html>
 <head>
      
     <!-- Meta stuffs -->
@@ -41,23 +38,8 @@
 
                 <h1 id="Sign In" style="text-decoration: underline white;">Sign Up</h1>
                 <?php
-                if (isset($_GET['error'])) // If there is an error
-                {
-                    if ($_GET['error'] == "invalidname") // If that error is equal to 'invalidname'
-                    {
-                        echo('<input style="border-color: red;" type="text" style="margin-bottom: 20px;" name="name" placeholder="Invalid Name..."><br>');
-                        echo('<input type="email" style="margin-bottom: 20px;" value="'.$_GET['email'].'" name="email" placeholder="Email..."><br>');
-                    } else // Otherwise, print name and email form normally
-                    {
-                        echo('<input type="text" style="margin-bottom: 20px;" name="name" placeholder="Name..."><br>');
-                        echo('<input type="email" style="margin-bottom: 20px;" name="email" placeholder="Email..."><br>');
-                    }
-                } 
-                else // if there is no error, print name an email normally
-                {
-                    echo('<input type="text" style="margin-bottom: 20px;" name="name" placeholder="Name..."><br>');
-                    echo('<input type="email" style="margin-bottom: 20px;" name="email" placeholder="Email..."><br>');
-                }
+                    include 'functions.inc.php';
+                    SignUpForm();
                 ?>
                 <input type="password" style="margin-bottom: 20px;" name="password" placeholder="Password..."><br>
                 <input type="Password" name="password-repeat" placeholder="Re-enter password..."><br>

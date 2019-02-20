@@ -3,8 +3,6 @@
     A task management system
     This is the landing page, after the user has logged in.
     Created by: Callum-James Smith (cs18804)
-
-    TODO: Remove (In progress) section, new plan.
  -->
 <!DOCTYPE html>
 <!-- Checks to see if the user has a session -->
@@ -38,33 +36,8 @@
         
         <div class="project-selector">
                 <?php 
-					require 'db.php';
-                    $_SESSION['project_id'] = array();
-                    
-                    if (empty($_GET['projects'])) {
-                        $PROJECT_NAME_SQL = "SELECT * FROM projects WHERE user_id='".$_SESSION['id']."'";
-                    } else {
-                        $PROJECT_NAME_SQL = "SELECT project_name FROM projects WHERE user_id='".$_SESSION['id']."' ORDER BY project_name='".$_GET['projects']."' DESC";
-                        }
-
-                    $last_project_name_sql = "SELECT * FROM projects,users WHERE user_id='".$_SESSION['id']."' AND projectID=users.last_project"; // Selects the project ID
-                    $last_project_name_result = $connection-> query($last_project_name_sql);
-                    $last_project__name_row = $last_project_name_result-> fetch_assoc();
-                    $LastSelectedProjectName = $last_project__name_row['project_name'];
-                    $PROJECT_NAME_RESULT = $connection-> query($PROJECT_NAME_SQL);
-
-                    echo('
-                    <form name="ProjectSelection" action="landing.php" method="get">
-                        <select name="projects" value="'.$LastSelectedProjectName.'" id="project_selector" onchange="this.form.submit()">
-                    ');
-
-                    while ($PROJECT_NAME_ROW = $PROJECT_NAME_RESULT-> fetch_assoc()) {
-                        $project_title = $PROJECT_NAME_ROW['project_name'];
-                        echo('<option value="'.$project_title.'" >'.$project_title.'</option>');
-                        
-                        $_SESSION['last_project'] = $last_project__name_row['project_name']; // Create a global session variable
-                    }
-                    echo('</select></form>');
+                    include 'functions.inc.php';
+                    ProjectSelector();
                 ?>
         </div>
 
@@ -119,67 +92,9 @@
                 /**
                  * This part checks to see if the user has any projects, if not they are forced to make one.
                  */
-                    require 'db.php';
 
-                    $ProjectSQL = "SELECT project_name FROM projects WHERE user_id='".$_SESSION['id']."'";
-                    $Project_Name = mysqli_query($connection, $ProjectSQL);
-                    $ProjectNameRows = mysqli_num_rows($Project_Name);
-
-                    if ($ProjectNameRows <= 0) // If the user does not have any projects, they are forced to make one
-                    {
-                        echo(
-                            '<form class="add-item" action="newProject.inc.php" method="post">
-                                <h3>Please make a new project</h3>
-                                <input type="text" name="project-name">
-                                <button type="submit" name="add-project">Add Project</button>
-                            </form>'
-                        );
-                        exit();
-                    }
-
-                    if (isset($_GET['edit-task'])) {
-						require 'db.php';
-					
-						$TaskTitle = $_GET['edit-task'];
-					
-						// Obtain task details
-						$sql = "SELECT * FROM tasks WHERE task_title='".$TaskTitle."'";
-						$result = $connection-> query($sql);
-						if ($result-> num_rows <= 0) {
-							echo('<p>You Do Not Have Any Tasks</p>');
-						}
-						$row = $result-> fetch_assoc();
-						$task_id = $row['task_id'];
-						$task_priority = $row['task_priority'];
-						$task_desc = $row['task_desc'];
-						$task_date = $row['task_date'];
-						$task_time = $row['task_time'];
-						$task_state = $row['task_state'];
-					
-						
-						$FormString = '
-							<form class="edit-item" action="edit-task.inc.php" method="get">
-								<input type="text" name="title" value="'.$TaskTitle.'" placeholder="Title..."><br/>
-								<textarea class="description" name="task-desc" cols="26" rows="6" placeholder="Description...">'.$task_desc.'</textarea><br/>
-								<input type="date" name="task-date" value="'.$task_date.'"><br/>
-								<input type="time" name="task-time" value="'.$task_time.'"><br/>
-								<select name="task-state" value="'.$task_state.'">
-									<option name="To Do">To Do</option>
-									<option name="In Progress">In Progress</option>
-									<option name="Completed">Completed</option>
-								</select>
-								<select name="task-priority" value="'.$task_priority.'">
-									<option name="high">High</option>
-									<option name="medium">Medium</option>
-									<option name="low">Low</option>
-								</select>
-								<button type="submit" name="finnish-edit" value="'.$task_id.'">Finnish</button>
-							</form>';
-					
-						echo($FormString);
-					
-						
-                    }
+                    CheckProjects();
+                    EditTask();
                     
                     if (isset($_GET['delete-task'])) {
                         require 'db.php';
@@ -223,6 +138,7 @@
                             $task_priority = $row['task_priority'];
                             $task_desc = $row['task_desc'];
                             $task_date = $row['task_date'];
+                            $task_date = date('D-d-M-Y', strtotime($row['task_date']));
                             $task_time = $row['task_time'];
                             
                             echo('
@@ -267,38 +183,8 @@
                         <div> <!-- the element inside -->
                             <a href="#close" title="Close" class="close">X</a> <!-- The close button -->
                             <h1>Add Task</h1>
-                            <?php /**
-                             * This prints out the form that allows a new task to be added to the database.
-                             * All data from this form is sent to addItem.inc.php for processing.
-                             */
-                            $NameTaken = "";
-                                if (isset($_GET['error'])) {
-                                    if (strcmp($_GET['error'], "nametaken")) {
-                                        $NameTaken = "<p>Name Taken in project!<p>";
-                                    }
-                                }
-                                echo('<form class="add-item" action="addItem.inc.php" method="post">
-                                        '.$NameTaken.'
-                                        <input type="text" name="title" placeholder="Title..."><br/>
-                                        <textarea class="description" name="task-desc" cols="26" rows="6" placeholder="Description..."></textarea><br/>
-                                        <input type="date" name="task-date" placeholder="Choose a due date.."><br/>
-                                        <input type="time" name="task-time"><br/>
-        
-                                        <select name="task-state">
-                                            <option name="To Do">To Do</option>
-                                            <option name="In Progress">In Progress</option>
-                                            <option name="Completed">Completed</option>
-                                        </select>
-        
-                                        <select name="task-priority">
-                                            <option name="high">High</option>
-                                            <option name="medium">Medium</option>
-                                            <option name="low">Low</option>
-                                        </select>
-        
-                                        <button type="submit" name="add-task">Add Task</button>
-        
-                                    </form>');
+                            <?php 
+                                AddTask();
                             ?>
                         </div>
                     </div>
@@ -312,6 +198,8 @@
             <hr>
             <div class="box-3"> <!-- Completed Box -->
                    <?php
+
+                    date_default_timezone_set('UTC');
                     if (empty($_GET['projects'])) {
                         $ProjectID = mysqli_query($connection, "SELECT * FROM projects WHERE user_id='".$_SESSION['id']."'");
                     }else {
@@ -341,7 +229,7 @@
                             $task_title = $row['task_title'];
                             $task_priority = $row['task_priority'];
                             $task_desc = $row['task_desc'];
-                            $task_date = $row['task_date'];
+                            $task_date = date('D-d-M-Y', strtotime($row['task_date']));
                             $task_time = $row['task_time'];
                             $TaskState = $row['task_state'];
                             
@@ -351,11 +239,11 @@
                             <div class="title-wrapper">
                     
                                 <div class="task-title">
-                                    <h1 class="taskTitle">'.$task_title.'</h1>
+                                    <del><h1 class="taskTitle">'.$task_title.'</h1></del>
                                 </div>
                     
                                 <div class="task-priority">
-                                    <p class="task-priority">'.$task_priority.'</p>
+                                    <del><p class="task-priority">'.$task_priority.'</p></del>
                                 </div>
                                 
                                 <form action="landing.php" method="get">
@@ -366,11 +254,11 @@
                             <hr class="taskTitle">
                     
                             <div class="task-desc">
-                                <p class="task-desc">'.$task_desc.'</p>
+                                <del><p class="task-desc">'.$task_desc.'</p></del>
                             </div>
                     
                             <div class="task-date-time">
-                                <p class="task-date-time">'.$task_date.' '.$task_time.'</p>
+                                <del><p class="task-date-time">'.$task_date.' '.$task_time.'</p></del>
                             </div>
                     
                         </div>');
