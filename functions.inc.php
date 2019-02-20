@@ -200,12 +200,6 @@ function AddTask() {
             <input type="date" name="task-date" placeholder="Choose a due date.."><br/>
             <input type="time" name="task-time"><br/>
 
-            <select name="task-state">
-                <option name="To Do">To Do</option>
-                <option name="In Progress">In Progress</option>
-                <option name="Completed">Completed</option>
-            </select>
-
             <select name="task-priority">
                 <option name="high">High</option>
                 <option name="medium">Medium</option>

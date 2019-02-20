@@ -70,6 +70,10 @@
 
     </div>
 
+    <footer>
+        <pre>Callum-James Smith© All rights reserved</pre>
+    </footer>
+
 </body>
 
 </html>

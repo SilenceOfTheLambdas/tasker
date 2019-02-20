@@ -31,7 +31,8 @@
     <header>
         <div id="logo">
             <!-- Logo goes here -->
-            <h1 class="logo">Tasker.io</h1>
+            <!-- <h1 class="logo">Tasker.io</h1> -->
+            <img class="logo" src="img/tasker-logo.png" alt="Tasker.io logo">
         </div>
         
         <div class="project-selector">
@@ -67,7 +68,7 @@
         
         <div id="user">
             <?php 
-                echo("<p id='userHello'>Hello, </p>".$_SESSION['name']); ?>
+                echo("<p id='userHello'>Hello, ".$_SESSION['name'])."</p>" ?>
         </div>
 
         <div id="signout">

@@ -7,9 +7,9 @@ It's rather big but ¯\_(ツ)_/¯
 :root /* The variables */
 {
     --background-color: rgb(21, 23, 29);
-    --header-BG-color:  rgb(21, 23, 29);
-    --logo-BG-color: rgb(21, 23, 29);
-    --search-BG-color: rgba(24, 24, 24, 0.349);
+    --header-BG-color:  rgba(21, 23, 29, 0.9);
+    --logo-BG-color: rgba(21, 23, 29, 0.9);
+    --search-BG-color: rgba(21, 23, 29, 0.9);
     --box-BG-color: #ebebeb00;
     --button-BG-color: #E95678;
     --button-hover-color: rgba(233, 86, 120, 0.39);
@@ -17,9 +17,8 @@ It's rather big but ¯\_(ツ)_/¯
     --task-high: rgb(199, 15, 58);
     --task-medium: rgb(223, 77, 111);
 
-    --box-width: 31%;
-    --box-height: 90%;
 }
+/* Fonts */
 @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
 
 @font-face{
@@ -41,7 +40,7 @@ html, body {
     color: white;
 }
 
-/* LOGIN PAGE */
+/* LOGIN/Sign up PAGE */
 
 div.wrapper /* Wrapper for index.php */
 {
@@ -249,6 +248,25 @@ div.signup {
     flex: 2;
 }
 
+/* Footer */
+footer {
+    width: 100%;
+    height: 80px;
+    background: var(--header-BG-color);
+    box-shadow: black 0 -4px 4px -4px;
+
+    z-index: 99;
+    position: absolute;
+    bottom: 0;
+}
+
+footer > pre {
+    text-align: center;
+    font-family: 'Source Code Pro';
+
+    transform: translateY(50%);
+}
+
 textarea::-webkit-input-placeholder {
     color: rgba(255, 255, 255, 0.404);
     border: none;
@@ -271,7 +289,7 @@ textarea::-webkit-input-placeholder {
 
 input::-webkit-input-placeholder {
     color: rgba(255, 255, 255, 0.404);
-    border: none !important;
+    border: none;
     }
      
     input:-moz-placeholder { /* Firefox 18- */
@@ -312,16 +330,23 @@ header {
     height: 100%;
     flex-basis: 10%;
 }
-h1.logo {
-    position: relative;          /* Used to center DIV vertically */
-    top: 50%;
-    transform: translateY(-100%);
+.logo {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
 }
 
 /* Project Selection */
 div.project-selector {
 
     flex-basis: 5%;
+    height: 100%;
+}
+
+div.project-selector > form {
+    height: 25px;
+    text-align: center;
+    transform: translateX(30px);
 }
 
 div.project-selector > form > select > option {
@@ -347,10 +372,10 @@ div.new-project > a > button {
     border: none;
     color: white;
     text-align: center;
-    height: 20px;
+    height: 100%;
     width: 25px;
     font-size: 14px;
-    transform: translateX(80%) translateY(35%);
+    float: left;
 }
 div.new-project > a > button:hover {
     transition: ease-in 0.2s;
@@ -360,7 +385,6 @@ div.new-project > a > button:hover {
 #project_selector {
     position: relative;          /* Used to center DIV vertically */
     top: 50%;
-    transform: translateX(50%) translateY(35%);
 
     background: var(--search-BG-color);
     border: none;
@@ -378,6 +402,7 @@ div.new-project > a > button:hover {
 #search {
     background-color: var(--search-BG-color);
     color: white;
+    display: none;
 
     width: 100%;
     height: 80%;
@@ -397,7 +422,7 @@ div.new-project > a > button:hover {
     color: white;
     text-align: center;
 
-    width: auto;
+    width: 20%;
     height: 100%;
     
     border: none;
@@ -406,6 +431,7 @@ div.new-project > a > button:hover {
 
 #userHello {
     line-height: 0.5px;
+    transform: translateY(15px);
     
 }
 
@@ -422,7 +448,7 @@ div.new-project > a > button:hover {
 
 div.to-do-container-wrapper {
     width: 45%;
-    height: 60px;
+    height: 100%;
     flex-basis: 70%;
 }
 
@@ -437,8 +463,7 @@ div.container {
     display: flex;
     justify-content: space-around;
     flex-flow: row wrap;
-    height: 65vh;
-    margin-top: 10px;
+    height: 100%;
     clear: both;
 }
 
@@ -451,7 +476,7 @@ div.container {
 div.box-1 { /* To DO */
     background: var(--box-BG-color);
     flex-basis: 80%;
-    height: 65vh;
+    height: 75vh;
     clear: both;
     overflow: auto;
     border: white solid 2px;
@@ -572,7 +597,7 @@ button {
 form.add-item{
     width: 100%;
     height: auto;
-    background: var(--header-BG-color);
+    background-color: transparent;
 }
 
 form.edit-item {
@@ -584,10 +609,23 @@ form.edit-item {
 form.add-item > input {
     font-size: 2em;
     color: white;
+    width: 100%;
 
-    background-color: transparent; 
     border-style: solid; 
-    border-width: 0px 0px 1px 0px; 
+    border-width: 0px 0px 1px 0px;
+    background: transparent;
+    border-color: white;
+    margin-bottom: 4px;
+}
+
+form.add-item > textarea {
+    font-size: 2em;
+    color: white;
+    width: 100%;
+
+    border-style: solid; 
+    border-width: 0px 0px 1px 0px;
+    background: transparent;
     border-color: white;
     margin-bottom: 4px;
 }
@@ -598,7 +636,8 @@ form.edit-item > input {
 
     background-color: transparent; 
     border-style: solid; 
-    border-width: 0px 0px 1px 0px; 
+    border-width: 0px 0px 1px 0px;
+    background: var(--header-BG-color);
     border-color: white;
     margin-bottom: 4px;
 }
@@ -643,7 +682,8 @@ form.add-item > button:hover {
 	bottom: 0;
 	left: 0;
 	background: rgba(0,0,0,0.8);
-	z-index: 99999;
+    z-index: 99999;
+    width: 100%;
 	opacity:0;
 	-webkit-transition: opacity 400ms ease-in;
 	-moz-transition: opacity 400ms ease-in;
@@ -658,7 +698,7 @@ form.add-item > button:hover {
 }
 
 .modalDialog > div {
-	width: 20%;
+	width: 30%;
     position: relative;
     display: block;
 	margin: 10% auto;
@@ -666,7 +706,7 @@ form.add-item > button:hover {
 	border-radius: 2px;
 	background: #fff;
     background: var(--header-BG-color);
-    transform: translateY(-25%);
+    
 }
 
 .close {
