@@ -216,3 +216,211 @@ function AddTask() {
 
         </form>');
 }
+
+function PrintCompletedTasks() {
+
+    require 'db.php';
+
+    date_default_timezone_set('UTC');
+
+    if (empty($_GET['projects'])) {
+        $ProjectID = mysqli_query($connection, "SELECT * FROM projects WHERE user_id='".$_SESSION['id']."'");
+    }else {
+        $ProjectID = mysqli_query($connection, "SELECT * FROM projects WHERE project_name='".$_GET['projects']."'");
+    }
+
+    $Project_ID = mysqli_fetch_assoc($ProjectID); // This variable stores all of the data performed from the query above, into a nice little array.
+    $ID = intval($Project_ID['projectID']); // THIS IS THE ID!
+    $_SESSION['project-id'] = $ID;
+
+    // Stores the users last selected project in a table
+    $StoreLastSelectedObject = mysqli_query($connection, "UPDATE users SET last_project = '".$ID."' WHERE id=".$_SESSION['id']."");
+
+    $last_project_sql = "SELECT last_project FROM users WHERE id=".$_SESSION['id'].""; // Selects the project ID
+    $last_project_result = $connection-> query($last_project_sql);
+    $last_project_row = $last_project_result-> fetch_assoc();
+    $LastSelectedProject = $last_project_row['last_project'];
+
+    $sql = "SELECT * FROM tasks WHERE projectID=".intval($LastSelectedProject)." AND task_state='Completed'";
+    $result = $connection-> query($sql);
+
+    if ($result-> num_rows <= 0) {
+        echo('<p>You Do Not Have Any Tasks</p>');
+    }
+    if ($result-> num_rows > 0) {
+        while ($row = $result-> fetch_assoc()) // While there is data in the table
+        {
+            $task_title = $row['task_title'];
+            $task_priority = $row['task_priority'];
+            $task_desc = $row['task_desc'];
+            $task_date = date('D-d-M-Y', strtotime($row['task_date']));
+            $task_time = $row['task_time'];
+            $TaskState = $row['task_state'];
+            echo('
+            <div class="item">
+
+                <div class="title-wrapper">
+        
+                    <div class="task-title">
+                        <del><h1 class="taskTitle">'.$task_title.'</h1></del>
+                    </div>
+        
+                    <div class="task-priority">
+                        <del><p class="task-priority">'.$task_priority.'</p></del>
+                    </div>
+                    
+                    <form action="landing.php" method="get">
+                        <button class="edit-buttons" type="submit" name="delete-task" value="'.$task_title.'"><span class="edit-task"><i class="fas fa-times"></i></span></button>
+                    </form>
+
+                </div>
+                <hr class="taskTitle">
+        
+                <div class="task-desc">
+                    <del><p class="task-desc">'.$task_desc.'</p></del>
+                </div>
+        
+                <div class="task-date-time">
+                    <del><p class="task-date-time">'.$task_date.' '.$task_time.'</p></del>
+                </div>
+        
+            </div>');
+            }
+            
+        }
+}
+
+function PrintTasks() {
+
+    require 'db.php';
+
+    if (empty($_GET['projects'])) {
+        $ProjectID = mysqli_query($connection, "SELECT * FROM projects WHERE user_id='".$_SESSION['id']."'");
+    }else {
+        $ProjectID = mysqli_query($connection, "SELECT * FROM projects WHERE project_name='".$_GET['projects']."'");
+    }
+
+    $Project_ID = mysqli_fetch_assoc($ProjectID); // This variable stores all of the data performed from the query above, into a nice little array.
+    $ID = intval($Project_ID['projectID']); // THIS IS THE ID!
+    $_SESSION['project-id'] = $ID;
+
+    // Stores the users last selected project in a table
+    $StoreLastSelectedObject = mysqli_query($connection, "UPDATE users SET last_project = '".$ID."' WHERE id=".$_SESSION['id']."");
+
+    $last_project_sql = "SELECT last_project FROM users WHERE id=".$_SESSION['id'].""; // Selects the project ID
+    $last_project_result = $connection-> query($last_project_sql);
+    $last_project_row = $last_project_result-> fetch_assoc();
+    $LastSelectedProject = $last_project_row['last_project'];
+
+    $sql = "SELECT task_title,task_date,task_time,task_state,task_priority,task_desc FROM tasks WHERE projectID=".intval($LastSelectedProject)." AND task_state='To Do' ORDER BY tasks.task_date ASC";
+    $result = $connection-> query($sql);
+
+    if ($result-> num_rows <= 0) {
+        echo('<p>You Do Not Have Any Tasks</p>');
+    }
+    if ($result-> num_rows > 0) {
+        while ($row = $result-> fetch_assoc()) // While there is data in the table
+        {
+            $task_title = $row['task_title'];
+            $task_priority = $row['task_priority'];
+            $task_desc = $row['task_desc'];
+            $task_date = $row['task_date'];
+            $task_date = date('D-d-M-Y', strtotime($row['task_date']));
+            $task_time = $row['task_time'];
+            
+            if ($task_priority == "High") {
+                echo('
+                <div class="item-high">
+
+                    <div class="title-wrapper">
+            
+                        <div class="task-title">
+                            <h1 class="taskTitle">'.$task_title.'</h1>
+                        </div>
+            
+                        <div class="task-priority">
+                            <p class="task-priority">'.$task_priority.'</p>
+                        </div>
+                        
+                        <form action="landing.php" method="get">
+                            <button class="edit-buttons" type="submit" name="edit-task" value="'.$task_title.'"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
+                        </form>
+
+                    </div>
+                    <hr class="taskTitle">
+            
+                    <div class="task-desc">
+                        <p class="task-desc">'.$task_desc.'</p>
+                    </div>
+            
+                    <div class="task-date-time">
+                        <p class="task-date-time">'.$task_date.' '.$task_time.'</p>
+                    </div>
+            
+                </div>');
+            }
+            elseif ($task_priority == "Medium") {
+                echo('
+                <div class="item-medium">
+
+                    <div class="title-wrapper">
+            
+                        <div class="task-title">
+                            <h1 class="taskTitle">'.$task_title.'</h1>
+                        </div>
+            
+                        <div class="task-priority">
+                            <p class="task-priority">'.$task_priority.'</p>
+                        </div>
+                        
+                        <form action="landing.php" method="get">
+                            <button class="edit-buttons" type="submit" name="edit-task" value="'.$task_title.'"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
+                        </form>
+
+                    </div>
+                    <hr class="taskTitle">
+            
+                    <div class="task-desc">
+                        <p class="task-desc">'.$task_desc.'</p>
+                    </div>
+            
+                    <div class="task-date-time">
+                        <p class="task-date-time">'.$task_date.' '.$task_time.'</p>
+                    </div>
+            
+                </div>');
+            }
+            else {
+                echo('
+                <div class="item">
+
+                    <div class="title-wrapper">
+            
+                        <div class="task-title">
+                            <h1 class="taskTitle">'.$task_title.'</h1>
+                        </div>
+            
+                        <div class="task-priority">
+                            <p class="task-priority">'.$task_priority.'</p>
+                        </div>
+                        
+                        <form action="landing.php" method="get">
+                            <button class="edit-buttons" type="submit" name="edit-task" value="'.$task_title.'"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
+                        </form>
+
+                    </div>
+                    <hr class="taskTitle">
+            
+                    <div class="task-desc">
+                        <p class="task-desc">'.$task_desc.'</p>
+                    </div>
+            
+                    <div class="task-date-time">
+                        <p class="task-date-time">'.$task_date.' '.$task_time.'</p>
+                    </div>
+            
+                </div>');
+            }
+        }
+    }
+}

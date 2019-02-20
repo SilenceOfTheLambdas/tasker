@@ -13,16 +13,29 @@ Created by: Callum-James Smith (cs18804)
     --button-BG-color: #E95678;
     --button-hover-color: rgba(233, 86, 120, 0.39);
     --task-BG-color: #ebebeb;
+    --task-high: rgb(199, 15, 58);
+    --task-medium: rgb(223, 77, 111);
 
     --box-width: 31%;
     --box-height: 90%;
 }
 @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
 
+@font-face{
+    font-family: 'Fira Code';
+    src: url('eot/FiraCode-Light.eot');
+    src: url('fonts/eot/FiraCode-Light.eot') format('embedded-opentype'),
+         url('fonts/woff2/FiraCode-Light.woff2') format('woff2'),
+         url('fonts/woff/FiraCode-Light.woff') format('woff'),
+         url('fonts/ttf/FiraCode-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
 html, body {
     margin: 0;
     padding: 0;
-    font-family: 'Source Code Pro', monospace;
+    font-family: 'Fira Code', monospace;
     background-color: var(--background-color);
     color: white;
 }
@@ -448,9 +461,27 @@ div.box-3 { /* Completed */
 /* TASKS */
 div.item {
     margin: 8px;
-    padding: 2px;
+    padding: 4px;
     background: var(--task-BG-color);
     box-shadow: black 2px 2px 1px;
+    color: rgb(14, 14, 14);
+}
+
+div.item-high {
+    margin: 8px;
+    padding: 4px;
+    background: var(--task-BG-color);
+    box-shadow: black 2px 2px 1px;
+    border: solid var(--task-high) 2px;
+    color: rgb(14, 14, 14);
+}
+
+div.item-medium {
+    margin: 8px;
+    padding: 4px;
+    background: var(--task-BG-color);
+    box-shadow: black 2px 2px 1px;
+    border: solid var(--task-medium) 2px;
     color: rgb(14, 14, 14);
 }
 /* Task Title */
