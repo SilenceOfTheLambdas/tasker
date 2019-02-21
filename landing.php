@@ -95,7 +95,19 @@
                         require 'db.php';
                         $TaskTitle = $_GET['delete-task'];
                         $sql = mysqli_query($connection, "DELETE FROM tasks WHERE task_title='".$TaskTitle."'");	
-					}
+                    }
+                    elseif (isset($_GET['complete-task'])) {
+                        require 'db.php';
+
+                        $Task_title = $_GET['complete-task'];
+                        $sql = mysqli_query($connection, "UPDATE tasks SET task_state='Completed' WHERE task_title='".$Task_title."'");
+                    }
+                    elseif (isset($_GET['undo-task'])) {
+                        require 'db.php';
+
+                        $Task_title = $_GET['undo-task'];
+                        $sql = mysqli_query($connection, "UPDATE tasks SET task_state='To Do' WHERE task_title='".$Task_title."'");
+                    }
                     
                     PrintTasks();
                 ?>
@@ -126,13 +138,6 @@
             <div class="box-3"> <!-- Completed Box -->
                    <?php
                         PrintCompletedTasks();
-
-                        if (isset($_GET['complete-task'])) {
-                            require 'db.php';
-
-                            $Task_title = $_GET['complete-task'];
-                            mysqli_query($connection, "UPDATE tasks SET task_state='Completed' WHERE task_title='".$Task_title."'");
-                        }
                     ?>
             </div>
         </div>

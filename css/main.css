@@ -47,30 +47,25 @@ div.wrapper /* Wrapper for index.php */
     display: flex;
     flex-direction: column;
     width: 40%;
-    height: auto;
+    height: 80vh;
     background: var(--background-color);
-
-    position: relative;
-    top: 50%;
-    transform: translateY(50%);
 
     margin: 0 auto;
     color: white;
+    transform: translateY(20px);
 }
 
 div.signupWrapper {
     display: flex;
     flex-direction: column;
     width: 40%;
-    height: 60vh;
+    height: 80vh;
     background: var(--background-color);
 
-    position: relative;
-    top: 50%;
-    transform: translateY(25%);
 
     margin: 0 auto;
     color: white;
+    transform: translateY(20px);
 }
 
 @media screen and (max-width: 635px) /* when the screen reaches less than 635px */
@@ -89,7 +84,7 @@ div.signupWrapper {
 
 div.signupBox {
     width: 100%;
-    height: 100%;
+    height: 100vh;
 
     text-align: center;
 
@@ -130,7 +125,7 @@ div.signupBox form input:focus {
 
 div.loginBox {
     width: 100%;
-    height: 80%;
+    height: 50vh;
 
     text-align: center;
 
@@ -177,13 +172,6 @@ div.formButtons {
 
     width: 100%;
     height: 20%;
-}
-
-div.signin {
-    width: 100%;
-    flex-basis: 50%;
-    background: var(--background-color);
-    color: white;
 }
 
 div.signup {
@@ -331,8 +319,8 @@ header {
     flex-basis: 10%;
 }
 .logo {
-    height: 80%;
-    width: 80%;
+    height: 40px;
+    width: 110px;
     overflow: hidden;
     transform: translateY(8px);
 }
@@ -392,6 +380,7 @@ div.new-project > a > button:hover {
     width: auto;
     height: 4vh;
     color: white;
+    transform: translateY(5px);
 }
 
 #project_selector::selection {
@@ -449,7 +438,6 @@ div.new-project > a > button:hover {
 
 div.to-do-container-wrapper {
     width: 45%;
-    height: 100%;
     flex-basis: 70%;
 }
 
@@ -464,8 +452,7 @@ div.container {
     display: flex;
     justify-content: space-around;
     flex-flow: row wrap;
-    height: 100%;
-    clear: both;
+    
 }
 
 .headerTitle /* header title for the boxes */
@@ -477,17 +464,19 @@ div.container {
 div.box-1 { /* To DO */
     background: var(--box-BG-color);
     flex-basis: 80%;
-    height: 75vh;
+    height: 80vh;
     clear: both;
     overflow: auto;
+    padding: 4px;
     border: white solid 2px;
 }
 
 div.box-3 { /* Completed */
     background: var(--box-BG-color);
     flex-basis: 20%;
-    height: 75vh;
+    height: 80vh;
     overflow: auto;
+    padding: 4px;
     border: white solid 2px;
 }
 
@@ -521,6 +510,8 @@ div.item-medium {
 
 div.title-wrapper {
     display: flex;
+    width: 100%;
+    height: 100%;
     flex-direction: row;
 }
 
@@ -574,7 +565,7 @@ button.signout {
     width: 100%;
     height: 60px;
 
-    font-size: 28px;
+    font-size: 20px;
     background: var(--header-BG-color);
     border-style: none;
     color: white;
@@ -601,11 +592,55 @@ span.complete-task {
     border: none;
 }
 
+div.task-date-time {
+    flex-basis: 80%;
+    width: 80%;
+    padding-top: 8px;
+}
+
+div.c-button-holder {
+    float: right;
+    flex-basis: 20%;
+    width: 20%;
+}
+
 button.complete-buttons {
-    width: 100%;
-    height: auto;
+    width: 40px;
+    color: #29D398;
+    float: right;
+    display: block;
     background: transparent;
     border: none;
+    transform: translateY(-35px);
+}
+
+/* Undo button */
+div.u-button-holder {
+    float: right;
+    flex-basis: 20%;
+    width: 20%;
+}
+
+button.undo-buttons {
+    width: 40px;
+    color: #29D398;
+    float: right;
+    display: block;
+    background: transparent;
+    border: none;
+    transform: translateY(-35px);
+}
+
+button.complete-buttons:hover {
+    transition: ease-in 0.2s;
+    color: rgba(41, 211, 151, 0.651);
+    cursor: pointer;
+}
+
+button.undo-buttons:hover {
+    transition: ease-in 0.2s;
+    color: rgba(41, 211, 151, 0.651);
+    cursor: pointer;
 }
 
 /* Adding Items */

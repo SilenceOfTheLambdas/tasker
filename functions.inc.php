@@ -277,6 +277,12 @@ function PrintCompletedTasks() {
                 <div class="task-date-time">
                     <del><p class="task-date-time">'.$task_date.' '.$task_time.'</p></del>
                 </div>
+
+                <div class="u-button-holder">
+                    <form action="landing.php" method="get">
+                        <button class="undo-buttons" type="submit" name="undo-task" value="'.$task_title.'"><span class="complete-task"><i class="fas fa-arrow-left"></i></span></button>
+                    </form>
+                </div>
         
             </div>');
             }
@@ -352,9 +358,11 @@ function PrintTasks() {
                         <p class="task-date-time">'.$task_date.' '.$task_time.'</p>
                     </div>
 
+                <div class="c-button-holder">
                     <form action="landing.php" method="get">
                         <button class="complete-buttons" type="submit" name="complete-task" value="'.$task_title.'"><span class="complete-task"><i class="fas fa-check"></i></span></button>
                     </form>
+                </div>
             
                 </div>');
             }
@@ -373,7 +381,7 @@ function PrintTasks() {
                         </div>
                         
                         <form action="landing.php" method="get">
-                            <button class="complete-buttons" type="submit" name="edit-task" value="'.$task_title.'"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
+                            <button class="edit-buttons" type="submit" name="edit-task" value="'.$task_title.'"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
                         </form>
 
                     </div>
@@ -387,9 +395,11 @@ function PrintTasks() {
                         <p class="task-date-time">'.$task_date.' '.$task_time.'</p>
                     </div>
 
-                    <form action="landing.php" method="get">
-                        <button class="complete-buttons" type="submit" name="complete-task" value="'.$task_title.'"><span class="complete-task"><i class="fas fa-check"></i></span></button>
-                    </form>
+                    <div class="c-button-holder">
+                        <form action="landing.php" method="get">
+                            <button class="complete-buttons" type="submit" name="complete-task" value="'.$task_title.'"><span class="complete-task"><i class="fas fa-check"></i></span></button>
+                        </form>
+                    </div>
             
                 </div>');
             }
@@ -422,9 +432,11 @@ function PrintTasks() {
                         <p class="task-date-time">'.$task_date.' '.$task_time.'</p>
                     </div>
 
-                    <form action="landing.php" method="get">
-                        <button class="complete-buttons" type="submit" name="complete-task" value="'.$task_title.'"><span class="complete-task"><i class="fas fa-check"></i></span></button>
-                    </form>
+                    <div class="c-button-holder">
+                        <form action="landing.php" method="get">
+                            <button class="complete-buttons" type="submit" name="complete-task" value="'.$task_title.'"><span class="complete-task"><i class="fas fa-check"></i></span></button>
+                        </form>
+                    </div>
             
                 </div>');
             }
