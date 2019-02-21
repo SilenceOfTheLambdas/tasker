@@ -239,7 +239,7 @@ function PrintCompletedTasks() {
     $result = $connection-> query($sql);
 
     if ($result-> num_rows <= 0) {
-        echo('<p>You Do Not Have Any Tasks</p>');
+        echo('<p>No tasks completed yet</p>');
     }
     if ($result-> num_rows > 0) {
         while ($row = $result-> fetch_assoc()) // While there is data in the table
