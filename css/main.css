@@ -44,73 +44,6 @@ html, body {
 
 /* LOGIN/Sign up PAGE */
 
-div.wrapper /* Wrapper for index.php */
-{
-    display: flex;
-    flex-direction: column;
-    width: 40%;
-    height: 80vh;
-    background: var(--background-color);
-
-    margin: 0 auto;
-    color: white;
-    transform: translateY(20px);
-}
-
-div.signupWrapper {
-    display: flex;
-    flex-direction: column;
-    width: 40%;
-    height: 80vh;
-    background: var(--background-color);
-
-
-    margin: 0 auto;
-    color: white;
-    transform: translateY(20px);
-}
-
-div.signupBox {
-    width: 100%;
-    height: 100vh;
-
-    text-align: center;
-
-    flex-basis: 80%;
-    background: var(--background-color);
-    display: flex;
-    flex-direction: column;
-}
-
-div.signupBox form h1 {
-    width: 100%;
-    height: 20%;
-    border: none;
-}
-
-div.signupBox form input {
-    width: 100%;
-    height: auto;
-    font-size: 3em;
-    color: white;
-
-    background-color: transparent; 
-    border-style: solid; 
-    border-width: 0px 0px 1px 0px; 
-    border-color: white;
-
-    position: relative;
-    top: 50%;
-    transform: translateY(50%);
-
-    text-align: center;
-
-}
-
-div.signupBox form input:focus {
-    outline: none;
-}
-
 form#LoginForm {
     width: 500px;
     padding: 40px;
@@ -140,7 +73,7 @@ form#LoginForm h1,form#SignupForm h1 {
     font-weight: 500;
 }
 
-form#LoginForm input,form#SignupForm input {
+form#LoginForm input {
     border: 0;
     background: none;
     display: block;
@@ -148,7 +81,22 @@ form#LoginForm input,form#SignupForm input {
     text-align: center;
     border: 2px solid var(--button-BG-color);
     padding: 14px 10px;
-    width: 200px;
+    width: 300px;
+    outline: none;
+    color: white;
+    border-radius: 22px;
+    transition: 0.2s;
+}
+
+form#SignupForm input {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 10px auto;
+    text-align: center;
+    border: 2px solid var(--button-BG-color);
+    padding: 14px 10px;
+    width: 300px;
     outline: none;
     color: white;
     border-radius: 22px;
@@ -156,7 +104,7 @@ form#LoginForm input,form#SignupForm input {
 }
 
 form#LoginForm input:focus,form#SignupForm input:focus {
-    width: 240px;
+    width: 340px;
     border-color: var(--input-focus);
     transition: 0.25s;
 }
@@ -202,24 +150,15 @@ form#SignupForm button#signup-button-1 {
     text-align: center;
 }
 
-div.signup {
-    width: 100%;
-    height: 100%;
-    flex-basis: 100%;
-    background: var(--background-color);
-    color: white;
-}
-
 #signin-button {
 
     width: 100%;
     background: var(--background-color);
-    height: 80px;
+    height: 50px;
     margin: 0 none;
     padding: 0 none;
     border: none;
     color: white;
-
     text-align: center;
 }
 #signin-button:hover {
@@ -241,12 +180,11 @@ div.signup {
 
     width: 100%;
     background: var(--background-color);
-    height: 80px;
+    height: 50px;
     margin: 0 none;
     padding: 0 none;
     border: none;
     color: white;
-
     text-align: center;
 }
 
@@ -254,14 +192,12 @@ div.signup {
 
     width: 100%;
     background: var(--background-color);
-    height: 80px;
+    height: 50px;
     margin: 0 none;
     padding: 0 none;
     border: none;
     color: white;
-
     text-align: center;
-    flex: 2;
 }
 
 /* Footer */
@@ -278,11 +214,10 @@ footer {
 
 footer > pre {
     text-align: center;
-    font-family: 'Source Code Pro';
-
     transform: translateY(50%);
 }
 
+/* This changes the colour of the placeholder text */
 textarea::-webkit-input-placeholder {
     color: rgba(255, 255, 255, 0.404);
     border: none;
