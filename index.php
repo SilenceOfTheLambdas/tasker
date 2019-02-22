@@ -38,39 +38,19 @@
         </div>
     </header>
 
-    <div class="wrapper">
-    
-        <div class="loginBox">
+        <form id="LoginForm" action="login.inc.php" method="post">
 
-            <form id="LoginForm" action="login.inc.php" method="post">
+            <h1 id="Sign In">Sign In</h1>
+            <?php 
+                include 'functions.inc.php';
+                LoginForm();
+            ?>
 
-                <h1 id="Sign In" style="text-decoration: underline white;">Sign In</h1>
-                <?php 
-                    require_once('functions.inc.php');
-                    LoginForm();
-                ?>
+            <button id='signin-button' type="submit" name="signin-submit">Sign In</button>
 
-                <div class="formButtons">
+            <button id='signup-button' type="submit" name="signup-submit">Sign Up</button>
 
-                    <div class='signup'>
-                        <form id="LoginForm" action="login.inc.php" method="post">
-                            <button id='signin-button' type="submit" name="signin-submit">Sign In</button>
-                        </form>
-                    </div>
-
-                    <div class="signup">
-                        <form id="LoginForm" action="login.inc.php" method="post">
-                            <button id='signup-button' type="submit" name="signup-submit">Sign Up</button>
-                        </form>
-                    </div>
-
-                </div>
-
-            </form>
-
-        </div>
-
-    </div>
+        </form>
 
     <footer>
         <pre>Callum-James Smith© All rights reserved</pre>

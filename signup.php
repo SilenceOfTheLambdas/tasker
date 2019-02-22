@@ -30,35 +30,19 @@
         </div>
     </header>
 
-    <div class="signupWrapper">
-    
-        <div class="signupBox">
+        <form id="SignupForm" action="signup.inc.php" method="post">
 
-            <form id="LoginForm" action="signup.inc.php" method="post">
+            <h1 id="Sign In">Sign Up</h1>
+            <?php
+                include 'functions.inc.php';
+                SignUpForm();
+            ?>
+            <input type="password" name="password" placeholder="Password..."><br>
+            <input type="Password" name="password-repeat" placeholder="Re-enter password..."><br>
 
-                <h1 id="Sign In" style="text-decoration: underline white;">Sign Up</h1>
-                <?php
-                    include 'functions.inc.php';
-                    SignUpForm();
-                ?>
-                <input type="password" style="margin-bottom: 20px;" name="password" placeholder="Password..."><br>
-                <input type="Password" name="password-repeat" placeholder="Re-enter password..."><br>
-
-                <div class="formButtons">
-
-                    <div class="signup">
-                        <form id="LoginForm" action="signup.inc.php" method="post">
-                            <button id='signup-button-1' type="submit" name="signup-submit">Sign Up</button>
-                        </form>
-                    </div>
-
-                </div>
-
-            </form>
-
-        </div>
-
-    </div>
+            <button id='signup-button-1' type="submit" name="signup-submit">Sign Up</button>
+        </form>
+</div>
 
 </body>
 
