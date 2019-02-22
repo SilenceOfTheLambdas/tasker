@@ -70,8 +70,7 @@ function ProjectSelector() {
  * 
  * Vars:
  *  $_SESSION['project_id'] :   The project ID that is stored in a $_SESSION variable.
- *  $PROJECT_NAME_SQL   :   This is the SQL query string that is used to fond all data stored in the table *projects*. This values varies depending on whether $_GET['projects']
- *  is given.
+ *  $PROJECT_NAME_SQL   :   This is the SQL query string that is used to fond all data stored in the table *projects*. This values varies *  depending on whether $_GET['projects'] is given.
  * 
  *  $_SESSION['id'] :   This is the user's ID that is assigned from login.in.php.
  *  $last_project_name_sql  :   Stores a query that will select the project ID from the user's last selected project.

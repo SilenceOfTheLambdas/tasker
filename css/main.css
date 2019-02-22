@@ -68,20 +68,6 @@ div.signupWrapper {
     transform: translateY(20px);
 }
 
-@media screen and (max-width: 635px) /* when the screen reaches less than 635px */
-{
-    div.wrapper {
-        width: 100%;
-        height: 100%;
-        box-shadow: none;
-    }
-    div.signupWrapper {
-        width: 100%;
-        height: 100%;
-        box-shadow: none;
-    }
-}
-
 div.signupBox {
     width: 100%;
     height: 100vh;
@@ -316,26 +302,27 @@ header {
     
     width: auto;
     height: 100%;
-    flex-basis: 10%;
+    flex-basis: 5%;
+    float: left;
 }
 .logo {
     height: 40px;
     width: 110px;
     overflow: hidden;
-    transform: translateY(8px);
+    float: left;
+    transform: translateY(8px) translateX(10px);
 }
 
 /* Project Selection */
 div.project-selector {
-
-    flex-basis: 5%;
+    flex-basis: 10%;
     height: 100%;
+    transform: translateX(30px);
 }
 
 div.project-selector > form {
-    height: 25px;
+    height: 100%;
     text-align: center;
-    transform: translateX(30px);
 }
 
 div.project-selector > form > select > option {
@@ -380,30 +367,16 @@ div.new-project > a > button:hover {
     width: auto;
     height: 4vh;
     color: white;
-    transform: translateY(5px);
+    transform: translateY(-15px);
+}
+
+#project_selector:hover {
+    background: var(--button-hover-color);
 }
 
 #project_selector::selection {
     border: none;
     transition: ease-in 0.2s;
-}
-
-/* Search Section */
-#search {
-    background-color: var(--search-BG-color);
-    color: white;
-    display: none;
-
-    width: 100%;
-    height: 80%;
-
-    position: relative;          /* Used to center DIV vertically */
-    top: 50%;
-    transform: translateY(-50%);
-    
-    margin: 0 auto;
-    display: block;
-    flex-basis: 40%;
 }
 
 /* User Section */
@@ -416,13 +389,14 @@ div.new-project > a > button:hover {
     height: 100%;
     
     border: none;
-    flex-basis: 10%;
+    flex-basis: 80%;
+    float: right;
 }
 
 #userHello {
     line-height: 0.5px;
-    transform: translateY(15px);
-    
+    transform: translateY(15px); 
+    float: right;
 }
 
 #signout {
@@ -431,6 +405,7 @@ div.new-project > a > button:hover {
 
     width: auto;
     height: 100%;
+    float: right;
     
     border: none;
     flex-basis: 10%;
@@ -816,4 +791,35 @@ textarea.description {
     transition: ease-in 0.2s;
     color: var(--button-hover-color);
     font-size: 1em;
+}
+
+@media screen and (max-width: 635px) /* when the screen reaches less than 635px */
+{
+    div.wrapper {
+        width: 100%;
+        height: 100%;
+        box-shadow: none;
+    }
+    div.signupWrapper {
+        width: 100%;
+        height: 100%;
+        box-shadow: none;
+    }
+}
+
+@media screen and (max-width: 1266px) 
+{
+    #userHello {
+        display: none; 
+    }
+}
+
+@media screen and (max-width: 992px) 
+{
+    #search {
+        display: none;
+    }
+    #logo {
+        flex-basis: 80%;
+    }
 }

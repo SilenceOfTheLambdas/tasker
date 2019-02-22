@@ -17,6 +17,8 @@
 
     <!-- Meta stuffs -->
     <meta type='description' content='A task management website.'>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- CSS -->
     <link rel='stylesheet' href="css/main.css" type="text/css">
@@ -61,10 +63,6 @@
                 ?>
             </div>
             </div>
-
-        <div id="search">
-            <!-- search goes here -->
-        </div>
         
         <div id="user">
             <?php 

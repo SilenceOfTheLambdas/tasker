@@ -3,13 +3,13 @@
     A task management system
     This is the login page.
     Created by: Callum-James Smith (cs18804)
-    files indicated with *.inc.php are used to process the information, these contain only php no HTML
+    files indicated with *.inc.php are used to process the information
  -->
 <!DOCTYPE html>
 <!-- PHP Includes -->
 <?php
     session_start();
-    if (isset($_SESSION['name']) && isset($_SESSION['id'])) // If the user already has a session, log them in
+    if (isset($_SESSION['name']) && isset($_SESSION['id'])) // If the user already has a session, 'log them in'
     {
         header("Location: landing.php");
     }
@@ -18,6 +18,8 @@
 
     <!-- Meta stuffs -->
     <meta type='description' content='A task management website.'>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- CSS -->
     <link rel='stylesheet' href="css/main.css" type="text/css">
