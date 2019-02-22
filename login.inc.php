@@ -45,13 +45,13 @@ if (isset($_POST['signin-submit']))
 
                 header("Location: landing.php?signin=success");
                 exit();
-            } else {
-                header("Location: index.php?error=invaliddetails");
+            } elseif ($PasswordCheck == false) {
+                header("Location: index.php?error=invalidpassword&email=".$email);
                 exit();
             }
 
         } else {
-            header("Location: index.php?error=invaliddetails");
+            header("Location: index.php?error=invalidemail");
             exit();
         }
     }

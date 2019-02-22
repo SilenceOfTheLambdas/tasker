@@ -4,7 +4,7 @@ require 'db.php';
 
 function LoginForm() {
 /**
- * function LoginForm(), this function provides the form that the user fills in to sing-in.
+ * function LoginForm(), this function provides the form that the user fills in to sign-in.
  * 
  * Vars:
  *  $_GET['error']  :   Obtained from the form located at index.php, says if an error has occurred.
@@ -14,16 +14,16 @@ function LoginForm() {
 
     if (isset($_GET['error'])) // If there is an error
     {
-            if (isset($_GET['email'])) // If email is passed on
-            {
-                echo('<input type="email" style="margin-bottom: 20px;" name="email" id="email" value="'.$_GET['email'].'" placeholder="Email..."><br/>');
-                echo('<input style="border-color: red;" type="password" name="password" id="password" placeholder="Please enter password..."><br>');
-            }
-            else // if not return form as normal
-            {
-                echo('<input type="email" style="margin-bottom: 20px;" name="email" id="email" placeholder="Email..."><br/>');
-                echo('<input type="password" name="password" id="password" placeholder="Password..."><br>');
-            }
+        if (isset($_GET['email'])) // If email is passed on
+        {
+            echo('<input type="email" style="margin-bottom: 20px;" name="email" id="email" value="'.$_GET['email'].'" placeholder="Email..."><br/>');
+            echo('<input style="border-color: red;" type="password" name="password" id="password" placeholder="Incorrect password..."><br>');
+        }
+        else // if not return form as normal
+        {
+            echo('<input type="email" style="margin-bottom: 20px;" name="email" id="email" placeholder="Email..."><br/>');
+            echo('<input type="password" name="password" id="password" placeholder="Password..."><br>');
+        }
     }
     elseif (isset($_GET['emptyemail'])) // If the user does not enter an email
     {
@@ -77,17 +77,17 @@ function ProjectSelector() {
  *  $last_project_name_sql  :   Stores a query that will select the project ID from the user's last selected project.
  */
     require 'db.php';
-
-    $_SESSION['project_id'] = array();
                         
-    if (empty($_GET['projects'])) {
-        $PROJECT_NAME_SQL = "SELECT * FROM projects WHERE user_id='".$_SESSION['id']."'";
+    if (empty($_GET['projects'])) // If the project name is not passed on in the URL
+    {
+        $PROJECT_NAME_SQL = "SELECT * FROM projects WHERE user_id='".$_SESSION['id']."'"; // The query will show all projects according to the user ID
     } else {
+        // If it's not empty, then it will print out the options with the last selected project at the top
         $PROJECT_NAME_SQL = "SELECT project_name FROM projects WHERE user_id='".$_SESSION['id']."' ORDER BY project_name='".$_GET['projects']."' DESC";
         }
 
     $last_project_name_sql = "SELECT * FROM projects,users WHERE user_id='".$_SESSION['id']."' AND projectID=users.last_project"; // Selects the project ID
-    $last_project_name_result = $connection-> query($last_project_name_sql);
+    $last_project_name_result = $connection-> query($last_project_name_sql); // Stores the result
     $last_project__name_row = $last_project_name_result-> fetch_assoc();
     $LastSelectedProjectName = $last_project__name_row['project_name'];
     $PROJECT_NAME_RESULT = $connection-> query($PROJECT_NAME_SQL);
@@ -96,15 +96,11 @@ function ProjectSelector() {
     <form name="ProjectSelection" action="landing.php" method="get">
         <select name="projects" value="'.$LastSelectedProjectName.'" id="project_selector" onchange="this.form.submit()">
     ');
-
     while ($PROJECT_NAME_ROW = $PROJECT_NAME_RESULT-> fetch_assoc()) {
         $project_title = $PROJECT_NAME_ROW['project_name'];
         echo('<option value="'.$project_title.'" >'.$project_title.'</option>');
-        
-        $_SESSION['last_project'] = $last_project__name_row['project_name']; // Create a global session variable
     }
     echo('</select></form>');
-
 }
 
 function CheckProjects() {
@@ -138,6 +134,10 @@ function CheckProjects() {
 function EditTask() {
 /**
  * function EditTask(), this is used to provide a form the user can fill in to add a new task.
+ * 
+ *  Vars:
+ *  $_GET['edit-task']  :   This is the name of the task, passed on from the edit button located on the task
+ *  $TaskTitle  :   This the variable that stores the string value, just used to make things easier to read
  */
     if (isset($_GET['edit-task'])) {
         require 'db.php';
@@ -148,8 +148,11 @@ function EditTask() {
         $sql = "SELECT * FROM tasks WHERE task_title='".$TaskTitle."'";
         $result = $connection-> query($sql);
         if ($result-> num_rows <= 0) {
+            // If the user does NOT have any tasks
             echo('<p>You Do Not Have Any Tasks</p>');
         }
+
+        // Gets all of the data about the task
         $row = $result-> fetch_assoc();
         $task_id = $row['task_id'];
         $task_priority = $row['task_priority'];
@@ -177,14 +180,17 @@ function EditTask() {
                 <button type="submit" name="finish-edit" value="'.$task_id.'">Finish</button>
             </form>';
     
-        echo($FormString);
-        
+        echo($FormString);  
     }
 }
 
 function AddTask() {
 /**
  * function AddTask(), this displays a pop-up box that will allow users to add tasks.
+ * 
+ *  Vars:
+ *  $NameTaken  :   Initialized with an empty string at first, but is used to store the string that prints out an error
+ *  $_GET['error']  :   Passed on of there is an error, in this case; if the user has chose a task name that already exists
  */
 
     $NameTaken = "";
@@ -211,11 +217,12 @@ function AddTask() {
         </form>');
 }
 
-function PrintCompletedTasks() {
+function LastSelectedProject() {
+/**
+ * function LastSelectedProject(), This gets the name of the last project selected
+ */
 
     require 'db.php';
-
-    date_default_timezone_set('UTC');
 
     if (empty($_GET['projects'])) {
         $ProjectID = mysqli_query($connection, "SELECT * FROM projects WHERE user_id='".$_SESSION['id']."'");
@@ -225,7 +232,6 @@ function PrintCompletedTasks() {
 
     $Project_ID = mysqli_fetch_assoc($ProjectID); // This variable stores all of the data performed from the query above, into a nice little array.
     $ID = intval($Project_ID['projectID']); // THIS IS THE ID!
-    $_SESSION['project-id'] = $ID;
 
     // Stores the users last selected project in a table
     $StoreLastSelectedObject = mysqli_query($connection, "UPDATE users SET last_project = '".$ID."' WHERE id=".$_SESSION['id']."");
@@ -235,19 +241,31 @@ function PrintCompletedTasks() {
     $last_project_row = $last_project_result-> fetch_assoc();
     $LastSelectedProject = $last_project_row['last_project'];
 
+    return $LastSelectedProject;
+}
+
+function PrintCompletedTasks() {
+
+    require 'db.php';
+
+    date_default_timezone_set('UTC'); // Sets the date to UTC timezone
+    $LastSelectedProject = LastSelectedProject();
+
     $sql = "SELECT * FROM tasks WHERE projectID=".intval($LastSelectedProject)." AND task_state='Completed'";
     $result = $connection-> query($sql);
 
     if ($result-> num_rows <= 0) {
+        // if the user does not have any completed tasks
         echo('<p>No tasks completed yet</p>');
     }
     if ($result-> num_rows > 0) {
         while ($row = $result-> fetch_assoc()) // While there is data in the table
         {
+            // Gets all of the data about the task
             $task_title = $row['task_title'];
             $task_priority = $row['task_priority'];
             $task_desc = $row['task_desc'];
-            $task_date = date('D-d-M-Y', strtotime($row['task_date']));
+            $task_date = date('D-d-M-Y', strtotime($row['task_date'])); // Converts the date format to something better
             $task_time = $row['task_time'];
             $TaskState = $row['task_state'];
             echo('
@@ -294,23 +312,7 @@ function PrintTasks() {
 
     require 'db.php';
 
-    if (empty($_GET['projects'])) {
-        $ProjectID = mysqli_query($connection, "SELECT * FROM projects WHERE user_id='".$_SESSION['id']."'");
-    }else {
-        $ProjectID = mysqli_query($connection, "SELECT * FROM projects WHERE project_name='".$_GET['projects']."'");
-    }
-
-    $Project_ID = mysqli_fetch_assoc($ProjectID); // This variable stores all of the data performed from the query above, into a nice little array.
-    $ID = intval($Project_ID['projectID']); // THIS IS THE ID!
-    $_SESSION['project-id'] = $ID;
-
-    // Stores the users last selected project in a table
-    $StoreLastSelectedObject = mysqli_query($connection, "UPDATE users SET last_project = '".$ID."' WHERE id=".$_SESSION['id']."");
-
-    $last_project_sql = "SELECT last_project FROM users WHERE id=".$_SESSION['id'].""; // Selects the project ID
-    $last_project_result = $connection-> query($last_project_sql);
-    $last_project_row = $last_project_result-> fetch_assoc();
-    $LastSelectedProject = $last_project_row['last_project'];
+    $LastSelectedProject = LastSelectedProject();
 
     $sql = "SELECT task_title,task_date,task_time,task_state,task_priority,task_desc FROM tasks WHERE projectID=".intval($LastSelectedProject)." AND task_state='To Do' ORDER BY tasks.task_date ASC";
     $result = $connection-> query($sql);
