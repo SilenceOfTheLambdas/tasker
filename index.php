@@ -46,7 +46,7 @@
 
                 <h1 id="Sign In" style="text-decoration: underline white;">Sign In</h1>
                 <?php 
-                    include 'functions.inc.php';
+                    require_once('functions.inc.php');
                     LoginForm();
                 ?>
 
