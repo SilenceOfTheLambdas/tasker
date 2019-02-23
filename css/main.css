@@ -241,7 +241,7 @@ header {
 }
 .logo {
     height: 40px;
-    width: 110px;
+    width: 200px;
     overflow: hidden;
     float: left;
     transform: translateY(8px) translateX(10px);
