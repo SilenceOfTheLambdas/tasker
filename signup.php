@@ -31,7 +31,6 @@
     </header>
 
         <form id="SignupForm" action="signup.inc.php" method="post">
-
             <h1 id="Sign In">Sign Up</h1>
             <?php
                 include 'functions.inc.php';
