@@ -34,7 +34,7 @@
     <header id="index-header">
 
         <div id="top-logo">
-            <img src="img/Logo.png">
+            <img src="img/Tasker.io_Transparent.png">
         </div>
 
         <div id="buttons">
