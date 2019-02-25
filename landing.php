@@ -80,17 +80,41 @@
     <div class="container">
 
         <div class="to-do-container-wrapper">
+        <div id="sorting">
+            <form action="landing.php" method="get">
+                <?php
+                    if (!isset($_GET['sorting'])) {
+                        echo('<input name="sorting" type="text" value="date-desc" style="display:none;">');
+                        echo('<button type="submit" title="sort by date desc"><i class="fas fa-arrows-alt-v"></i>D</button><br/>');
+                    } 
+                    else {
+                        if ($_GET['sorting'] == 'true') {
+                            echo('<input name="sorting" type="text" value="date-asc" style="display:none;">');
+                            echo('<button type="submit" title="sort by date DESC"><i class="fas fa-arrows-alt-v"></i>d</button><br/>');
+                        } elseif ($_GET['sorting'] == 'false') {
+                            echo('<input name="sorting" type="text" value="priority-asc" style="display:none;">');
+                            echo('<button type="submit" title="sort by priority ASC"><i class="fas fa-arrows-alt-v"></i>p</button><br/>');
+                        }
+                    }
+                ?>
+            </form>
+
+            <form action="landing.php" method="get">
+                <?php 
+                    if (!isset($_GET['sorting'])) {
+                        echo('<input name="sorting" type="text" value="priority-desc" style="display:none;">');
+                        echo('<button type="submit" title="sort by priority desc"><i class="fas fa-arrows-alt-v"></i>P</button><br/>');
+                    } else {
+                        
+                    }
+                ?>
+            </form>
+        </div>
 
             <h3 class="headerTitle">To Do</h3>
             <hr>
 
             <div class="box-1"> <!-- TODO Box -->
-                <div id="sorting">
-                    <form action="landing.php" method="get">
-                        <input name="sorting" type="text" value="true" style="display:none;">
-                        <button type="submit"><i class="fas fa-arrows-alt-v"></i></button>
-                    </form>
-                </div>
             	<?php 
                     CheckProjects();
                     EditTask();
@@ -111,9 +135,23 @@
 
                         $Task_title = $_GET['undo-task'];
                         $sql = mysqli_query($connection, "UPDATE tasks SET task_state='To Do' WHERE task_title='".$Task_title."'");
-                    }else if (isset($_GET['sorting'])) {
-                        PrintTasks(true);
-                    } else {
+                    }
+                    
+                    if (isset($_GET['sorting'])) {
+                        if ($_GET['sorting'] == 'date-desc') {
+                            PrintTasks('date-desc');
+                        }
+                        else if ($_GET['sorting'] == 'date-asc') {
+                            PrintTasks('date-asc');
+                        }
+                        else if ($_GET['sorting'] == 'priority-desc') {
+                            PrintTasks('priority-desc');
+                        }
+                        else if ($_GET['sorting'] == 'priority-asc') {
+                            PrintTasks('priority-asc');
+                        }
+                    } 
+                    else {
                         PrintTasks(false);
                     }
                 ?>

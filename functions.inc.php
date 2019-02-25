@@ -313,8 +313,17 @@ function PrintTasks($type) {
 
     $LastSelectedProject = LastSelectedProject();
 
-    if ($type == true) {
+    if ($type == 'priority-desc') {
         $sql = "SELECT task_title,task_date,task_time,task_state,task_priority,task_desc FROM tasks WHERE projectID=".intval($LastSelectedProject)." AND task_state='To Do' ORDER BY tasks.task_priority DESC";
+    } 
+    else if ($type == 'priority-asc') {
+        $sql = "SELECT task_title,task_date,task_time,task_state,task_priority,task_desc FROM tasks WHERE projectID=".intval($LastSelectedProject)." AND task_state='To Do' ORDER BY tasks.task_priority ASC";
+    }
+    else if ($type == 'date-desc') {
+        $sql = "SELECT task_title,task_date,task_time,task_state,task_priority,task_desc FROM tasks WHERE projectID=".intval($LastSelectedProject)." AND task_state='To Do' ORDER BY tasks.task_date DESC";
+    }
+    else if ($type == 'date-asc') {
+        $sql = "SELECT task_title,task_date,task_time,task_state,task_priority,task_desc FROM tasks WHERE projectID=".intval($LastSelectedProject)." AND task_state='To Do' ORDER BY tasks.task_date ASC";
     } else {
         $sql = "SELECT task_title,task_date,task_time,task_state,task_priority,task_desc FROM tasks WHERE projectID=".intval($LastSelectedProject)." AND task_state='To Do' ORDER BY tasks.task_date ASC";
     }
