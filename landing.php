@@ -84,7 +84,12 @@
             <h3 class="headerTitle">To Do</h3>
             <hr>
 
-			<div class="box-1"> <!-- TODO Box -->
+            <div class="box-1"> <!-- TODO Box -->
+                <div id="sorting">
+                    <form action="functions.inc.php" method="get">
+                        <button type="submit"><i class="fas fa-arrows-alt-v"></i></button>
+                    </form>
+                </div>
             	<?php 
                     CheckProjects();
                     EditTask();

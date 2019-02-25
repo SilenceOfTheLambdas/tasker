@@ -370,6 +370,14 @@ div.container {
     height: 5px;
 }
 
+div#sorting {
+    float: left;
+    width: 20px;
+    height: 20px;
+    background: green;
+    display: block;
+}
+
 div.box-1 { /* To DO */
     background: var(--box-BG-color);
     flex-basis: 80%;
