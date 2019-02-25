@@ -307,13 +307,18 @@ function PrintCompletedTasks() {
         }
 }
 
-function PrintTasks() {
+function PrintTasks($type) {
 
     require 'db.php';
 
     $LastSelectedProject = LastSelectedProject();
 
-    $sql = "SELECT task_title,task_date,task_time,task_state,task_priority,task_desc FROM tasks WHERE projectID=".intval($LastSelectedProject)." AND task_state='To Do' ORDER BY tasks.task_date ASC";
+    if ($type == true) {
+        $sql = "SELECT task_title,task_date,task_time,task_state,task_priority,task_desc FROM tasks WHERE projectID=".intval($LastSelectedProject)." AND task_state='To Do' ORDER BY tasks.task_priority DESC";
+    } else {
+        $sql = "SELECT task_title,task_date,task_time,task_state,task_priority,task_desc FROM tasks WHERE projectID=".intval($LastSelectedProject)." AND task_state='To Do' ORDER BY tasks.task_date ASC";
+    }
+    
     $result = $connection-> query($sql);
 
     if ($result-> num_rows <= 0) {

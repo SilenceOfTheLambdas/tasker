@@ -86,7 +86,8 @@
 
             <div class="box-1"> <!-- TODO Box -->
                 <div id="sorting">
-                    <form action="functions.inc.php" method="get">
+                    <form action="landing.php" method="get">
+                        <input name="sorting" type="text" value="true" style="display:none;">
                         <button type="submit"><i class="fas fa-arrows-alt-v"></i></button>
                     </form>
                 </div>
@@ -110,9 +111,11 @@
 
                         $Task_title = $_GET['undo-task'];
                         $sql = mysqli_query($connection, "UPDATE tasks SET task_state='To Do' WHERE task_title='".$Task_title."'");
+                    }else if (isset($_GET['sorting'])) {
+                        PrintTasks(true);
+                    } else {
+                        PrintTasks(false);
                     }
-                    
-                    PrintTasks();
                 ?>
 			
 			</div>
