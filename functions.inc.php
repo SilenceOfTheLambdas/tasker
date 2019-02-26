@@ -5,6 +5,10 @@
  */
 require 'db.php';
 
+if (isset($_GET['delete-project'])) {
+    DeleteProject();
+}
+
 function LoginForm() {
 /**
  * function LoginForm(), this function provides the form that the user fills in to sign-in.
@@ -327,7 +331,8 @@ function PrintTasks($type) {
     }
     else if ($type == 'date-asc') {
         $sql = "SELECT task_title,task_date,task_time,task_state,task_priority,task_desc FROM tasks WHERE projectID=".intval($LastSelectedProject)." AND task_state='To Do' ORDER BY tasks.task_date ASC";
-    } else {
+    }
+    else {
         $sql = "SELECT task_title,task_date,task_time,task_state,task_priority,task_desc FROM tasks WHERE projectID=".intval($LastSelectedProject)." AND task_state='To Do' ORDER BY tasks.task_date ASC";
     }
     
@@ -459,5 +464,17 @@ function PrintTasks($type) {
                 </div>');
             }
         }
+    }
+}
+
+function DeleteProject() {
+    if (isset($_GET['delete-project'])) {
+        require 'db.php';
+
+        $projectname = $_GET['projects'];
+        $sql = mysqli_query($connection, "DELETE FROM projects WHERE project_name='".$projectname."'");
+
+        header("Location: landing.php?task-deleted");
+        exit();
     }
 }

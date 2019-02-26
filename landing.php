@@ -46,6 +46,7 @@
 
         <div class="new-project">
             <a href="#openModalProject" id="open-modal-project"><button><i class="fas fa-plus"></i></button></a>
+            <a href="#openProjectDelete" id="open-project-delete"><button><i class="fas fa-minus"></i></button></a>
         </div>
 
         <div id="openModalProject" style="display: none;" class="modalDialog">
@@ -58,6 +59,20 @@
                             <h3>Please make a new project</h3>
                             <input type="text" name="project-name" placeholder="Project name...">
                             <button type="submit" name="add-project">Add Project</button>
+                        </form>'
+                    );
+                ?>
+            </div>
+        </div>
+
+        <div id="openProjectDelete" style="display: none;" class="modalDialog">
+            <div>
+                <a href="#close" title="Close" class="close">X</a>
+                <h1>Delete Project?</h1>
+                <?php 
+                    echo(
+                        '<form class="add-item" action="functions.inc.php" method="get">
+                            <input type="submit" name="delete-project" value="delete-project">
                         </form>'
                     );
                 ?>
@@ -82,32 +97,20 @@
         <div class="to-do-container-wrapper">
         <div id="sorting">
             <form action="landing.php" method="get">
-                <?php
-                    if (!isset($_GET['sorting'])) {
-                        echo('<input name="sorting" type="text" value="date-desc" style="display:none;">');
-                        echo('<button type="submit" title="sort by date desc"><i class="fas fa-arrows-alt-v"></i>D</button><br/>');
-                    } 
-                    else {
-                        if ($_GET['sorting'] == 'true') {
-                            echo('<input name="sorting" type="text" value="date-asc" style="display:none;">');
-                            echo('<button type="submit" title="sort by date DESC"><i class="fas fa-arrows-alt-v"></i>d</button><br/>');
-                        } elseif ($_GET['sorting'] == 'false') {
-                            echo('<input name="sorting" type="text" value="priority-asc" style="display:none;">');
-                            echo('<button type="submit" title="sort by priority ASC"><i class="fas fa-arrows-alt-v"></i>p</button><br/>');
-                        }
-                    }
-                ?>
+                <input name="sorting" type="text" value="date-asc" style="display:none;">
+                <button type="submit" title="sort by date ASC"><i class="fas fa-arrows-alt-v"></i>D</button><br/>
             </form>
-
             <form action="landing.php" method="get">
-                <?php 
-                    if (!isset($_GET['sorting'])) {
-                        echo('<input name="sorting" type="text" value="priority-desc" style="display:none;">');
-                        echo('<button type="submit" title="sort by priority desc"><i class="fas fa-arrows-alt-v"></i>P</button><br/>');
-                    } else {
-                        
-                    }
-                ?>
+                <input name="sorting" type="text" value="priority-asc" style="display:none;">
+                <button type="submit" title="sort by priority ASC"><i class="fas fa-arrows-alt-v"></i>P</button><br/>
+            </form>
+            <form action="landing.php" method="get">
+                <input name="sorting" type="text" value="date-desc" style="display:none;">
+                <button type="submit" title="sort by date DESC"><i class="fas fa-arrows-alt-v"></i>d</button><br/>
+            </form>
+            <form action="landing.php" method="get">
+                <input name="sorting" type="text" value="priority-desc" style="display:none;">
+                <button type="submit" title="sort by priority DESC"><i class="fas fa-arrows-alt-v"></i>p</button><br/>
             </form>
         </div>
 
@@ -198,6 +201,11 @@ document.getElementById("open-modal").onclick = function() // Stop the modal box
 document.getElementById("open-modal-project").onclick = function() // Stop the modal boxes from appearing quickly every time the page is refreshed
 {
     var modal = document.getElementById("openModalProject");
+    modal.style.display = 'block';
+}
+document.getElementById("open-project-delete").onclick = function()
+{
+    var modal = document.getElementById("openProjectDelete");
     modal.style.display = 'block';
 }
 </script>

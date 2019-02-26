@@ -269,7 +269,7 @@ div.project-selector > form > select > option {
 div.new-project {
     position: relative;          /* Used to center DIV vertically */
     top: 50%;
-    transform: translateX(225%) translateY(-40%);
+    transform: translateX(100%) translateY(-100%);
 
     border: none;
     width: auto;
@@ -277,7 +277,7 @@ div.new-project {
     color: white;
 }
 
-div.new-project > a > button {
+div.new-project > a > button,div.new-project > form > a > button {
     background: var(--search-BG-color);
     border: none;
     color: white;
@@ -385,6 +385,7 @@ div#sorting > form > button {
     border: none;
     color: var(--button-submit);
     cursor: pointer;
+    margin-bottom: 80px;
 }
 
 div#sorting > form > button:hover {
