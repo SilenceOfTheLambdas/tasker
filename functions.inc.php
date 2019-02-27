@@ -107,6 +107,9 @@ function ProjectSelector() {
         echo('<option value="'.$project_title.'" >'.$project_title.'</option>');
     }
     echo('</select></form>');
+
+    $ProjectName = "";
+    $GLOBALS['ProjectName'] = $project_title;
 }
 
 function CheckProjects() {
@@ -468,13 +471,27 @@ function PrintTasks($type) {
 }
 
 function DeleteProject() {
-    if (isset($_GET['delete-project'])) {
-        require 'db.php';
+/**
+ * function DeleteProject(), This is called when the user request the deletion of a project.
+ *  Vars:
+ *  $sql    :   Stores the string that is executed in MySQL.
+ *  $result :   Stores the result from the query.
+ *  $row    :   Stores the value from the result into an indexed array.
+ *  $Project_id :   Contains the integer value of the user's last selected project.
+ * 
+ *  $sql    :   This executes a query that deletes the row in table projects.
+ */
 
-        $projectname = $_GET['projects'];
-        $sql = mysqli_query($connection, "DELETE FROM projects WHERE project_name='".$projectname."'");
+    require 'db.php';
+    session_start();
 
-        header("Location: landing.php?task-deleted");
-        exit();
-    }
+    $sql = "SELECT * FROM users WHERE id=".$_SESSION['id']."";
+    $result = $connection-> query($sql);
+    $row = $result-> fetch_assoc();
+    $Project_id = intval($row['last_project']);
+
+    $sql = mysqli_query($connection, "DELETE FROM projects WHERE projectID=".$Project_id."");
+
+    header("Location: landing.php?project-deleted");
+    exit();
 }

@@ -44,7 +44,9 @@ html, body {
 
 /* LOGIN/Sign up PAGE */
 
-form#SignupForm {
+/* SIGN UP FORM */
+form#SignupForm /* This is the sign page form */
+{
     width: 600px;
     padding: 40px;
     height: 60vh;
@@ -56,12 +58,14 @@ form#SignupForm {
     text-align: center;
 }
 
-form#SignupForm h1 {
+form#SignupForm h1 /* The H1 inside the form */
+{
     text-transform: uppercase;
     font-weight: 500;
 }
 
-form#SignupForm input {
+form#SignupForm input /* The inputs inside the form */
+{
     border: 0;
     background: none;
     display: block;
@@ -74,12 +78,6 @@ form#SignupForm input {
     color: white;
     border-radius: 22px;
     transition: 0.2s;
-}
-
-form#LoginForm input:focus,form#SignupForm input:focus {
-    width: 340px;
-    border-color: var(--input-focus);
-    transition: 0.25s;
 }
 
 form#SignupForm button {
@@ -96,6 +94,15 @@ form#SignupForm button {
     border-radius: 28px;
     transition: 0.2s;
     transform: translateX(210px);
+}
+/* SIGN UP FORM ENDS */
+
+form#LoginForm input:focus,form#SignupForm input:focus 
+/* When the login form and signup form inputs are hovered over */
+{
+    width: 340px;
+    border-color: var(--input-focus);
+    transition: 0.25s;
 }
 
 form#LoginForm button#signin-button {
@@ -228,7 +235,8 @@ header {
 }
 
 /* Logo Section */
-#logo {
+#logo /* This holds the logo (.logo) in place */
+{
     background-color: var(--logo-BG-color);
     float: left;
     text-align: center;
@@ -239,7 +247,8 @@ header {
     flex-basis: 5%;
     float: left;
 }
-.logo {
+.logo /* The logo inside the header */
+{
     height: 40px;
     width: 200px;
     overflow: hidden;
@@ -266,7 +275,8 @@ div.project-selector > form > select > option {
     font-size: 14px;
 }
 
-div.new-project {
+div.new-project /* This holds two buttons used to add and remove projects */
+{
     position: relative;          /* Used to center DIV vertically */
     top: 50%;
     transform: translateX(100%) translateY(-100%);

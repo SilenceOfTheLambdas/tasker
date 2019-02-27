@@ -38,10 +38,10 @@
         </div>
         
         <div class="project-selector">
-                <?php 
-                    include 'functions.inc.php';
-                    ProjectSelector();
-                ?>
+            <?php 
+                include 'functions.inc.php';
+                ProjectSelector();
+            ?>
         </div>
 
         <div class="new-project">

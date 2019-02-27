@@ -31,7 +31,7 @@
     </header>
 
         <form id="SignupForm" action="signup.inc.php" method="post">
-            <h1 id="Sign In">Sign Up</h1>
+            <h1>Sign Up</h1>
             <?php
                 include 'functions.inc.php';
                 SignUpForm();
@@ -41,8 +41,7 @@
 
             <button id='signup-button-1' type="submit" name="signup-submit">Sign Up</button>
         </form>
-</div>
-
+        
 </body>
 
 </html>
