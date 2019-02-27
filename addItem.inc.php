@@ -69,12 +69,9 @@ if (isset($_POST['add-task'])) {
     $_SESSION['newItem'] = $titleString;
     $_SESSION['item-added'] = true;
     
-    $sql = "SELECT * FROM projects WHERE user_id=".$_SESSION['id']." AND projectID=$ID";
-    $result = $connection-> query($sql);
-    $row = $result-> fetch_assoc();
-    $Project_Name = $row['project_name'];
+    require_once 'functions.inc.php';
 
-    header("Location: landing.php?item-added&projects=$Project_Name");
+    header("Location: landing.php?item-added&projects=".Project_Name());
     exit();
 
 }

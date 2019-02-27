@@ -43,7 +43,17 @@ if (isset($_POST['signin-submit']))
                 $_SESSION['id'] = $row['id'];
                 $_SESSION['name'] = $row['name'];
 
-                header("Location: landing.php?signin=success");
+                $ProjectID = "SELECT * FROM projects,users WHERE user_id=".$_SESSION['id']." AND projectID=users.last_project";
+                $projectID_result = $connection-> query($ProjectID);
+                $projectID_row = $projectID_result-> fetch_assoc();
+                $ID = intval($projectID_row['last_project']);
+
+                $sql = "SELECT * FROM projects WHERE user_id=".$_SESSION['id']." AND projectID=$ID";
+                $result = $connection-> query($sql);
+                $row = $result-> fetch_assoc();
+                $Project_Name = $row['project_name'];
+
+                header("Location: landing.php?signin=success&projects=$Project_Name");
                 exit();
             } elseif ($PasswordCheck == false) {
                 header("Location: index.php?error=invalidpassword&email=".$email);

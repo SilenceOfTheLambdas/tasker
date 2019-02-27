@@ -9,6 +9,22 @@ if (isset($_GET['delete-project'])) {
     DeleteProject();
 }
 
+function Project_Name() {
+    require 'db.php';
+
+    $ProjectID = "SELECT * FROM projects,users WHERE user_id=".$_SESSION['id']." AND projectID=users.last_project";
+    $projectID_result = $connection-> query($ProjectID);
+    $projectID_row = $projectID_result-> fetch_assoc();
+    $ID = intval($projectID_row['last_project']);
+
+    $sql = "SELECT * FROM projects WHERE user_id=".$_SESSION['id']." AND projectID=$ID";
+    $result = $connection-> query($sql);
+    $row = $result-> fetch_assoc();
+    $Project_Name = $row['project_name'];
+
+    return $Project_Name;
+}
+
 function LoginForm() {
 /**
  * function LoginForm(), this function provides the form that the user fills in to sign-in.
@@ -291,6 +307,7 @@ function PrintCompletedTasks() {
                     </div>
                     
                     <form action="landing.php" method="get">
+                        <input name="projects" value="'.Project_Name().'" style="display: none;">
                         <button class="edit-buttons" type="submit" name="delete-task" value="'.$task_title.'"><span class="edit-task"><i class="fas fa-times"></i></span></button>
                     </form>
 
@@ -307,6 +324,7 @@ function PrintCompletedTasks() {
 
                 <div class="u-button-holder">
                     <form action="landing.php" method="get">
+                        <input name="projects" value="'.Project_Name().'" style="display: none;">
                         <button class="undo-buttons" type="submit" name="undo-task" value="'.$task_title.'"><span class="complete-task"><i class="fas fa-arrow-left"></i></span></button>
                     </form>
                 </div>
@@ -370,6 +388,7 @@ function PrintTasks($type) {
                         </div>
                         
                         <form action="landing.php" method="get">
+                            <input name="projects" value="'.Project_Name().'" style="display: none;">
                             <button class="edit-buttons" type="submit" name="edit-task" value="'.$task_title.'"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
                         </form>
 
@@ -386,6 +405,7 @@ function PrintTasks($type) {
 
                 <div class="c-button-holder">
                     <form action="landing.php" method="get">
+                        <input name="projects" value="'.Project_Name().'" style="display: none;">
                         <button class="complete-buttons" type="submit" name="complete-task" value="'.$task_title.'"><span class="complete-task"><i class="fas fa-check"></i></span></button>
                     </form>
                 </div>
@@ -407,6 +427,7 @@ function PrintTasks($type) {
                         </div>
                         
                         <form action="landing.php" method="get">
+                            <input name="projects" value="'.Project_Name().'" style="display: none;">
                             <button class="edit-buttons" type="submit" name="edit-task" value="'.$task_title.'"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
                         </form>
 
@@ -423,6 +444,7 @@ function PrintTasks($type) {
 
                     <div class="c-button-holder">
                         <form action="landing.php" method="get">
+                            <input name="projects" value="'.Project_Name().'" style="display: none;">
                             <button class="complete-buttons" type="submit" name="complete-task" value="'.$task_title.'"><span class="complete-task"><i class="fas fa-check"></i></span></button>
                         </form>
                     </div>
@@ -444,6 +466,7 @@ function PrintTasks($type) {
                         </div>
                         
                         <form action="landing.php" method="get">
+                            <input name="projects" value="'.Project_Name().'" style="display: none;">
                             <button class="edit-buttons" type="submit" name="edit-task" value="'.$task_title.'"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
                         </form>
 
@@ -460,6 +483,7 @@ function PrintTasks($type) {
 
                     <div class="c-button-holder">
                         <form action="landing.php" method="get">
+                            <input name="projects" value="'.Project_Name().'" style="display: none;">
                             <button class="complete-buttons" type="submit" name="complete-task" value="'.$task_title.'"><span class="complete-task"><i class="fas fa-check"></i></span></button>
                         </form>
                     </div>
