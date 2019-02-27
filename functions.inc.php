@@ -148,7 +148,7 @@ function CheckProjects() {
         echo(
             '<form class="add-item" action="newProject.inc.php" method="post">
                 <h3>Please make a new project</h3>
-                <input type="text" name="project-name">
+                <input style="background-color: #ffff;" type="text" name="project-name">
                 <button type="submit" name="add-project">Add Project</button>
             </form>'
         );

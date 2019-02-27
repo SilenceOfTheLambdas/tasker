@@ -41,6 +41,11 @@
 
             <button id='signup-button-1' type="submit" name="signup-submit">Sign Up</button>
         </form>
+        <div>
+            <form action="index.php">
+                <button id='signup-button-1' type="submit" name="back">Return</button>
+            </form>
+        </div>
         
 </body>
 
