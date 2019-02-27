@@ -1,6 +1,7 @@
 <?php
 
 require 'db.php';
+require_once 'functions.inc.php';
 session_start();
 
 $Task_Title = $_GET['title'];
@@ -21,10 +22,11 @@ $result = $connection-> query($sql);
 $row = $result-> fetch_assoc();
 $Project_Name = $row['project_name'];
 
-if (preg_match("/^[a-zA-Z0-9]*\d$/", $Task_Title)) {
-    header("Location: landing.php?invalidname&projects=$Project_Name");
+if (preg_match ('<', $Task_Title) || preg_match ('<', $desc)) {
+    header("Location: landing.php?invalidname&projects=".Project_Name());
     exit();
-}else {
+}
+else {
     $sql = mysqli_query($connection, "UPDATE tasks SET task_title='".$Task_Title."',task_date='".$Task_Date."',task_time='".$Task_Time."',task_state='".$Task_State."',task_priority='".$Task_Priority."',task_desc='".$Task_Desc."' WHERE task_id=".$Task_ID."");
 
     header("Location: landing.php?itemupdated&projects=$Project_Name");

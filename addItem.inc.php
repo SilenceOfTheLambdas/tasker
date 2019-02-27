@@ -4,6 +4,7 @@ require 'db.php';
 
 if (isset($_POST['add-task'])) {
     session_start();
+    require_once 'functions.inc.php';
 
     $ProjectTitle = $_GET['add-task'];
 
@@ -24,6 +25,10 @@ if (isset($_POST['add-task'])) {
 
     if ($TitleRowNum > 0) {
         header("Location: landing.php#openModal&error=nametaken");
+        exit();
+    }
+    if (preg_match ('/[<>{}\[\]=*]+/', $title) || preg_match ('/[<>{}\[\]=*]+/', $desc)) {
+        header("Location: landing.php?invalidname&projects=".Project_Name());
         exit();
     }
 
@@ -68,8 +73,6 @@ if (isset($_POST['add-task'])) {
     </div>';
     $_SESSION['newItem'] = $titleString;
     $_SESSION['item-added'] = true;
-    
-    require_once 'functions.inc.php';
 
     header("Location: landing.php?item-added&projects=".Project_Name());
     exit();
