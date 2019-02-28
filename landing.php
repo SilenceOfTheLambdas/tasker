@@ -81,7 +81,12 @@
         
         <div id="user">
             <?php 
-                echo("<p id='userHello'>Hello, ".$_SESSION['name'])."</p>" ?>
+                echo('
+                    <form action="account.php" method="get">
+                        <p id="userHello">Hello, '.$_SESSION['name'].'</p>
+                        <input type="submit" name="account">
+                    </form>
+                '); ?>
         </div>
 
         <div id="signout">
