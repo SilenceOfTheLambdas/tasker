@@ -1,3 +1,7 @@
+<!-- 
+    User's account information will be display here. Allowing the user to edit details of they wish.
+    Created by: Callum-James Smith (cs18804)
+ -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +19,7 @@
             </div>
             <hr>
             <div class="user-info-panel">
-                
+
             </div>
         </div>
     </main>
