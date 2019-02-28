@@ -9,16 +9,14 @@
 </head>
 <body>
     <main id="flex-container">
-        <div class="sidebar">
-            <ul>
-                <li>Change Username</li>
-                <li>Change Email</li>
-                <li>Chnange Password</li>
-                <li>Change User Profile Picture</li>
-            </ul>
-        </div>
         <div class="content">
-            
+            <div class="header">
+                <h1>Hello, user</h1>
+            </div>
+            <hr>
+            <div class="user-info-panel">
+                
+            </div>
         </div>
     </main>
 </body>
