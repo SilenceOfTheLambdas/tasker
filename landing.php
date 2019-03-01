@@ -82,10 +82,11 @@
         <div id="user">
             <?php 
                 echo('
+                <div id="signout">
                     <form action="account.php" method="get">
-                        <p id="userHello">Hello, '.$_SESSION['name'].'</p>
-                        <input type="submit" name="account">
+                        <button class="signout" type="submit" name="account">Hello, '.$_SESSION['name'].'</button>
                     </form>
+                </div>
                 '); ?>
         </div>
 

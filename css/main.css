@@ -339,7 +339,7 @@ div.new-project > a > button:hover {
 
 #userHello {
     line-height: 0.5px;
-    transform: translateY(15px); 
+    transform: translateY(-10px);
     float: right;
 }
 
