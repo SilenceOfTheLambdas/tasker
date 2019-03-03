@@ -6,7 +6,7 @@ It's rather big but ¯\_(ツ)_/¯
 
 :root /* The variables */
 {
-    --background-color: rgb(21, 23, 29);
+    --background-color: #15171d;
     --header-BG-color:  rgba(21, 23, 29, 0.9);
     --logo-BG-color: rgba(21, 23, 29, 0.9);
     --search-BG-color: rgba(21, 23, 29, 0.9);
@@ -14,7 +14,7 @@ It's rather big but ¯\_(ツ)_/¯
     --button-BG-color: #E95678;
     --button-hover-color: rgba(233, 86, 120, 0.39);
     --task-BG-color: #ebebeb;
-    --task-high: rgb(199, 15, 58);
+    --task-high: #c70f3a;
     --task-medium: rgb(223, 77, 111);
     --input-focus: #3FDAA4;
     --button-submit: #3FC4DE;

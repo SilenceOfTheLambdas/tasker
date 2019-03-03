@@ -8,18 +8,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="/css/account.css">
+    <link rel="stylesheet" type="text/css" href="css/account.css">
     <title>Account | Takerio</title>
 </head>
 <body>
     <main id="flex-container">
-        <div class="content">
-            <div class="header">
-                <h1>Hello, user</h1>
+        <div id="left-pane">
+            <div id="image-holder">
+                <img src="img/Logo.png" alt="User Logo">
             </div>
-            <hr>
-            <div class="user-info-panel">
-
+        </div>
+        <div id="top-pane">
+            <h1>Hello, $user</h1>
+        </div>
+        <div id="bottom-pane">
+            <div id="user-details">
+                <h3>$username</h3>
+                <h3>$email</h3>
+                <h3>$password</h3>
             </div>
         </div>
     </main>
