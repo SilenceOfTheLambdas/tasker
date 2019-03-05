@@ -1,5 +1,11 @@
+:root {
+    --delete-button-border: rgba(221, 80, 80, 0.9);
+    --delete-button-hover-border: rgba(124, 40, 40, 0.9);
+    --section-borders: #f1f1f1a1;
+}
 
 body, html {
+    transition: ease-in 0.3s;
     margin: 0;
     padding: 0;
     font-family: sans-serif;
@@ -40,10 +46,11 @@ div.content {
         "delete";
     grid-template-columns: 100%;
     grid-template-rows: 150px 70% 50px;
-    border-right: #f1f1f1a1 solid 2px;
+    border-right: var(--section-borders) solid 2px;
 }
 
 #image-holder {
+    transition: 0.3s;
     grid: image;
     margin: auto;
     top: 0;
@@ -54,7 +61,7 @@ div.content {
     height: 150px;
     border-radius: 180px;
     overflow: hidden;
-    border: #f1f1f1a1 solid 2px;
+    border: var(--section-borders) solid 2px;
 }
 
 #spacer {
@@ -80,7 +87,7 @@ div.content {
     border-radius: 60px;
     font-weight: 300;
     background: none;
-    border: 3px solid rgba(221, 80, 80, 0.9);
+    border: 3px solid var(--delete-button-border);
     color: #ebebeb;
     font-size: 12px;
 }
@@ -89,25 +96,27 @@ div.content {
     transition: 0.3s;
     width: 160px;
     height: 50px;
-    border: 3px solid rgba(124, 40, 40, 0.9);
+    border: 3px solid var(--delete-button-hover-border);
     cursor: pointer;
-    background-color: #f1f1f157;
+    background-color: var(--delete-button-hover-border);
 }
 
 #image-holder > img {
+    transition: 0.3s;
     width: 150px;
     height: 150px;
 }
 
 #image-holder:hover {
-    transition: 0.25s;
-    background-color: rgba(53, 53, 53, 0.404);
+    transition: 0.3s;
+    background-color: rgb(53, 53, 53);
+    border-color: rgb(238, 238, 238);
 }
 
 #top-pane {
     grid-area: header;
     width: 100%;
-    border-bottom: #f1f1f1a1 solid 2px;
+    border-bottom: var(--section-borders) solid 2px;
     text-align: center;
     margin: auto;
     top: 0;
