@@ -103,10 +103,11 @@ function ProjectSelector() {
     if (empty($_GET['projects'])) // If the project name is not passed on in the URL
     {
         $PROJECT_NAME_SQL = "SELECT * FROM projects WHERE user_id='".$_SESSION['id']."'"; // The query will show all projects according to the user ID
-    } else {
+    } 
+    elseif (isset($_GET['projects'])) {
         // If it's not empty, then it will print out the options with the last selected project at the top
         $PROJECT_NAME_SQL = "SELECT project_name FROM projects WHERE user_id='".$_SESSION['id']."' ORDER BY project_name='".$_GET['projects']."' DESC";
-        }
+    }
 
     $last_project_name_sql = "SELECT * FROM projects,users WHERE user_id='".$_SESSION['id']."' AND projectID=users.last_project"; // Selects the project ID
     $last_project_name_result = $connection-> query($last_project_name_sql); // Stores the result
@@ -123,9 +124,6 @@ function ProjectSelector() {
         echo('<option value="'.$project_title.'" >'.$project_title.'</option>');
     }
     echo('</select></form>');
-
-    $ProjectName = "";
-    $GLOBALS['ProjectName'] = $project_title;
 }
 
 function CheckProjects() {
@@ -249,11 +247,7 @@ function LastSelectedProject() {
 
     require 'db.php';
 
-    if (empty($_GET['projects'])) {
-        $ProjectID = mysqli_query($connection, "SELECT * FROM projects WHERE user_id='".$_SESSION['id']."'");
-    }else {
-        $ProjectID = mysqli_query($connection, "SELECT * FROM projects WHERE project_name='".$_GET['projects']."'");
-    }
+    $ProjectID = mysqli_query($connection, "SELECT * FROM projects WHERE user_id='".$_SESSION['id']."' AND project_name='".$_GET['projects']."'");
 
     $Project_ID = mysqli_fetch_assoc($ProjectID); // This variable stores all of the data performed from the query above, into a nice little array.
     $ID = intval($Project_ID['projectID']); // THIS IS THE ID!
@@ -266,6 +260,15 @@ function LastSelectedProject() {
     $last_project_row = $last_project_result-> fetch_assoc();
     $LastSelectedProject = $last_project_row['last_project'];
 
+    $returnSQL = mysqli_query($connection, "SELECT projectID FROM projects,users WHERE id=".$_SESSION['id']."");
+    $returnROW = $returnSQL-> fetch_assoc();
+    $return = $returnROW['projectID'];
+
+    if (!$LastSelectedProject) {
+        echo('No Project Exists!');
+        $LastSelectedProject = $return;
+    }
+
     return $LastSelectedProject;
 }
 
@@ -276,7 +279,7 @@ function PrintCompletedTasks() {
     date_default_timezone_set('UTC'); // Sets the date to UTC timezone
     $LastSelectedProject = LastSelectedProject();
 
-    $sql = "SELECT * FROM tasks WHERE projectID=".intval($LastSelectedProject)." AND task_state='Completed'";
+    $sql = "SELECT * FROM tasks,users WHERE projectID=".intval($LastSelectedProject)." AND task_state='Completed' AND users.id=".$_SESSION['id']."";
     $result = $connection-> query($sql);
 
     if ($result-> num_rows <= 0) {
@@ -342,19 +345,19 @@ function PrintTasks($type) {
     $LastSelectedProject = LastSelectedProject();
 
     if ($type == 'priority-desc') {
-        $sql = "SELECT task_title,task_date,task_time,task_state,task_priority,task_desc FROM tasks WHERE projectID=".intval($LastSelectedProject)." AND task_state='To Do' ORDER BY tasks.task_priority DESC";
+        $sql = "SELECT * FROM tasks,users WHERE (projectID=".intval($LastSelectedProject)." AND task_state='To Do' AND users.id=".intval($_SESSION['id']).") ORDER BY tasks.task_priority DESC";
     } 
     else if ($type == 'priority-asc') {
-        $sql = "SELECT task_title,task_date,task_time,task_state,task_priority,task_desc FROM tasks WHERE projectID=".intval($LastSelectedProject)." AND task_state='To Do' ORDER BY tasks.task_priority ASC";
+        $sql = "SELECT * FROM tasks,users WHERE (projectID=".intval($LastSelectedProject)." AND task_state='To Do' AND users.id=".intval($_SESSION['id']).") ORDER BY tasks.task_priority ASC";
     }
     else if ($type == 'date-desc') {
-        $sql = "SELECT task_title,task_date,task_time,task_state,task_priority,task_desc FROM tasks WHERE projectID=".intval($LastSelectedProject)." AND task_state='To Do' ORDER BY tasks.task_date DESC";
+        $sql = "SELECT * FROM tasks,users WHERE (projectID=".intval($LastSelectedProject)." AND task_state='To Do' AND users.id=".intval($_SESSION['id']).") ORDER BY tasks.task_date DESC";
     }
     else if ($type == 'date-asc') {
-        $sql = "SELECT task_title,task_date,task_time,task_state,task_priority,task_desc FROM tasks WHERE projectID=".intval($LastSelectedProject)." AND task_state='To Do' ORDER BY tasks.task_date ASC";
+        $sql = "SELECT * FROM tasks,users WHERE (projectID=".intval($LastSelectedProject)." AND task_state='To Do' AND users.id=".intval($_SESSION['id']).") ORDER BY tasks.task_date ASC";
     }
     else {
-        $sql = "SELECT task_title,task_date,task_time,task_state,task_priority,task_desc FROM tasks WHERE projectID=".intval($LastSelectedProject)." AND task_state='To Do' ORDER BY tasks.task_date ASC";
+        $sql = "SELECT * FROM tasks,users WHERE (projectID=".intval($LastSelectedProject)." AND task_state='To Do' AND users.id=".intval($_SESSION['id']).") ORDER BY tasks.task_date ASC";
     }
     
     $result = $connection-> query($sql);

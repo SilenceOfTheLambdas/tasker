@@ -80,7 +80,7 @@
         </div>
         
         <div id="user">
-            <?php 
+<?php 
                 echo('
                 <div id="signout">
                     <form action="account.php" method="get">
