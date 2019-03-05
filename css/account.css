@@ -13,7 +13,7 @@ main {
         "sidebar header header"
         "sidebar content content"
         "sidebar content content";
-    grid-template-rows: 150px 1fr;
+    grid-template-rows: 200px 1fr;
     grid-template-columns: 200px;
     grid-column-gap: 5px;
     padding: 100px;
@@ -36,10 +36,10 @@ div.content {
     display: grid;
     grid-template-areas:
         "image"
-        "space"
+        "spacer"
         "delete";
     grid-template-columns: 100%;
-    grid-template-rows: 150px 500px 30px;
+    grid-template-rows: 150px 70% 50px;
     border-right: #f1f1f1a1 solid 2px;
 }
 
@@ -57,6 +57,20 @@ div.content {
     border: #f1f1f1a1 solid 2px;
 }
 
+#spacer {
+    grid: spacer;
+}
+
+#delete {
+    grid: delete;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    border-radius: 180px;
+}
+
 #image-holder > img {
     width: 150px;
     height: 150px;
@@ -69,6 +83,7 @@ div.content {
 
 #top-pane {
     grid-area: header;
+    width: 100%;
     border-bottom: #f1f1f1a1 solid 2px;
     text-align: center;
     margin: auto;

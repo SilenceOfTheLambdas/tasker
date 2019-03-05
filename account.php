@@ -16,14 +16,26 @@
 </head>
 <body>
     <main id="flex-container">
+
         <div id="left-pane">
             <div id="image-holder">
                 <img src="img/Logo.png" alt="User Logo">
             </div>
+            <div id="spacer"></div>
+            <div id="delete">
+                <form action="delete-account.php" method="post">
+                    <button type="submit">Delete Account</button>
+                </form>
+            </div>
         </div>
+
         <div id="top-pane">
-            <h1>Hello, $user</h1>
+            <h1>Hello, <?php 
+                        echo($_SESSION['name']);
+                        ?>
+            </h1>
         </div>
+
         <div id="bottom-pane">
             <div id="user-details">
                 <?php
@@ -34,6 +46,7 @@
                 <h3>$password</h3>
             </div>
         </div>
+
     </main>
 </body>
 </html>
