@@ -2,6 +2,9 @@
     User's account information will be display here. Allowing the user to edit details of they wish.
     Created by: Callum-James Smith (cs18804)
  -->
+ <?php
+ session_start();
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,8 +26,11 @@
         </div>
         <div id="bottom-pane">
             <div id="user-details">
-                <h3>$username</h3>
-                <h3>$email</h3>
+                <?php
+                    include_once "functions.inc.php";
+                    echo(accountDetails("name"));
+                    echo(accountDetails("email"));
+                ?>
                 <h3>$password</h3>
             </div>
         </div>

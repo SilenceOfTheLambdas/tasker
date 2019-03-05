@@ -522,3 +522,24 @@ function DeleteProject() {
     header("Location: landing.php?project-deleted");
     exit();
 }
+
+function accountDetails($x) {
+    require 'db.php';
+
+    $sql = "SELECT name,email FROM users WHERE id=".$_SESSION['id']."";
+    $result = $connection-> query($sql);
+    $row = $result-> fetch_assoc();
+
+    $name = $row['name'];
+    $email = $row['email'];
+    $nameh3 = "<h3>$name</h3>";
+    $emailh3 = "<h3>$email</h3>";
+
+    if ($x == "name") {
+        return $nameh3;
+    } 
+    else {
+        return $emailh3;
+    }
+    
+}
