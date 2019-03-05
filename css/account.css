@@ -71,14 +71,37 @@ div.content {
     border-radius: 180px;
 }
 
+#delete > form > button {
+    transition: 0.3s;
+    width: 150px;
+    height: 40px;
+    margin: 4px;
+
+    border-radius: 60px;
+    font-weight: 300;
+    background: none;
+    border: 3px solid rgba(221, 80, 80, 0.9);
+    color: #ebebeb;
+    font-size: 12px;
+}
+
+#delete > form > button:hover {
+    transition: 0.3s;
+    width: 160px;
+    height: 50px;
+    border: 3px solid rgba(124, 40, 40, 0.9);
+    cursor: pointer;
+    background-color: #f1f1f157;
+}
+
 #image-holder > img {
     width: 150px;
     height: 150px;
 }
 
-#image-holder > img:hover {
+#image-holder:hover {
     transition: 0.25s;
-    background-color: rgba(53, 53, 53, 0.897);
+    background-color: rgba(53, 53, 53, 0.404);
 }
 
 #top-pane {
