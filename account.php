@@ -23,9 +23,7 @@
             </div>
             <div id="spacer"></div>
             <div id="delete">
-                <form action="delete-account.php" method="post">
-                    <button type="submit">Delete Account</button>
-                </form>
+            <a href="#DeleteModal" id="open-modal"><button id="delete-account">Delete Account</button></a> <!-- button to activate modal -->
             </div>
         </div>
 
@@ -47,6 +45,25 @@
             </div>
         </div>
 
+        <div id="DeleteModal" class="modalDialog" style="display: none;"> <!-- The modal box that holds everything -->
+            <div> <!-- the element inside -->
+                <a href="#close" title="Close" class="close">X</a> <!-- The close button -->
+                <h1>Are You Sure?</h1>
+                <form action="delete-account.php" method="get">
+                    <!-- <input type="text" style="display: none;" name="account-del"> -->
+                    <button type="submit" name="account-del">Yes</button>
+                    <a href="#close" title="Close"><button>No</button></a>
+                </form>
+            </div>
+        </div>
+
     </main>
 </body>
+<script>
+document.getElementById("open-modal").onclick = function() // Stop the modal boxes from appearing quickly every time the page is refreshed
+{
+    var modal = document.getElementById("DeleteModal");
+    modal.style.display = 'block';
+}
+</script>
 </html>
