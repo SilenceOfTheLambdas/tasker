@@ -46,7 +46,12 @@ if (isset($_POST['signin-submit']))
                 $ProjectID = "SELECT * FROM projects,users WHERE user_id=".$_SESSION['id']." AND projectID=users.last_project";
                 $projectID_result = $connection-> query($ProjectID);
                 $projectID_row = $projectID_result-> fetch_assoc();
-                $ID = intval($projectID_row['last_project']);
+                if ($projectID_row['last_project'] == null) {
+                    include_once 'functions.inc.php';
+                    $ID = ProjectID();
+                } else {
+                    $ID = intval($projectID_row['last_project']);
+                }
 
                 include_once "functions.inc.php";
                 $Project = LastSelectedProject();

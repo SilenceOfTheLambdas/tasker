@@ -25,10 +25,10 @@ if (isset($_POST['add-project'])) {
     $sql = "SELECT * FROM projects WHERE user_id=".$_SESSION['id']."";
     $result = $connection-> query($sql);
     $row = $result-> fetch_assoc();
-    $ProjectID = $row['projectID'];
+    $Project_Name = intval($row['projectID']);
 
     mysqli_query($connection, "INSERT INTO projects(project_name, user_id) VALUES('".$project_name."','".$userID."')");
-    header("Location: landing.php?projects=".$ProjectID);
+    header("Location: landing.php?projects=$Project_Name");
     exit();
     
 }
