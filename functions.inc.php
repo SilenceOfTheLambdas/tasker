@@ -519,7 +519,10 @@ function DeleteProject() {
 
     $sql = mysqli_query($connection, "DELETE FROM projects WHERE projectID=".$Project_id."");
 
-    header("Location: landing.php?project-deleted");
+    include_once "functions.inc.php";
+    $Project = Project_Name();
+
+    header("Location: landing.php?project-deleted&projects=$Project");
     exit();
 }
 

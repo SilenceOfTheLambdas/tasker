@@ -606,7 +606,7 @@ form.edit-item {
 
 form.add-item > input {
     font-size: 2em;
-    color: white;
+    color: black;
     width: 100%;
 
     border-style: solid; 

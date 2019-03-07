@@ -55,7 +55,9 @@ if (isset($_POST['signup-submit'])) // Checks to see if user clicked "signup"
     else {
 
         mysqli_query($connection, "INSERT INTO users(name,email,password) VALUES('".$name."','".$email."','".$HashedPassword."')");
-        header("Location: index.php?signup=success");
+        include_once "functions.inc.php";
+        $Project = Project_Name();
+        header("Location: index.php?signup=success&projects=$Project");
         exit();
     }
 }

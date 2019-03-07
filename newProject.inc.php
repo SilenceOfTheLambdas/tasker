@@ -11,12 +11,14 @@ if (isset($_POST['add-project'])) {
     }
 
     session_start();
+    include_once "functions.inc.php";
+    $Project = Project_Name();
 
     $project_name = $_POST['project-name'];
     $userID = $_SESSION['id'];
 
     mysqli_query($connection, "INSERT INTO projects(project_name, user_id) VALUES('".$project_name."','".$userID."')");
-    header("Location: landing.php?newprojectadded");
+    header("Location: landing.php?projects=$Project");
     exit();
     
 }
