@@ -1,4 +1,7 @@
 <?php
+/**
+ * TODO: Fix issue with going back to selected project after creation
+ */
 
 require 'db.php';
 
