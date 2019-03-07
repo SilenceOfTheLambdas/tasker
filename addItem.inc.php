@@ -28,7 +28,7 @@ if (isset($_POST['add-task'])) {
         exit();
     }
     if (preg_match ('/[<>{}\[\]=*]+/', $title) || preg_match ('/[<>{}\[\]=*]+/', $desc)) {
-        header("Location: landing.php?invalidname&projects=".Project_Name());
+        header("Location: landing.php?invalidname&projects=".ProjectID());
         exit();
     }
 
@@ -74,7 +74,7 @@ if (isset($_POST['add-task'])) {
     $_SESSION['newItem'] = $titleString;
     $_SESSION['item-added'] = true;
 
-    header("Location: landing.php?item-added&projects=".Project_Name());
+    header("Location: landing.php?item-added&projects=".ProjectID());
     exit();
 
 }

@@ -23,7 +23,7 @@ $row = $result-> fetch_assoc();
 $Project_Name = $row['project_name'];
 
 if (preg_match ('<', $Task_Title) || preg_match ('<', $desc)) {
-    header("Location: landing.php?invalidname&projects=".Project_Name());
+    header("Location: landing.php?invalidname&projects=".ProjectID());
     exit();
 }
 else {

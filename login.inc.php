@@ -49,9 +49,9 @@ if (isset($_POST['signin-submit']))
                 $ID = intval($projectID_row['last_project']);
 
                 include_once "functions.inc.php";
-                $Project = Project_Name();
+                $Project = LastSelectedProject();
 
-                header("Location: landing.php?signin=success&projects=$Project");
+                header("Location: landing.php?signin=success&projects=$ID");
                 exit();
             } elseif ($PasswordCheck == false) {
                 header("Location: index.php?error=invalidpassword&email=".$email);

@@ -104,22 +104,22 @@
         <div id="sorting">
             <form action="landing.php" method="get">
                 <input name="sorting" type="text" value="date-asc" style="display:none;">
-                <?php require_once 'functions.inc.php'; echo('<input name="projects" value="'.Project_Name().'" style="display: none;">');?>
+                <?php require_once 'functions.inc.php'; echo('<input name="projects" value="'.ProjectID().'" style="display: none;">');?>
                 <button type="submit" title="sort by date ASC"><i class="fas fa-arrows-alt-v"></i>D</button><br/>
             </form>
             <form action="landing.php" method="get">
                 <input name="sorting" type="text" value="priority-asc" style="display:none;">
-                <?php require_once 'functions.inc.php'; echo('<input name="projects" value="'.Project_Name().'" style="display: none;">');?>
+                <?php require_once 'functions.inc.php'; echo('<input name="projects" value="'.ProjectID().'" style="display: none;">');?>
                 <button type="submit" title="sort by priority ASC"><i class="fas fa-arrows-alt-v"></i>P</button><br/>
             </form>
             <form action="landing.php" method="get">
                 <input name="sorting" type="text" value="date-desc" style="display:none;">
-                <?php require_once 'functions.inc.php'; echo('<input name="projects" value="'.Project_Name().'" style="display: none;">');?>
+                <?php require_once 'functions.inc.php'; echo('<input name="projects" value="'.ProjectID().'" style="display: none;">');?>
                 <button type="submit" title="sort by date DESC"><i class="fas fa-arrows-alt-v"></i>d</button><br/>
             </form>
             <form action="landing.php" method="get">
                 <input name="sorting" type="text" value="priority-desc" style="display:none;">
-                <?php require_once 'functions.inc.php'; echo('<input name="projects" value="'.Project_Name().'" style="display: none;">');?>
+                <?php require_once 'functions.inc.php'; echo('<input name="projects" value="'.ProjectID().'" style="display: none;">');?>
                 <button type="submit" title="sort by priority DESC"><i class="fas fa-arrows-alt-v"></i>p</button><br/>
             </form>
         </div>
@@ -140,14 +140,14 @@
                     elseif (isset($_GET['complete-task'])) {
                         require 'db.php';
 
-                        $Task_title = $_GET['complete-task'];
-                        $sql = mysqli_query($connection, "UPDATE tasks SET task_state='Completed' WHERE task_title='".$Task_title."'");
+                        $TaskID = $_GET['complete-task'];
+                        $sql = mysqli_query($connection, "UPDATE tasks SET task_state='Completed' WHERE task_id=".$TaskID."");
                     }
                     elseif (isset($_GET['undo-task'])) {
                         require 'db.php';
 
-                        $Task_title = $_GET['undo-task'];
-                        $sql = mysqli_query($connection, "UPDATE tasks SET task_state='To Do' WHERE task_title='".$Task_title."'");
+                        $TaskID = $_GET['undo-task'];
+                        $sql = mysqli_query($connection, "UPDATE tasks SET task_state='To Do' WHERE task_id=".$TaskID."");
                     }
                     
                     if (isset($_GET['sorting'])) {

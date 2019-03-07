@@ -9,19 +9,19 @@ if (isset($_GET['delete-project'])) {
     DeleteProject();
 }
 
-function Project_Name() {
+function ProjectID() {
     require 'db.php';
-
-    $ProjectID = "SELECT * FROM projects,users WHERE user_id=".$_SESSION['id']." AND projectID=users.last_project";
-    $projectID_result = $connection-> query($ProjectID);
-    $projectID_row = $projectID_result-> fetch_assoc();
-    $ID = intval($projectID_row['last_project']);
-
-    $sql = "SELECT * FROM projects WHERE user_id=".$_SESSION['id']." AND projectID=$ID";
-    $result = $connection-> query($sql);
-    $row = $result-> fetch_assoc();
-    $Project_Name = $row['project_name'];
-
+    if (isset($_SESSION['id'])) {
+        $ProjectID = "SELECT * FROM projects,users WHERE user_id=".$_SESSION['id']." AND projectID=users.last_project";
+        $projectID_result = $connection-> query($ProjectID);
+        $projectID_row = $projectID_result-> fetch_assoc();
+        $ID = intval($projectID_row['last_project']);
+    
+        $sql = "SELECT * FROM projects WHERE user_id=".$_SESSION['id']."";
+        $result = $connection-> query($sql);
+        $row = $result-> fetch_assoc();
+        $Project_Name = $row['projectID'];
+    }
     return $Project_Name;
 }
 
@@ -106,7 +106,7 @@ function ProjectSelector() {
     } 
     elseif (isset($_GET['projects'])) {
         // If it's not empty, then it will print out the options with the last selected project at the top
-        $PROJECT_NAME_SQL = "SELECT project_name FROM projects WHERE user_id='".$_SESSION['id']."' ORDER BY project_name='".$_GET['projects']."' DESC";
+        $PROJECT_NAME_SQL = "SELECT * FROM projects WHERE user_id=".$_SESSION['id']." ORDER BY projectID='".$_GET['projects']."' DESC";
     }
 
     $last_project_name_sql = "SELECT * FROM projects,users WHERE user_id='".$_SESSION['id']."' AND projectID=users.last_project"; // Selects the project ID
@@ -120,8 +120,9 @@ function ProjectSelector() {
         <select name="projects" value="'.$LastSelectedProjectName.'" id="project_selector" onchange="this.form.submit()">
     ');
     while ($PROJECT_NAME_ROW = $PROJECT_NAME_RESULT-> fetch_assoc()) {
+        $ProjectID = $PROJECT_NAME_ROW['projectID'];
         $project_title = $PROJECT_NAME_ROW['project_name'];
-        echo('<option value="'.$project_title.'" >'.$project_title.'</option>');
+        echo('<option value="'.$ProjectID.'" >'.$project_title.'</option>');
     }
     echo('</select></form>');
 }
@@ -137,7 +138,7 @@ function CheckProjects() {
  */
     require 'db.php';
 
-    $ProjectSQL = "SELECT project_name FROM projects WHERE user_id='".$_SESSION['id']."'";
+    $ProjectSQL = "SELECT projectID FROM projects WHERE user_id='".$_SESSION['id']."'";
     $Project_Name = mysqli_query($connection, $ProjectSQL);
     $ProjectNameRows = mysqli_num_rows($Project_Name);
 
@@ -247,13 +248,13 @@ function LastSelectedProject() {
 
     require 'db.php';
 
-    $ProjectID = mysqli_query($connection, "SELECT * FROM projects WHERE user_id='".$_SESSION['id']."' AND project_name='".$_GET['projects']."'");
+    $ProjectID = mysqli_query($connection, "SELECT * FROM projects WHERE user_id=".$_SESSION['id']." AND projectID='".$_GET['projects']."'");
 
     $Project_ID = mysqli_fetch_assoc($ProjectID); // This variable stores all of the data performed from the query above, into a nice little array.
     $ID = intval($Project_ID['projectID']); // THIS IS THE ID!
 
     // Stores the users last selected project in a table
-    $StoreLastSelectedObject = mysqli_query($connection, "UPDATE users SET last_project = '".$ID."' WHERE id=".$_SESSION['id']."");
+    $StoreLastSelectedObject = mysqli_query($connection, "UPDATE users SET last_project=".$ID." WHERE id=".$_SESSION['id']."");
 
     $last_project_sql = "SELECT last_project FROM users WHERE id=".$_SESSION['id'].""; // Selects the project ID
     $last_project_result = $connection-> query($last_project_sql);
@@ -290,6 +291,7 @@ function PrintCompletedTasks() {
         while ($row = $result-> fetch_assoc()) // While there is data in the table
         {
             // Gets all of the data about the task
+            $task_id = $row['task_id'];
             $task_title = $row['task_title'];
             $task_priority = $row['task_priority'];
             $task_desc = $row['task_desc'];
@@ -310,7 +312,7 @@ function PrintCompletedTasks() {
                     </div>
                     
                     <form action="landing.php" method="get">
-                        <input name="projects" value="'.Project_Name().'" style="display: none;">
+                        <input name="projects" value="'.ProjectID().'" style="display: none;">
                         <button class="edit-buttons" type="submit" name="delete-task" value="'.$task_title.'"><span class="edit-task"><i class="fas fa-times"></i></span></button>
                     </form>
 
@@ -327,8 +329,8 @@ function PrintCompletedTasks() {
 
                 <div class="u-button-holder">
                     <form action="landing.php" method="get">
-                        <input name="projects" value="'.Project_Name().'" style="display: none;">
-                        <button class="undo-buttons" type="submit" name="undo-task" value="'.$task_title.'"><span class="complete-task"><i class="fas fa-arrow-left"></i></span></button>
+                        <input name="projects" value="'.ProjectID().'" style="display: none;">
+                        <button class="undo-buttons" type="submit" name="undo-task" value="'.$task_id.'"><span class="complete-task"><i class="fas fa-arrow-left"></i></span></button>
                     </form>
                 </div>
         
@@ -368,6 +370,7 @@ function PrintTasks($type) {
     if ($result-> num_rows > 0) {
         while ($row = $result-> fetch_assoc()) // While there is data in the table
         {
+            $task_id = $row['task_id'];
             $task_title = $row['task_title'];
             $task_priority = $row['task_priority'];
             $task_desc = $row['task_desc'];
@@ -391,7 +394,7 @@ function PrintTasks($type) {
                         </div>
                         
                         <form action="landing.php" method="get">
-                            <input name="projects" value="'.Project_Name().'" style="display: none;">
+                            <input name="projects" value="'.ProjectID().'" style="display: none;">
                             <button class="edit-buttons" type="submit" name="edit-task" value="'.$task_title.'"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
                         </form>
 
@@ -408,8 +411,8 @@ function PrintTasks($type) {
 
                 <div class="c-button-holder">
                     <form action="landing.php" method="get">
-                        <input name="projects" value="'.Project_Name().'" style="display: none;">
-                        <button class="complete-buttons" type="submit" name="complete-task" value="'.$task_title.'"><span class="complete-task"><i class="fas fa-check"></i></span></button>
+                        <input name="projects" value="'.ProjectID().'" style="display: none;">
+                        <button class="complete-buttons" type="submit" name="complete-task" value="'.$task_id.'"><span class="complete-task"><i class="fas fa-check"></i></span></button>
                     </form>
                 </div>
             
@@ -430,7 +433,7 @@ function PrintTasks($type) {
                         </div>
                         
                         <form action="landing.php" method="get">
-                            <input name="projects" value="'.Project_Name().'" style="display: none;">
+                            <input name="projects" value="'.ProjectID().'" style="display: none;">
                             <button class="edit-buttons" type="submit" name="edit-task" value="'.$task_title.'"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
                         </form>
 
@@ -447,7 +450,7 @@ function PrintTasks($type) {
 
                     <div class="c-button-holder">
                         <form action="landing.php" method="get">
-                            <input name="projects" value="'.Project_Name().'" style="display: none;">
+                            <input name="projects" value="'.ProjectID().'" style="display: none;">
                             <button class="complete-buttons" type="submit" name="complete-task" value="'.$task_title.'"><span class="complete-task"><i class="fas fa-check"></i></span></button>
                         </form>
                     </div>
@@ -469,7 +472,7 @@ function PrintTasks($type) {
                         </div>
                         
                         <form action="landing.php" method="get">
-                            <input name="projects" value="'.Project_Name().'" style="display: none;">
+                            <input name="projects" value="'.ProjectID().'" style="display: none;">
                             <button class="edit-buttons" type="submit" name="edit-task" value="'.$task_title.'"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
                         </form>
 
@@ -486,7 +489,7 @@ function PrintTasks($type) {
 
                     <div class="c-button-holder">
                         <form action="landing.php" method="get">
-                            <input name="projects" value="'.Project_Name().'" style="display: none;">
+                            <input name="projects" value="'.ProjectID().'" style="display: none;">
                             <button class="complete-buttons" type="submit" name="complete-task" value="'.$task_title.'"><span class="complete-task"><i class="fas fa-check"></i></span></button>
                         </form>
                     </div>
@@ -520,7 +523,7 @@ function DeleteProject() {
     $sql = mysqli_query($connection, "DELETE FROM projects WHERE projectID=".$Project_id."");
 
     include_once "functions.inc.php";
-    $Project = Project_Name();
+    $Project = ProjectID();
 
     header("Location: landing.php?project-deleted&projects=$Project");
     exit();
