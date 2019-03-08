@@ -401,8 +401,8 @@ function PrintTasks($type) {
                     </div>
                     <hr class="taskTitle">
             
-                    <div class="task-desc">
-                        <p class="task-desc">'.$task_desc.'</p>
+                    <div id="task-desc" class="task-desc">
+                        <p style="display:none;" id="desc-text" class="task-desc">'.$task_desc.'</p>
                     </div>
             
                     <div class="task-date-time">
@@ -440,8 +440,8 @@ function PrintTasks($type) {
                     </div>
                     <hr class="taskTitle">
             
-                    <div class="task-desc">
-                        <p class="task-desc">'.$task_desc.'</p>
+                    <div id="task-desc" class="task-desc">
+                        <p style="display:none;" id="desc-text" class="task-desc">'.$task_desc.'</p>
                     </div>
             
                     <div class="task-date-time">
@@ -479,8 +479,8 @@ function PrintTasks($type) {
                     </div>
                     <hr class="taskTitle">
             
-                    <div class="task-desc">
-                        <p class="task-desc">'.$task_desc.'</p>
+                    <div id="task-desc" class="task-desc">
+                        <p style="display:none;" id="desc-text" class="task-desc">'.$task_desc.'</p>
                     </div>
             
                     <div class="task-date-time">

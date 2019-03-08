@@ -218,5 +218,10 @@ document.getElementById("open-project-delete").onclick = function()
     var modal = document.getElementById("openProjectDelete");
     modal.style.display = 'block';
 }
+
+document.getElementByClassName("item-high").onClick = function() {
+    var task = document.getElementById('desc-text');
+    task.style.display = 'block';
+}
 </script>
 </html>
