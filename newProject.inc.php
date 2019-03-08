@@ -22,12 +22,13 @@ if (isset($_POST['add-project'])) {
     $projectID_row = $projectID_result-> fetch_assoc();
     $ID = intval($projectID_row['last_project']);
 
+    mysqli_query($connection, "INSERT INTO projects(project_name, user_id) VALUES('".$project_name."','".$userID."')");
+
     $sql = "SELECT * FROM projects WHERE user_id=".$_SESSION['id']."";
     $result = $connection-> query($sql);
     $row = $result-> fetch_assoc();
-    $Project_Name = intval($row['projectID']);
+    $Project_Name = $row['projectID'];
 
-    mysqli_query($connection, "INSERT INTO projects(project_name, user_id) VALUES('".$project_name."','".$userID."')");
     header("Location: landing.php?projects=$Project_Name");
     exit();
     

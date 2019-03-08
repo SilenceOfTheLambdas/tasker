@@ -49,7 +49,7 @@
                 <h1>SIGN IN</h1>
                     <form id="LoginForm" action="login.inc.php" method="post">
                         <?php 
-                            include 'functions.inc.php';
+                            include("functions.inc.php");
                             LoginForm();
                         ?>
                     <button id='signin-button' type="submit" name="signin-submit">Sign In</button>

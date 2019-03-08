@@ -6,4 +6,4 @@
  */
 
 // Setup the connection to the MySQL database and table
-$connection = mysqli_connect('localhost', 'root', '', 'tasker') or die(mysqli_error($connection));
+$connection = mysqli_connect('cseemyweb.essex.ac.uk:3306', 'cs18804', 'fR3psESWKTDs7', 'ce154_cs18804') or die(mysqli_error($connection));

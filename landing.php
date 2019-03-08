@@ -6,12 +6,14 @@
  -->
 <!DOCTYPE html>
 <!-- Checks to see if the user has a session -->
-<?php 
+<?php
+
     session_start();
     if (!isset($_SESSION['name'])) {
         header("Location: index.php?error=nosession");
         exit();
     }
+
 ?>
 <head>
 
@@ -38,9 +40,11 @@
         </div>
         
         <div class="project-selector">
-            <?php 
-                include 'functions.inc.php';
+            <?php
+
+                include_once 'functions.inc.php';
                 ProjectSelector();
+
             ?>
         </div>
 
