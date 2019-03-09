@@ -164,10 +164,10 @@ function EditTask()
     if (isset($_GET['edit-task'])) {
         require 'db.php';
 
-        $TaskTitle = $_GET['edit-task'];
+        $TaskID = $_GET['edit-task'];
 
         // Obtain task details
-        $sql = "SELECT * FROM tasks WHERE task_title='" . $TaskTitle . "'";
+        $sql = "SELECT * FROM tasks WHERE task_id=" . $TaskID . "";
         $result = $connection->query($sql);
         if ($result->num_rows <= 0) {
             // If the user does NOT have any tasks
@@ -177,6 +177,7 @@ function EditTask()
         // Gets all of the data about the task
         $row = $result->fetch_assoc();
         $task_id = $row['task_id'];
+        $task_title = $row['task_title'];
         $task_priority = $row['task_priority'];
         $task_desc = $row['task_desc'];
         $task_date = $row['task_date'];
@@ -185,7 +186,7 @@ function EditTask()
 
         $FormString = '
             <form class="edit-item" action="edit-task.inc.php" method="get">
-                <input type="text" name="title" value="' . $TaskTitle . '" placeholder="Title..."><br/>
+                <input type="text" name="title" value="' . $task_title . '" placeholder="Title..."><br/>
                 <textarea class="description" name="task-desc" cols="26" rows="6" placeholder="Description...">' . $task_desc . '</textarea><br/>
                 <input type="date" name="task-date" value="' . $task_date . '"><br/>
                 <input type="time" name="task-time" value="' . $task_time . '"><br/>
@@ -226,10 +227,10 @@ function AddTask()
             ' . $NameTaken . '
             <input type="text" name="title" placeholder="Title..."><br/>
             <textarea class="description" name="task-desc" cols="26" rows="6" placeholder="Description..."></textarea><br/>
-            <input type="date" name="task-date" placeholder="Choose a due date.."><br/>
-            <input type="time" name="task-time"><br/>
+            Date <input type="date" name="task-date" placeholder="Choose a due date.."><br/>
+            Time(optional) <input type="time" name="task-time"><br/>
 
-            <select name="task-priority">
+            Priority <select name="task-priority">
                 <option name="high">High</option>
                 <option name="medium">Medium</option>
                 <option name="low">Low</option>
@@ -400,7 +401,7 @@ function PrintTasks($type)
                         
                         <form action="landing.php" method="get">
                             <input name="projects" value="' . ProjectID() . '" style="display: none;">
-                            <button class="edit-buttons" type="submit" name="edit-task" value="' . $task_title . '"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
+                            <button class="edit-buttons" type="submit" name="edit-task" value="' . $task_id . '"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
                         </form>
 
                     </div>
@@ -436,10 +437,11 @@ function PrintTasks($type)
                             <p class="task-priority">' . $task_priority . '</p>
                         </div>
                         
-                        <form action="landing.php" method="get">
+                        <form action="#editModal" method="get">
                             <input name="projects" value="' . ProjectID() . '" style="display: none;">
-                            <button class="edit-buttons" type="submit" name="edit-task" value="' . $task_title . '"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
+                            <button class="edit-buttons" type="submit" name="edit-task" value="' . $task_id . '"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
                         </form>
+                        <a type="submit" id="open-edit-modal" href="#editModal">Edit</a>
 
                     </div>
                     <hr class="taskTitle">
@@ -476,14 +478,14 @@ function PrintTasks($type)
                         
                         <form action="landing.php" method="get">
                             <input name="projects" value="' . ProjectID() . '" style="display: none;">
-                            <button class="edit-buttons" type="submit" name="edit-task" value="' . $task_title . '"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
+                            <button class="edit-buttons" type="submit" name="edit-task" value="' . $task_id . '"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
                         </form>
 
                     </div>
                     <hr class="taskTitle">
             
                     <div id="task-desc" class="task-desc">
-                        <p style="display:none;" id="desc-text" class="task-desc">' . $task_desc . '</p>
+                        <p id="desc-text" class="task-desc">' . $task_desc . '</p>
                     </div>
             
                     <div class="task-date-time">
@@ -493,7 +495,7 @@ function PrintTasks($type)
                     <div class="c-button-holder">
                         <form action="landing.php" method="get">
                             <input name="projects" value="' . ProjectID() . '" style="display: none;">
-                            <button class="complete-buttons" type="submit" name="complete-task" value="' . $task_title . '"><span class="complete-task"><i class="fas fa-check"></i></span></button>
+                            <button class="complete-buttons" type="submit" name="complete-task" value="' . $task_id . '"><span class="complete-task"><i class="fas fa-check"></i></span></button>
                         </form>
                     </div>
             
@@ -514,14 +516,14 @@ function PrintTasks($type)
                         
                         <form action="landing.php" method="get">
                             <input name="projects" value="' . ProjectID() . '" style="display: none;">
-                            <button class="edit-buttons" type="submit" name="edit-task" value="' . $task_title . '"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
+                            <button class="edit-buttons" type="submit" name="edit-task" value="' . $task_id . '"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
                         </form>
 
                     </div>
                     <hr class="taskTitle">
             
                     <div id="task-desc" class="task-desc">
-                        <p style="display:none;" id="desc-text" class="task-desc">' . $task_desc . '</p>
+                        <p id="desc-text" class="task-desc">' . $task_desc . '</p>
                     </div>
             
                     <div class="task-date-time">
@@ -531,7 +533,7 @@ function PrintTasks($type)
                     <div class="c-button-holder">
                         <form action="landing.php" method="get">
                             <input name="projects" value="' . ProjectID() . '" style="display: none;">
-                            <button class="complete-buttons" type="submit" name="complete-task" value="' . $task_title . '"><span class="complete-task"><i class="fas fa-check"></i></span></button>
+                            <button class="complete-buttons" type="submit" name="complete-task" value="' . $task_id . '"><span class="complete-task"><i class="fas fa-check"></i></span></button>
                         </form>
                     </div>
             

@@ -188,6 +188,23 @@ if (!isset($_SESSION['name'])) {
                 </div>
 
             </div>
+
+            <div class="editItem">
+                <!-- This holds the add item div-->
+                <div id="editModal" class="modalDialog" style="display: none;">
+                    <!-- The modal box that holds everything -->
+                    <div>
+                        <!-- the element inside -->
+                        <a href="#close" title="Close" class="close">X</a> <!-- The close button -->
+                        <h1>Edit Task</h1>
+                        <?php
+                        EditTask();
+                        ?>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
 
 
@@ -218,6 +235,10 @@ if (!isset($_SESSION['name'])) {
     }
     document.getElementById("open-project-delete").onclick = function() {
         var modal = document.getElementById("openProjectDelete");
+        modal.style.display = 'block';
+    }
+    document.getElementById("open-edit-modal").onclick = function() {
+        var modal = document.getElementById("editModal");
         modal.style.display = 'block';
     }
 </script>
