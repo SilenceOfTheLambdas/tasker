@@ -4,12 +4,23 @@
   --section-borders: #f1f1f1a1;
 }
 
+@font-face {
+  font-family: "Fira Code";
+  src: url("eot/FiraCode-Regular.eot");
+  src: url("fonts/eot/FiraCode-Regular.eot") format("embedded-opentype"),
+    url("fonts/woff2/FiraCode-Regular.woff2") format("woff2"),
+    url("fonts/woff/FiraCode-Regular.woff") format("woff"),
+    url("fonts/ttf/FiraCode-Regular.ttf") format("truetype");
+  font-weight: 300;
+  font-style: medium;
+}
+
 body,
 html {
   transition: ease-in 0.3s;
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: "Fira Code", "monospace";
   background-color: rgb(29, 29, 29);
   color: white;
 }
@@ -75,7 +86,8 @@ main {
   border-radius: 180px;
 }
 
-#delete > a > button {
+#delete > a > button,
+#delete > form > a > button {
   transition: 0.3s;
   width: 150px;
   height: 40px;
@@ -89,7 +101,8 @@ main {
   font-size: 12px;
 }
 
-#delete > a > button:hover {
+#delete > a > button:hover,
+#delete > form > a > button:hover {
   transition: 0.3s;
   width: 160px;
   height: 50px;

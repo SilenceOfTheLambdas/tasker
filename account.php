@@ -26,6 +26,16 @@ session_start();
             <div id="spacer"></div>
             <div id="delete">
                 <a href="#DeleteModal" id="open-modal"><button id="delete-account">Delete Account</button></a> <!-- button to activate modal -->
+                <?php
+                echo ('<form action="account.php" method="get">
+                            <input type="hidden" name="return-home">
+                            <a id="open-modal"><button id="delete-account">Return</button></a> <!-- button to activate modal -->
+                        </form>');
+                if (isset($_GET['return-home'])) {
+                    include_once 'functions.inc.php';
+                    returnToLanding();
+                }
+                ?>
             </div>
         </div>
 

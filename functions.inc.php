@@ -558,3 +558,15 @@ function accountDetails($x)
         return $emailh3;
     }
 }
+
+function returnToLanding()
+{
+    require 'db.php';
+
+    $last_project_sql = "SELECT last_project FROM users WHERE id=" . $_SESSION['id'] . ""; // Selects the project ID
+    $last_project_result = $connection->query($last_project_sql);
+    $last_project_row = $last_project_result->fetch_assoc();
+    $LastSelectedProject = $last_project_row['last_project'];
+
+    header("Location: landing.php?projects=$LastSelectedProject");
+}
