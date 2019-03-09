@@ -14,6 +14,7 @@ It's rather big but ¯\_(ツ)_/¯
   --button-BG-color: #e95678;
   --button-hover-color: rgba(233, 86, 120, 0.39);
   --task-BG-color: #ebebeb;
+  --task-overdue: #720b23;
   --task-high: #c70f3a;
   --task-medium: rgb(223, 77, 111);
   --input-focus: #3fdaa4;
@@ -434,6 +435,15 @@ div.item {
   padding: 4px;
   background: var(--task-BG-color);
   box-shadow: black 2px 2px 1px;
+  color: rgb(14, 14, 14);
+}
+
+div.item-overdue {
+  margin: 8px;
+  padding: 4px;
+  background: var(--task-BG-color);
+  box-shadow: black 2px 2px 1px;
+  border: solid var(--task-overdue) 4px;
   color: rgb(14, 14, 14);
 }
 

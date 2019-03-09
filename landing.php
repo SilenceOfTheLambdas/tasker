@@ -36,7 +36,6 @@ if (!isset($_SESSION['name'])) {
     <header>
         <div id="logo">
             <!-- Logo goes here -->
-            <!-- <h1 class="logo">Tasker.io</h1> -->
             <img class="logo" src="img/Logo-header.png" alt="Tasker.io logo">
         </div>
 

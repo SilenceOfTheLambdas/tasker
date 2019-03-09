@@ -382,7 +382,47 @@ function PrintTasks($type)
                 $task_date = date('D-d-M-Y', strtotime($row['task_date'])); // Reformats the time
                 $task_time = $row['task_time'];
 
-                if ($task_priority == "High") {
+                $currentDate = (new DateTime())->format('D-d-M-Y');
+
+                if ($task_date < $currentDate) {
+                    echo ('
+                <div class="item-overdue">
+
+                    <div class="title-wrapper">
+            
+                        <div class="task-title">
+                            <h1 class="taskTitle">' . $task_title . '</h1>
+                        </div>
+            
+                        <div class="task-priority">
+                            <p class="task-priority">' . $task_priority . '</p>
+                        </div>
+                        
+                        <form action="landing.php" method="get">
+                            <input name="projects" value="' . ProjectID() . '" style="display: none;">
+                            <button class="edit-buttons" type="submit" name="edit-task" value="' . $task_title . '"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
+                        </form>
+
+                    </div>
+                    <hr class="taskTitle">
+            
+                    <div id="task-desc" class="task-desc">
+                        <p id="desc-text" class="task-desc">' . $task_desc . '</p>
+                    </div>
+            
+                    <div class="task-date-time">
+                        <p class="task-date-time" style="color: red;">' . $task_date . ' ' . $task_time . '</p>
+                    </div>
+
+                <div class="c-button-holder">
+                    <form action="landing.php" method="get">
+                        <input name="projects" value="' . ProjectID() . '" style="display: none;">
+                        <button class="complete-buttons" type="submit" name="complete-task" value="' . $task_id . '"><span class="complete-task"><i class="fas fa-check"></i></span></button>
+                    </form>
+                </div>
+            
+                </div>');
+                } elseif ($task_priority == "High") {
                     echo ('
                 <div class="item-high">
 
