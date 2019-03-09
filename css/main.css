@@ -286,7 +286,7 @@ div.new-project /* This holds two buttons used to add and remove projects */
 
   border: none;
   width: auto;
-  height: 4vh;
+  height: 20px;
   color: white;
 }
 
@@ -313,7 +313,7 @@ div.new-project > a > button:hover {
   background: var(--search-BG-color);
   border: none;
   width: auto;
-  height: 4vh;
+  height: 30px;
   color: white;
   transform: translateY(-15px);
 }
