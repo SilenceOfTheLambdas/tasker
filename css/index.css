@@ -1,223 +1,222 @@
 :root {
-    --modal-BG-color: rgba(34, 34, 34, 0.801);
-    --button-BG-color: #E95678;
-    --button-hover-color: rgba(34, 34, 34, 0.8);
-    --input-focus: #3FDAA4;
-    --button-submit: #3FC4DE;
+  --modal-BG-color: rgba(34, 34, 34, 0.801);
+  --button-BG-color: #e95678;
+  --button-hover-color: rgba(34, 34, 34, 0.8);
+  --input-focus: #3fdaa4;
+  --button-submit: #3fc4de;
 }
 
-@font-face{
-    font-family: 'Fira Code';
-    src: url('eot/FiraCode-Light.eot');
-    src: url('fonts/eot/FiraCode-Light.eot') format('embedded-opentype'),
-         url('fonts/woff2/FiraCode-Light.woff2') format('woff2'),
-         url('fonts/woff/FiraCode-Light.woff') format('woff'),
-         url('fonts/ttf/FiraCode-Light.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
+@font-face {
+  font-family: "Fira Code";
+  src: url("eot/FiraCode-Light.eot");
+  src: url("fonts/eot/FiraCode-Light.eot") format("embedded-opentype"),
+    url("fonts/woff2/FiraCode-Light.woff2") format("woff2"),
+    url("fonts/woff/FiraCode-Light.woff") format("woff"),
+    url("fonts/ttf/FiraCode-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
 }
 
-body, html {
-    padding: 0;
-    margin: 0;
-    font-family: 'Fira Code', 'monospace';
-    color: #ebebeb;
+body,
+html {
+  padding: 0;
+  margin: 0;
+  font-family: "Fira Code", "monospace";
+  color: #ebebeb;
 }
 
 header#index-header {
-    height: 100vh;
-    width: 100%;
-    background-image: url(../img/BG.svg);
-    background-size: cover;
+  height: 100vh;
+  width: 100%;
+  background-image: url(../img/BG.svg);
+  background-size: cover;
 }
 
 div#top-logo {
-    margin: auto;
-    width: 60%;
-    padding: 10px;
-    text-align: center;
+  margin: auto;
+  width: 60%;
+  padding: 10px;
+  text-align: center;
 }
 
 div#buttons {
-    width: 300px;
-    height: 176px;
+  width: 300px;
+  height: 176px;
 
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    text-align: center;
-    
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center;
 }
 
 div#buttons > a > button {
-    transition: 0.3s;
-    width: 200px;
-    height: 80px;
-    margin: 4px;
+  transition: 0.3s;
+  width: 200px;
+  height: 80px;
+  margin: 4px;
 
-    border-radius: 60px;
-    font-weight: 600;
-    background: none;
-    border: 3px solid #ea6cb0;
-    color: #ebebeb;
-    font-size: 28px;
+  border-radius: 60px;
+  font-weight: 600;
+  background: none;
+  border: 3px solid #ea6cb0;
+  color: #ebebeb;
+  font-size: 28px;
 }
 
 div#buttons > a > button:hover {
-    transition: 0.3s;
-    width: 230px;
-    border: 3px solid #3fdaa4;
-    cursor: pointer;
-    background-color: var(--button-hover-color);
+  transition: 0.3s;
+  width: 230px;
+  border: 3px solid #3fdaa4;
+  cursor: pointer;
+  background-color: var(--button-hover-color);
 }
 
 div#buttons > a > button#open-signup-modal {
-    transition: 0.3s;
-    width: 180px;
-    height: 60px;
-    margin-top: 12px;
-    font-size: 20px;
-    border: 3px solid #3fc4de;
+  transition: 0.3s;
+  width: 180px;
+  height: 60px;
+  margin-top: 12px;
+  font-size: 20px;
+  border: 3px solid #3fc4de;
 }
 
 div#buttons > a > button#open-signup-modal:hover {
-    transition: 0.3s;
-    width: 200px;
-    border: 3px solid #3fdaa4;
-    cursor: pointer;
-    background-color: var(--button-hover-color);
+  transition: 0.3s;
+  width: 200px;
+  border: 3px solid #3fdaa4;
+  cursor: pointer;
+  background-color: var(--button-hover-color);
 }
 
 /* Sign In Modal Box */
 
 .modalDialog {
-    position: fixed;
-    display: block;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	background: rgba(0,0,0,0.8);
-    z-index: 99999;
-    width: 100%;
-	opacity:0;
-	-webkit-transition: opacity 400ms ease-in;
-	-moz-transition: opacity 400ms ease-in;
-	transition: opacity 400ms ease-in;
-	pointer-events: none;
+  position: fixed;
+  display: block;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 99999;
+  width: 100%;
+  opacity: 0;
+  -webkit-transition: opacity 400ms ease-in;
+  -moz-transition: opacity 400ms ease-in;
+  transition: opacity 400ms ease-in;
+  pointer-events: none;
 }
 
 .modalDialog:target {
-    opacity:1;
-    display: block;
-	pointer-events: auto;
+  opacity: 1;
+  display: block;
+  pointer-events: auto;
 }
 
 .modalDialog > div {
-	width: 30%;
-    position: relative;
-    display: block;
-	margin: 10% auto;
-	padding: 5px 20px 13px 20px;
-	border-radius: 2px;
-    background: #fff;
-    text-align: center;
-    background: var(--modal-BG-color);
-    
+  width: 30%;
+  position: relative;
+  display: block;
+  margin: 10% auto;
+  padding: 5px 20px 13px 20px;
+  border-radius: 2px;
+  background: #fff;
+  text-align: center;
+  background: var(--modal-BG-color);
 }
 
 .close {
-	background: #606061;
-	color: #FFFFFF;
-	line-height: 25px;
-	position: absolute;
-	right: -12px;
-	text-align: center;
-	top: -10px;
-	width: 24px;
-	text-decoration: none;
-	font-weight: bold;
-	-webkit-border-radius: 12px;
-	-moz-border-radius: 12px;
-	border-radius: 12px;
-	-moz-box-shadow: 1px 1px 3px #000;
-	-webkit-box-shadow: 1px 1px 3px #000;
-	box-shadow: 1px 1px 3px #000;
+  background: #606061;
+  color: #ffffff;
+  line-height: 25px;
+  position: absolute;
+  right: -12px;
+  text-align: center;
+  top: -10px;
+  width: 24px;
+  text-decoration: none;
+  font-weight: bold;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  border-radius: 12px;
+  -moz-box-shadow: 1px 1px 3px #000;
+  -webkit-box-shadow: 1px 1px 3px #000;
+  box-shadow: 1px 1px 3px #000;
 }
 
-.close:hover { 
-    background: var(--button-BG-color);
-    transition: ease-in 0.2s;
+.close:hover {
+  background: var(--button-BG-color);
+  transition: ease-in 0.2s;
 }
 
 /* Login Form */
 form#LoginForm input {
-    border: 0;
-    background: none;
-    display: block;
-    margin: 10px auto;
-    text-align: center;
-    border: 2px solid var(--button-BG-color);
-    padding: 14px 10px;
-    width: 300px;
-    outline: none;
-    color: white;
-    border-radius: 22px;
-    transition: 0.2s;
+  border: 0;
+  background: none;
+  display: block;
+  margin: 10px auto;
+  text-align: center;
+  border: 2px solid var(--button-BG-color);
+  padding: 14px 10px;
+  width: 300px;
+  outline: none;
+  color: white;
+  border-radius: 22px;
+  transition: 0.2s;
 }
 
 form#LoginForm h1 {
-    text-transform: uppercase;
-    font-weight: 500;
+  text-transform: uppercase;
+  font-weight: 500;
 }
 
 form#LoginForm input:focus {
-    width: 340px;
-    border-color: #3fdaa4;
-    transition: 0.25s;
+  width: 340px;
+  border-color: #3fdaa4;
+  transition: 0.25s;
 }
 
 form#LoginForm button {
-    background: none;
-    text-align: center;
-    border: 2px solid var(--button-submit);
-    width: 150px;
-    font-size: 18px;
-    outline: none;
-    color: white;
-    border-radius: 28px;
-    transition: 0.2s;
-    cursor: pointer; 
+  background: none;
+  text-align: center;
+  border: 2px solid var(--button-submit);
+  width: 150px;
+  font-size: 18px;
+  outline: none;
+  color: white;
+  border-radius: 28px;
+  transition: 0.2s;
+  cursor: pointer;
 }
 
 form#LoginForm button:hover {
-    transition: 0.2s;  
-    width: 180px;
-    border: 2px solid #3fdaa4;
-    cursor: pointer;
+  transition: 0.2s;
+  width: 180px;
+  border: 2px solid #3fdaa4;
+  cursor: pointer;
 }
 
 div#info-box {
-    position: absolute;
-    width: 350px;
-    height: 400px;
-    top: 90%;
-    left: 5%;
-    background: white;
-    color: black;
-    text-align: center;
-    padding: 8px;
+  position: absolute;
+  width: 350px;
+  height: 400px;
+  top: 90%;
+  left: 5%;
+  background: white;
+  color: black;
+  text-align: center;
+  padding: 8px;
 }
 
 div#info-box > p {
-    font-size: 24px;
+  font-size: 24px;
 }
 
 main#info {
-    width: 100%;
-    height: 100vh;
-    background-color: #111111;
+  width: 100%;
+  height: 100vh;
+  background-color: #111111;
 }

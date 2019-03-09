@@ -11,13 +11,12 @@ if (isset($_GET['delete-project'])) {
 
 function ProjectID()
 {
+    /**
+ * function ProjectID(), this function obtained the the names of projects that the user has
+ * 
+ */
     require 'db.php';
     if (isset($_SESSION['id'])) {
-        $ProjectID = "SELECT * FROM projects,users WHERE user_id=" . $_SESSION['id'] . " AND projectID=users.last_project";
-        $projectID_result = $connection->query($ProjectID);
-        $projectID_row = $projectID_result->fetch_assoc();
-        $ID = intval($projectID_row['last_project']);
-
         $sql = "SELECT * FROM projects WHERE user_id=" . $_SESSION['id'] . "";
         $result = $connection->query($sql);
         $row = $result->fetch_assoc();
@@ -31,7 +30,7 @@ function LoginForm()
     /**
  * function LoginForm(), this function provides the form that the user fills in to sign-in.
  * 
- * Vars:
+ *Vars:
  *  $_GET['error']  :   Obtained from the form located at index.php, says if an error has occurred.
  *  $_GET['email']  :   Obtained from the form located at index.php, provided if only if an email is passed in.
  *  $_GET['emptyemail'] :   Obtained from the form located at index.php, provided if the user DOES NOT enter an email.
@@ -64,7 +63,7 @@ function SignUpForm()
     /**
  * function SignUpForm(), this function provides a form that the user fills in to sign-up.
  * 
- * Vars:
+ *Vars:
  *  $_GET['error']  :   Obtained from the form located at signup.php, says if an error has occurred.
 */
 
@@ -91,7 +90,7 @@ function ProjectSelector()
     /**
  * function ProjectSelector(), this function is used to provide the user with a dropdown list of projects that belong to them.
  * 
- * Vars:
+ *Vars:
  *  $_SESSION['project_id'] :   The project ID that is stored in a $_SESSION variable.
  *  $PROJECT_NAME_SQL   :   This is the SQL query string that is used to fond all data stored in the table *projects*. This values varies *  depending on whether $_GET['projects'] is given.
  * 
@@ -254,8 +253,8 @@ function LastSelectedProject()
     $Project_ID = mysqli_fetch_assoc($ProjectID); // This variable stores all of the data performed from the query above, into a nice little array.
     $ID = intval($Project_ID['projectID']); // THIS IS THE ID!
 
-    // Stores the users last selected project in a table
-    $StoreLastSelectedObject = mysqli_query($connection, "UPDATE users SET last_project=" . $ID . " WHERE id=" . $_SESSION['id'] . "");
+    // Updates the users last selected project
+    mysqli_query($connection, "UPDATE users SET last_project=" . $ID . " WHERE id=" . $_SESSION['id'] . "");
 
     $last_project_sql = "SELECT last_project FROM users WHERE id=" . $_SESSION['id'] . ""; // Selects the project ID
     $last_project_result = $connection->query($last_project_sql);
@@ -343,6 +342,13 @@ function PrintCompletedTasks()
 
 function PrintTasks($type)
 {
+    /**
+ * function PrintTasks()    :   Prints the tasks under 'To Do' in the 'To Do' section.
+ * 
+ * Vars:
+ *  $LastSelectedProject    :   This stores the value of the users last selected project
+ *  $type   :   Given by landing.php to specify the sorting method to use
+ */
 
     require 'db.php';
 
@@ -373,7 +379,6 @@ function PrintTasks($type)
                 $task_priority = $row['task_priority'];
                 $task_desc = $row['task_desc'];
                 $task_date = $row['task_date'];
-                $task_state = $row['task_state'];
                 $task_date = date('D-d-M-Y', strtotime($row['task_date'])); // Reformats the time
                 $task_time = $row['task_time'];
 
@@ -400,7 +405,7 @@ function PrintTasks($type)
                     <hr class="taskTitle">
             
                     <div id="task-desc" class="task-desc">
-                        <p style="display:none;" id="desc-text" class="task-desc">' . $task_desc . '</p>
+                        <p id="desc-text" class="task-desc">' . $task_desc . '</p>
                     </div>
             
                     <div class="task-date-time">
@@ -500,12 +505,12 @@ function DeleteProject()
 {
     /**
  * function DeleteProject(), This is called when the user request the deletion of a project.
- *  Vars:
+ * 
+ * Vars:
  *  $sql    :   Stores the string that is executed in MySQL.
  *  $result :   Stores the result from the query.
  *  $row    :   Stores the value from the result into an indexed array.
  *  $Project_id :   Contains the integer value of the user's last selected project.
- * 
  *  $sql    :   This executes a query that deletes the row in table projects.
  */
 
@@ -528,6 +533,14 @@ function DeleteProject()
 
 function accountDetails($x)
 {
+    /**
+ * function accountDetails()    :   Called by account.php, this function obtains the user's details and prints them to the webpage
+ * 
+ * Vars:
+ *  $x  :   This is used to specify the type of information to be returned, called in account.php
+ *  $nameh3 :   Stores the string HTML tag that will print out the user's name in a H3 tag
+ *  $emailh3    : Similar to $nameh3, this will print the user's email in a H3 tag
+ */
     require 'db.php';
 
     $sql = "SELECT name,email FROM users WHERE id=" . $_SESSION['id'] . "";
