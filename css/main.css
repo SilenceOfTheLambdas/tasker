@@ -259,7 +259,19 @@ div.new-project > a > button:hover {
 }
 
 #signout {
-  background-color: var(--header-BG-color);
+  background-color: #e95678;
+  color: black;
+
+  width: auto;
+  height: 100%;
+  float: right;
+
+  border: none;
+  flex-basis: 10%;
+}
+
+#account {
+  background-color: #3fc4de;
   color: black;
 
   width: auto;

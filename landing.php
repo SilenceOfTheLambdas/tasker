@@ -82,7 +82,7 @@ if (!isset($_SESSION['name'])) {
         <div id="user">
             <?php 
             echo ('
-                <div id="signout">
+                <div id="account">
                     <form action="account.php" method="get">
                         <button class="signout" type="submit" name="account">Hello, ' . $_SESSION['name'] . '</button>
                     </form>

@@ -602,8 +602,8 @@ function accountDetails($x)
 
     $name = $row['name'];
     $email = $row['email'];
-    $nameh3 = "<h3>$name</h3>";
-    $emailh3 = "<h3>$email</h3>";
+    $nameh3 = "<h3>$name</h3><i class='fas fa-pencil-alt'></i>";
+    $emailh3 = "<h3>$email</h3><i class='fas fa-pencil-alt'></i>";
 
     if ($x == "name") {
         return $nameh3;

@@ -13,6 +13,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="css/account.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <title>Account | Takerio</title>
 </head>
 
@@ -66,8 +67,8 @@ session_start();
                 <form action="delete-account.php" method="get">
                     <!-- <input type="text" style="display: none;" name="account-del"> -->
                     <button type="submit" name="account-del">Yes</button>
-                    <a href="#close" title="Close"><button>No</button></a>
                 </form>
+                <a href="#close" title="Close"><button>No</button></a>
             </div>
         </div>
 
