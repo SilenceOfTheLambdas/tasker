@@ -187,7 +187,7 @@ function EditTask()
         $FormString = '
         <div class="editItem">
                 <!-- This holds the add item div-->
-                <div id="editModal" class="modalDialog">
+                <div id="editModal" class="modalDialog" style="display:none;">
                     <!-- The modal box that holds everything -->
                     <div>
                         <!-- the element inside -->
@@ -413,7 +413,7 @@ function PrintTasks($type)
                         
                         <form action="landing.php" method="get">
                             <input name="projects" value="' . ProjectID() . '" style="display: none;">
-                            <button class="edit-buttons" type="submit" name="edit-task" value="' . $task_id . '"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
+                            <button class="edit-buttons" id="edit-button" type="submit" name="edit-task" value="' . $task_id . '"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
                         </form>
 
                     </div>
@@ -451,7 +451,7 @@ function PrintTasks($type)
                         
                         <form action="#editModal" method="get">
                             <input name="projects" value="' . ProjectID() . '" style="display: none;">
-                            <button class="edit-buttons" type="submit" name="edit-task" value="' . $task_id . '"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
+                            <button class="edit-buttons" id="edit-button" type="submit" name="edit-task" value="' . $task_id . '"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
                         </form>
 
                     </div>
@@ -489,7 +489,7 @@ function PrintTasks($type)
                         
                         <form action="landing.php" method="get">
                             <input name="projects" value="' . ProjectID() . '" style="display: none;">
-                            <button class="edit-buttons" type="submit" name="edit-task" value="' . $task_id . '"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
+                            <button class="edit-buttons" id="edit-button" type="submit" name="edit-task" value="' . $task_id . '"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
                         </form>
 
                     </div>
@@ -527,7 +527,7 @@ function PrintTasks($type)
                         
                         <form action="landing.php" method="get">
                             <input name="projects" value="' . ProjectID() . '" style="display: none;">
-                            <button class="edit-buttons" type="submit" name="edit-task" value="' . $task_id . '"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
+                            <button class="edit-buttons" id="edit-button" type="submit" name="edit-task" value="' . $task_id . '"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
                         </form>
 
                     </div>

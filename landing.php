@@ -221,7 +221,7 @@ if (!isset($_SESSION['name'])) {
         var modal = document.getElementById("openProjectDelete");
         modal.style.display = 'block';
     }
-    document.getElementById("open-edit-modal").onclick = function() {
+    document.getElementById("edit-button").onclick = function() {
         var modal = document.getElementById("editModal");
         modal.style.display = 'block';
     }

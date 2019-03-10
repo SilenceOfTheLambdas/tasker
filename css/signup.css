@@ -1,0 +1,191 @@
+/*
+signup.css
+Created by: Callum-James Smith (cs18804)
+For the signup page
+*/
+
+:root /* The variables */
+ {
+  --background-color: #15171d;
+  --header-BG-color: rgba(21, 23, 29, 0.9);
+  --logo-BG-color: rgba(21, 23, 29, 0.9);
+  --search-BG-color: rgba(21, 23, 29, 0.9);
+  --box-BG-color: #ebebeb00;
+  --button-BG-color: #e95678;
+  --button-hover-color: rgba(233, 86, 120, 0.39);
+  --task-BG-color: #ebebeb;
+  --task-overdue: #720b23;
+  --task-high: #c70f3a;
+  --task-medium: rgb(223, 77, 111);
+  --input-focus: #3fdaa4;
+  --button-submit: #3fc4de;
+}
+/* Fonts */
+@import url("https://fonts.googleapis.com/css?family=Source+Code+Pro");
+
+@font-face {
+  font-family: "Fira Code";
+  src: url("eot/FiraCode-Light.eot");
+  src: url("fonts/eot/FiraCode-Light.eot") format("embedded-opentype"),
+    url("fonts/woff2/FiraCode-Light.woff2") format("woff2"),
+    url("fonts/woff/FiraCode-Light.woff") format("woff"),
+    url("fonts/ttf/FiraCode-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Fira Code", "Source Code Pro";
+  background-color: var(--background-color);
+  color: white;
+}
+
+/* Header for the top bar */
+header {
+  background-color: var(--header-BG-color);
+  width: 100%;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  box-shadow: black 2px 2px 2px;
+}
+
+/* Logo Section */
+#logo 
+  /* This holds the logo (.logo) in place */
+ {
+  background-color: var(--logo-BG-color);
+  float: left;
+  text-align: center;
+  color: white;
+
+  width: auto;
+  height: 100%;
+  flex-basis: 5%;
+  float: left;
+}
+.logo 
+  /* The logo inside the header */
+ {
+  height: 40px;
+  width: 200px;
+  overflow: hidden;
+  float: left;
+  transform: translateY(8px) translateX(10px);
+}
+
+/* SIGN UP FORM */
+form#SignupForm /* This is the sign page form */
+ {
+  width: 600px;
+  padding: 40px;
+  height: 60vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--background-color);
+  text-align: center;
+}
+
+form#SignupForm h1 /* The H1 inside the form */
+ {
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+form#SignupForm input /* The inputs inside the form */
+ {
+  border: 0;
+  background: none;
+  display: block;
+  margin: 10px auto;
+  text-align: center;
+  border: 2px solid var(--button-BG-color);
+  padding: 14px 10px;
+  width: 300px;
+  outline: none;
+  color: white;
+  border-radius: 22px;
+  transition: 0.2s;
+}
+
+form#SignupForm button {
+  border: 0;
+  background: none;
+  display: block;
+  text-align: center;
+  border: 2px solid var(--button-submit);
+  width: 150px;
+  margin: 10px 10px;
+  font-size: 18px;
+  outline: none;
+  color: white;
+  border-radius: 28px;
+  transition: 0.2s;
+  transform: translateX(210px);
+}
+
+form#SignupForm input:focus 
+/* When the login form and signup form inputs are hovered over */
+ {
+  width: 340px;
+  border-color: var(--input-focus);
+  transition: 0.25s;
+}
+
+form#SignupForm button#signup-button-1 {
+  text-align: center;
+}
+
+#signup-button:hover {
+  background: rgba(0, 0, 0, 0.486);
+  cursor: pointer;
+}
+
+#signup-button-1:hover {
+  background: rgba(0, 0, 0, 0.486);
+  cursor: pointer;
+}
+
+#signup-button {
+  width: 100%;
+  background: var(--background-color);
+  height: 50px;
+  margin: 0 none;
+  padding: 0 none;
+  border: none;
+  color: white;
+  text-align: center;
+}
+
+#signup-button-1 {
+  width: 100%;
+  background: var(--background-color);
+  height: 50px;
+  margin: 0 none;
+  padding: 0 none;
+  border: none;
+  color: white;
+  text-align: center;
+}
+
+/* Media Controls */
+@media screen and (max-width: 636px) /* when the screen reaches less than 635px */ {
+  form#SignupForm {
+    height: 60vh;
+    width: 80%;
+  }
+
+  form#SignupForm > input {
+    margin: none;
+    width: 100%;
+  }
+
+  form#SignupForm button#signup-button-1 {
+    transform: translateX(65%);
+  }
+}

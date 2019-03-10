@@ -28,7 +28,7 @@ html {
 header#index-header {
   height: 100vh;
   width: 100%;
-  background-image: url(../img/BG.svg);
+  background-image: url(../img/hero-bg.gif);
   background-size: cover;
 }
 
@@ -183,7 +183,8 @@ form#LoginForm button {
   background: none;
   text-align: center;
   border: 2px solid var(--button-submit);
-  width: 150px;
+  width: 250px;
+  height: 50px;
   font-size: 18px;
   outline: none;
   color: white;
@@ -194,7 +195,7 @@ form#LoginForm button {
 
 form#LoginForm button:hover {
   transition: 0.2s;
-  width: 180px;
+  width: 270px;
   border: 2px solid #3fdaa4;
   cursor: pointer;
 }
