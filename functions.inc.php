@@ -397,7 +397,7 @@ function PrintTasks($type)
 
                 $currentDate = (new DateTime())->format('D-d-M-Y');
 
-                if ($task_date < $currentDate) {
+                if ($task_date < $currentDate || $task_time < $currentDate) {
                     echo ('
                 <div class="item-overdue">
 

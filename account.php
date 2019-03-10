@@ -65,7 +65,6 @@ session_start();
                 <a href="#close" title="Close" class="close">X</a> <!-- The close button -->
                 <h1>Are You Sure?</h1>
                 <form action="delete-account.php" method="get">
-                    <!-- <input type="text" style="display: none;" name="account-del"> -->
                     <button type="submit" name="account-del">Yes</button>
                 </form>
                 <a href="#close" title="Close"><button>No</button></a>

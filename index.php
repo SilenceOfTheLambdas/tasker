@@ -11,7 +11,9 @@
 session_start();
 if (isset($_SESSION['name']) && isset($_SESSION['id'])) // If the user already has a session, 'log them in'
     {
-        header("Location: landing.php");
+        include_once 'functions.inc.php';
+        $projectID = LastSelectedProject();
+        header("Location: landing.php?projects=$projectID");
     }
 ?>
 
