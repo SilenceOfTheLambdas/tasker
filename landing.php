@@ -189,22 +189,6 @@ if (!isset($_SESSION['name'])) {
 
             </div>
 
-            <div class="editItem">
-                <!-- This holds the add item div-->
-                <div id="editModal" class="modalDialog" style="display: none;">
-                    <!-- The modal box that holds everything -->
-                    <div>
-                        <!-- the element inside -->
-                        <a href="#close" title="Close" class="close">X</a> <!-- The close button -->
-                        <h1>Edit Task</h1>
-                        <?php
-                        EditTask();
-                        ?>
-                    </div>
-                </div>
-
-            </div>
-
         </div>
 
 

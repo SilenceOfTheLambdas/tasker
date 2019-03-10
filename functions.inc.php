@@ -185,23 +185,35 @@ function EditTask()
         $task_state = $row['task_state'];
 
         $FormString = '
-            <form class="edit-item" action="edit-task.inc.php" method="get">
-                <input type="text" name="title" value="' . $task_title . '" placeholder="Title..."><br/>
-                <textarea class="description" name="task-desc" cols="26" rows="6" placeholder="Description...">' . $task_desc . '</textarea><br/>
-                <input type="date" name="task-date" value="' . $task_date . '"><br/>
-                <input type="time" name="task-time" value="' . $task_time . '"><br/>
-                <select name="task-state" value="' . $task_state . '">
-                    <option name="To Do">To Do</option>
-                    <option name="In Progress">In Progress</option>
-                    <option name="Completed">Completed</option>
-                </select>
-                <select name="task-priority" value="' . $task_priority . '">
-                    <option name="high">High</option>
-                    <option name="medium">Medium</option>
-                    <option name="low">Low</option>
-                </select>
-                <button type="submit" name="finish-edit" value="' . $task_id . '">Finish</button>
-            </form>';
+        <div class="editItem">
+                <!-- This holds the add item div-->
+                <div id="editModal" class="modalDialog">
+                    <!-- The modal box that holds everything -->
+                    <div>
+                        <!-- the element inside -->
+                        <a href="#close" title="Close" class="close">X</a> <!-- The close button -->
+                        <h1>Edit Task</h1>
+                        <form class="edit-item" action="edit-task.inc.php" method="get">
+                            <input type="text" name="title" value="' . $task_title . '" placeholder="Title..."><br/>
+                            <textarea class="description" name="task-desc" cols="26" rows="6" placeholder="Description...">' . $task_desc . '</textarea><br/>
+                            <input type="date" name="task-date" value="' . $task_date . '"><br/>
+                            <input type="time" name="task-time" value="' . $task_time . '"><br/>
+                            <select name="task-state" value="' . $task_state . '">
+                                <option name="To Do">To Do</option>
+                                <option name="In Progress">In Progress</option>
+                                <option name="Completed">Completed</option>
+                            </select>
+                            <select name="task-priority" value="' . $task_priority . '">
+                                <option name="high">High</option>
+                                <option name="medium">Medium</option>
+                                <option name="low">Low</option>
+                            </select>
+                            <button type="submit" name="finish-edit" value="' . $task_id . '">Finish</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>';
 
         echo ($FormString);
     }
@@ -441,7 +453,6 @@ function PrintTasks($type)
                             <input name="projects" value="' . ProjectID() . '" style="display: none;">
                             <button class="edit-buttons" type="submit" name="edit-task" value="' . $task_id . '"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
                         </form>
-                        <a type="submit" id="open-edit-modal" href="#editModal">Edit</a>
 
                     </div>
                     <hr class="taskTitle">
