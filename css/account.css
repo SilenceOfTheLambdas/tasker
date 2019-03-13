@@ -1,3 +1,8 @@
+/*
+* account.css, this is used for the account page.
+* Created by Callum-James Smith (cs18804)
+*/
+
 :root {
   --delete-button-border: rgba(221, 80, 80, 0.9);
   --delete-button-hover-border: rgba(124, 40, 40, 0.9);
@@ -212,8 +217,25 @@ main {
   margin: 10% auto;
   padding: 5px 20px 13px 20px;
   border-radius: 2px;
-  background: #fff;
-  background: var(--header-BG-color);
+  background: rgb(34, 34, 34);
+}
+
+.modalDialog > div > form > button {
+  background: none;
+  width: 60px;
+  height: auto;
+  padding: 4px;
+  border: 1px solid #3fc4de;
+  color: white;
+}
+
+.modalDialog > div > a > button {
+  background: none;
+  width: 60px;
+  height: auto;
+  padding: 4px;
+  border: 1px solid rgba(124, 40, 40, 0.9);
+  color: white;
 }
 
 .close {

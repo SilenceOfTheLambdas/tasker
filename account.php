@@ -41,10 +41,7 @@ session_start();
         </div>
 
         <div id="top-pane">
-            <h1>Hello, <?php 
-                        echo ($_SESSION['name']);
-                        ?>
-            </h1>
+            <h1>Account Settings</h1>
         </div>
 
         <div id="bottom-pane">
@@ -54,7 +51,6 @@ session_start();
                 echo (accountDetails("name"));
                 echo (accountDetails("email"));
                 ?>
-                <h3>$password</h3>
             </div>
         </div>
 
@@ -71,13 +67,45 @@ session_start();
             </div>
         </div>
 
+        <div id="editName" class="modalDialog">
+            <!-- The modal box that holds everything -->
+            <div>
+                <!-- the element inside -->
+                <a href="#close" title="Close" class="close">X</a> <!-- The close button -->
+                <h1>Change Name</h1>
+                <form action="change-account.php" method="get">
+                    <input type="text" name="new-name" placeholder="Change name..." required>
+                    <button type="submit">Submit</button>
+                </form>
+                <a href="#close" title="Close"><button>Cancel</button></a>
+            </div>
+        </div>
+
+        <div id="editEmail" class="modalDialog">
+            <!-- The modal box that holds everything -->
+            <div>
+                <!-- the element inside -->
+                <a href="#close" title="Close" class="close">X</a> <!-- The close button -->
+                <h1>Change Email</h1>
+                <form action="change-account.php" method="get">
+                    <input type="email" name="new-email" placeholder="Change email..." required>
+                    <button type="submit">Submit</button>
+                </form>
+                <a href="#close" title="Close"><button>Cancel</button></a>
+            </div>
+        </div>
+
     </main>
 </body>
 <script>
     document.getElementById("open-modal").onclick = function() // Stop the modal boxes from appearing quickly every time the page is refreshed
     {
         var modal = document.getElementById("DeleteModal");
+        var nameModal = document.getElementById("editName");
+        var emailModal = document.getElementById("editEmail");
         modal.style.display = 'block';
+        nameModal.style.display = 'block';
+        emailModal.style.display = 'block';
     }
 </script>
 

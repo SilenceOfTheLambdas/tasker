@@ -70,6 +70,10 @@ if (isset($_SESSION['name']) && isset($_SESSION['id'])) // If the user already h
     </main>
 
 </body>
+
+<footer>
+    <pre style="color: black; text-align: center;">Callum-James Smith</pre>
+</footer>
 <script>
     document.getElementById("open-signin-modal").onclick = function() // Stop the modal boxes from appearing quickly every time the page is refreshed
     {
