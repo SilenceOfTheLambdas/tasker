@@ -14,7 +14,7 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="css/account.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <title>Account | Takerio</title>
+    <title>Account | Taker.io</title>
 </head>
 
 <body>
@@ -30,7 +30,7 @@ session_start();
                 <?php
                 echo ('<form action="account.php" method="get">
                             <input type="hidden" name="return-home">
-                            <a id="open-modal"><button id="delete-account">Return</button></a> <!-- button to activate modal -->
+                            <button id="return">Return</button>
                         </form>');
                 if (isset($_GET['return-home'])) {
                     include_once 'functions.inc.php';

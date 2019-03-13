@@ -2,6 +2,7 @@
   --delete-button-border: rgba(221, 80, 80, 0.9);
   --delete-button-hover-border: rgba(124, 40, 40, 0.9);
   --section-borders: #f1f1f1a1;
+  --return-button-color: #3fdaa4;
 }
 
 @font-face {
@@ -99,6 +100,29 @@ main {
   border: 3px solid var(--delete-button-border);
   color: #ebebeb;
   font-size: 12px;
+}
+
+#return {
+  transition: 0.3s;
+  width: 150px;
+  height: 40px;
+  margin: 4px;
+
+  border-radius: 60px;
+  font-weight: 300;
+  background: none;
+  border: 3px solid var(--return-button-color);
+  color: #ebebeb;
+  font-size: 12px;
+}
+
+#return:hover {
+  transition: 0.3s;
+  width: 160px;
+  height: 50px;
+  border: 3px solid #3fc4de;
+  cursor: pointer;
+  background-color: #3fc4de;
 }
 
 #delete > a > button:hover,
@@ -214,4 +238,9 @@ main {
 .close:hover {
   background: var(--button-BG-color);
   transition: ease-in 0.2s;
+}
+
+.fas {
+  float: right;
+  color: #ebebeb;
 }
