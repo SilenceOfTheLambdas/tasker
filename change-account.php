@@ -13,6 +13,7 @@ if (isset($_GET['new-name'])) {
         }
 
     mysqli_query($connection, "UPDATE users SET name='" . $newName . "' WHERE id=" . $_SESSION['id'] . "");
+    $_SESSION['name'] =  $newName;
     header("Location: account.php");
     exit();
 } else if (isset($_GET['new-email'])) {
