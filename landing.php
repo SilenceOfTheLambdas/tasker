@@ -134,7 +134,6 @@ if (!isset($_SESSION['name'])) {
             <div class="box-1">
                 <!-- TODO Box -->
                 <?php 
-                require_once "functions.inc.php";
                 CheckProjects();
                 if (isset($_GET['edit-task'])) {
                     EditTask();

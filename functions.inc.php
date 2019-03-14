@@ -411,7 +411,7 @@ function PrintTasks($type)
                         
                         <form action="#editModal" method="get">
                             <input name="projects" value="' . ProjectID() . '" style="display: none;">
-                            <button class="edit-buttons" id="edit-button" type="submit" name="edit-task" value="' . $task_id . '"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
+                            <a href="#editModal" id="edit-button"><button class="edit-buttons" id="edit-button" type="submit" name="edit-task" value="' . $task_id . '"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button></a>
                         </form>
 
                     </div>
@@ -432,7 +432,8 @@ function PrintTasks($type)
                     </form>
                 </div>
             
-                </div>');
+                </div>
+                <hr style="width:100%;">');
                     } elseif ($task_priority == "High") {
                     echo ('
                 <div class="item-high">
@@ -447,7 +448,7 @@ function PrintTasks($type)
                             <p class="task-priority">' . $task_priority . '</p>
                         </div>
                         
-                        <form action="landing.php" method="get">
+                        <form action="#editModal" method="get">
                             <input name="projects" value="' . ProjectID() . '" style="display: none;">
                             <a href="#editModal" id="edit-button"><button class="edit-buttons" id="edit-button" type="submit" name="edit-task" value="' . $task_id . '"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button></a>
                         </form>
@@ -485,9 +486,9 @@ function PrintTasks($type)
                             <p class="task-priority">' . $task_priority . '</p>
                         </div>
                         
-                        <form action="landing.php" method="get">
+                        <form action="#editModal" method="get">
                             <input name="projects" value="' . ProjectID() . '" style="display: none;">
-                            <button class="edit-buttons" id="edit-button" type="submit" name="edit-task" value="' . $task_id . '"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
+                            <a href="#editModal" id="edit-button"><button class="edit-buttons" id="edit-button" type="submit" name="edit-task" value="' . $task_id . '"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button></a>
                         </form>
 
                     </div>
@@ -523,9 +524,9 @@ function PrintTasks($type)
                             <p class="task-priority">' . $task_priority . '</p>
                         </div>
                         
-                        <form action="landing.php" method="get">
+                        <form action="#editModal" method="get">
                             <input name="projects" value="' . ProjectID() . '" style="display: none;">
-                            <button class="edit-buttons" id="edit-button" type="submit" name="edit-task" value="' . $task_id . '"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
+                            <a href="#editModal" id="edit-button"><button class="edit-buttons" id="edit-button" type="submit" name="edit-task" value="' . $task_id . '"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button></a>
                         </form>
 
                     </div>
