@@ -14,12 +14,27 @@ if (isset($_POST['signup-submit'])) // Checks to see if user clicked "signup"
         $passwordRepeat = $_POST['password-repeat']; // The repeated version of the initial password, given by user
         $HashedPassword = password_hash($password, PASSWORD_DEFAULT); // Hashes the password using BCRYPT
 
-        $EmailQuery = "SELECT email FROM users WHERE email='" . $email . "'";
-        $NameQuery = "SELECT name FROM users WHERE name='" . $name . "'";
-        $EmailResult = mysqli_query($connection, $EmailQuery);
-        $NameResult = mysqli_query($connection, $NameQuery);
-        $EmailRowNumber = mysqli_num_rows($EmailResult);
-        $NameRowNumber = mysqli_num_rows($NameResult);
+        $sql = "SELECT email FROM users WHERE email=?";
+        $stmt = mysqli_stmt_init($connection);
+        if (!mysqli_stmt_prepare($stmt, $sql)) {
+            header("Location: signup.php?sqlerror");
+            exit();
+        }
+        mysqli_stmt_bind_param($stmt, "s", $email);
+        mysqli_stmt_execute($stmt);
+        $emailRes = $stmt->get_result();
+        $EmailRowNumber = $emailRes->num_rows;
+
+        $sql = "SELECT name FROM users WHERE name=?";
+        $stmt = mysqli_stmt_init($connection);
+        if (!mysqli_stmt_prepare($stmt, $sql)) {
+            header("Location: signup.php?sqlerror");
+            exit();
+        }
+        mysqli_stmt_bind_param($stmt, "s", $name);
+        mysqli_stmt_execute($stmt);
+        $nameRes = $stmt->get_result();
+        $NameRowNumber = $nameRes->num_rows;
 
         if (empty($name) || empty($email) || empty($password) || empty($passwordRepeat))
             // Checks to see if any of the fields are empty
