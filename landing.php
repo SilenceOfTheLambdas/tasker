@@ -134,8 +134,11 @@ if (!isset($_SESSION['name'])) {
             <div class="box-1">
                 <!-- TODO Box -->
                 <?php 
+                require_once "functions.inc.php";
                 CheckProjects();
-                EditTask();
+                if (isset($_GET['edit-task'])) {
+                    EditTask();
+                }
 
                 if (isset($_GET['delete-task'])) {
                     require 'db.php';
@@ -188,7 +191,6 @@ if (!isset($_SESSION['name'])) {
                 </div>
 
             </div>
-
         </div>
 
 
@@ -219,10 +221,6 @@ if (!isset($_SESSION['name'])) {
     }
     document.getElementById("open-project-delete").onclick = function() {
         var modal = document.getElementById("openProjectDelete");
-        modal.style.display = 'block';
-    }
-    document.getElementById("edit-button").onclick = function() {
-        var modal = document.getElementById("editModal");
         modal.style.display = 'block';
     }
 </script>

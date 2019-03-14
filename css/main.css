@@ -419,9 +419,9 @@ hr.taskTitle {
   background: #333;
   background-image: linear-gradient(
     to right,
-    rgb(48, 48, 48),
+    rgb(66, 66, 66),
     #333,
-    rgb(48, 48, 48)
+    rgb(24, 24, 24)
   );
 }
 
@@ -639,12 +639,14 @@ form.add-item > button:hover {
 .modalDialog {
   position: fixed;
   display: block;
+  width: 100%;
+  height: auto;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.8);
-  z-index: 99999;
+  z-index: 9999;
   width: 100%;
   opacity: 0;
   -webkit-transition: opacity 400ms ease-in;
@@ -660,14 +662,21 @@ form.add-item > button:hover {
 }
 
 .modalDialog > div {
-  width: 30%;
+  width: 40%;
   position: relative;
+  margin: 0 auto;
+  transform: translateY(-20%);
   display: block;
   margin: 10% auto;
   padding: 5px 20px 13px 20px;
   border-radius: 2px;
   background: #fff;
   background: var(--header-BG-color);
+}
+
+.modalDialog > div > form {
+    width: auto;
+    height: 100%;
 }
 
 .close {

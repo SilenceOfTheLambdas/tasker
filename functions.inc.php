@@ -162,61 +162,58 @@ function EditTask()
  *  $TaskTitle  :   This the variable that stores the string value, just used to make things easier to read
  */
     if (isset($_GET['edit-task'])) {
-        require 'db.php';
+    require 'db.php';
 
-        $TaskID = $_GET['edit-task'];
+    $TaskID = $_GET['edit-task'];
 
-        // Obtain task details
-        $sql = "SELECT * FROM tasks WHERE task_id=" . $TaskID . "";
-        $result = $connection->query($sql);
-        if ($result->num_rows <= 0) {
-            // If the user does NOT have any tasks
-            echo ('<p>You Do Not Have Any Tasks</p>');
-        }
+    // Obtain task details
+    $sql = "SELECT * FROM tasks WHERE task_id=" . $TaskID . "";
+    $result = $connection->query($sql);
+    if ($result->num_rows <= 0) {
+        // If the user does NOT have any tasks
+        echo ('<p>You Do Not Have Any Tasks</p>');
+    }
 
-        // Gets all of the data about the task
-        $row = $result->fetch_assoc();
-        $task_id = $row['task_id'];
-        $task_title = $row['task_title'];
-        $task_priority = $row['task_priority'];
-        $task_desc = $row['task_desc'];
-        $task_date = $row['task_date'];
-        $task_time = $row['task_time'];
-        $task_state = $row['task_state'];
+    // Gets all of the data about the task
+    $row = $result->fetch_assoc();
+    $task_id = $row['task_id'];
+    $task_title = $row['task_title'];
+    $task_priority = $row['task_priority'];
+    $task_desc = $row['task_desc'];
+    $task_date = $row['task_date'];
+    $task_time = $row['task_time'];
+    $task_state = $row['task_state'];
 
-        $FormString = '
-        <div class="editItem">
-                <!-- This holds the add item div-->
-                <div id="editModal" class="modalDialog" style="display:none;">
-                    <!-- The modal box that holds everything -->
-                    <div>
-                        <!-- the element inside -->
-                        <a href="#close" title="Close" class="close">X</a> <!-- The close button -->
-                        <h1>Edit Task</h1>
-                        <form class="edit-item" action="edit-task.inc.php" method="get">
-                            <input type="text" name="title" value="' . $task_title . '" placeholder="Title..."><br/>
-                            <textarea class="description" name="task-desc" cols="26" rows="6" placeholder="Description...">' . $task_desc . '</textarea><br/>
-                            <input type="date" name="task-date" value="' . $task_date . '"><br/>
-                            <input type="time" name="task-time" value="' . $task_time . '"><br/>
-                            <select name="task-state" value="' . $task_state . '">
-                                <option name="To Do">To Do</option>
-                                <option name="In Progress">In Progress</option>
-                                <option name="Completed">Completed</option>
-                            </select>
-                            <select name="task-priority" value="' . $task_priority . '">
-                                <option name="high">High</option>
-                                <option name="medium">Medium</option>
-                                <option name="low">Low</option>
-                            </select>
-                            <button type="submit" name="finish-edit" value="' . $task_id . '">Finish</button>
-                        </form>
-                    </div>
+    $FormString = '
+            <div id="editModal" class="modalDialog">
+                <!-- The modal box that holds everything -->
+                <div>
+                    <!-- the element inside -->
+                    <a href="#close" title="Close" class="close">X</a> <!-- The close button -->
+                    <h1>Edit Task</h1>
+                    <form class="edit-item" action="edit-task.inc.php" method="get">
+                        <input type="text" name="title" value="' . $task_title . '" placeholder="Title..."><br/>
+                        <textarea class="description" name="task-desc" cols="26" rows="6" placeholder="Description...">' . $task_desc . '</textarea><br/>
+                        <input type="date" name="task-date" value="' . $task_date . '"><br/>
+                        <input type="time" name="task-time" value="' . $task_time . '"><br/>
+                        <select name="task-state" value="' . $task_state . '">
+                            <option name="To Do">To Do</option>
+                            <option name="In Progress">In Progress</option>
+                            <option name="Completed">Completed</option>
+                        </select>
+                        <select name="task-priority" value="' . $task_priority . '">
+                            <option name="high">High</option>
+                            <option name="medium">Medium</option>
+                            <option name="low">Low</option>
+                        </select>
+                        <button type="submit" name="finish-edit" value="' . $task_id . '">Finish</button>
+                    </form>
                 </div>
-
             </div>';
 
-        echo ($FormString);
+    echo ($FormString);
     }
+    
 }
 
 function AddTask()
@@ -412,7 +409,7 @@ function PrintTasks($type)
                             <p class="task-priority">' . $task_priority . '</p>
                         </div>
                         
-                        <form action="landing.php" method="get">
+                        <form action="#editModal" method="get">
                             <input name="projects" value="' . ProjectID() . '" style="display: none;">
                             <button class="edit-buttons" id="edit-button" type="submit" name="edit-task" value="' . $task_id . '"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
                         </form>
@@ -450,9 +447,9 @@ function PrintTasks($type)
                             <p class="task-priority">' . $task_priority . '</p>
                         </div>
                         
-                        <form action="#editModal" method="get">
+                        <form action="landing.php" method="get">
                             <input name="projects" value="' . ProjectID() . '" style="display: none;">
-                            <button class="edit-buttons" id="edit-button" type="submit" name="edit-task" value="' . $task_id . '"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button>
+                            <a href="#editModal" id="edit-button"><button class="edit-buttons" id="edit-button" type="submit" name="edit-task" value="' . $task_id . '"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button></a>
                         </form>
 
                     </div>
