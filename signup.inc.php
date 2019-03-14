@@ -63,7 +63,14 @@ if (isset($_POST['signup-submit'])) // Checks to see if user clicked "signup"
                 exit();
             } else {
 
-            mysqli_query($connection, "INSERT INTO users(name,email,password) VALUES('" . $name . "','" . $email . "','" . $HashedPassword . "')");
+            $sql = "INSERT INTO users(name,email,password) VALUES(?, ?, ?)";
+            $stmt = mysqli_stmt_init($connection);
+            if (!mysqli_stmt_prepare($stmt, $sql)) {
+                header("Location: signup.php?sqlerror");
+                exit();
+            }
+            mysqli_stmt_bind_param($stmt, "sss", $name, $email, $HashedPassword);
+            mysqli_stmt_execute($stmt);
             include_once "functions.inc.php";
             $Project = ProjectID();
             header("Location: index.php?signup=success&projects=$Project");
