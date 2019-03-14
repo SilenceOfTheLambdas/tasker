@@ -11,11 +11,11 @@ if (isset($_POST['add-task'])) {
 
     $ProjectTitle = $_GET['add-task'];
 
-    $title = $_POST['title'];
+    $title = strip_tags($_POST['title']);
     $date = $_POST['task-date'];
     $time = $_POST['task-time'];
     $priority = $_POST['task-priority'];
-    $desc = $_POST['task-desc'];
+    $desc = strip_tags($_POST['task-desc']);
 
     if (empty($title) || empty($date) || empty($priority) || empty($desc)) {
         echo ("You are missing items!");
@@ -28,10 +28,6 @@ if (isset($_POST['add-task'])) {
 
     if ($TitleRowNum > 0) {
         header("Location: landing.php?error=nametaken&projects=" . ProjectID());
-        exit();
-    }
-    if (preg_match('/[<>{}\[\]=*]+/', $title) || preg_match('/[<>{}\[\]=*]+/', $desc)) {
-        header("Location: landing.php?invalidname&projects=" . ProjectID());
         exit();
     }
 
