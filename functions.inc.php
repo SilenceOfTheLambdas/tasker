@@ -395,10 +395,11 @@ function PrintTasks($type)
                 $task_date = date('D-d-M-Y', strtotime($row['task_date'])); // Reformats the time
                 $task_time = $row['task_time'];
 
-                $currentDate = (new DateTime())->format('D-d-M-Y');
+                $taskDate = strtotime($row['task_date']);
 
-                if ($task_date < $currentDate || $task_time < $currentDate) {
-                    echo ('
+                if (time() - (60 * 60 * 24) > $taskDate) // If there has been at least one day since the tasks date
+                    {
+                        echo ('
                 <div class="item-overdue">
 
                     <div class="title-wrapper">
@@ -435,7 +436,7 @@ function PrintTasks($type)
                 </div>
             
                 </div>');
-                } elseif ($task_priority == "High") {
+                    } elseif ($task_priority == "High") {
                     echo ('
                 <div class="item-high">
 

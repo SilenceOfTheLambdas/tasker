@@ -19,7 +19,7 @@ if (isset($_POST['add-task'])) {
 
     if (empty($title) || empty($date) || empty($priority) || empty($desc)) {
         echo ("You are missing items!");
-        header("Location: landing.php?error=missingitems");
+        header("Location: landing.php?error=missingitems&projects=" . ProjectID());
         exit();
     }
 
@@ -27,7 +27,7 @@ if (isset($_POST['add-task'])) {
     $TitleRowNum = mysqli_num_rows($TitleQuery);
 
     if ($TitleRowNum > 0) {
-        header("Location: landing.php#openModal&error=nametaken");
+        header("Location: landing.php?error=nametaken&projects=" . ProjectID());
         exit();
     }
     if (preg_match('/[<>{}\[\]=*]+/', $title) || preg_match('/[<>{}\[\]=*]+/', $desc)) {
