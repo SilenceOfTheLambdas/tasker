@@ -307,6 +307,18 @@ div.container {
   height: 5px;
 }
 
+div.sorting {
+  width: 100%;
+  height: 30px;
+  background: green;
+  text-align: left;
+  margin-top: -10px;
+}
+
+div.sorting > p {
+  text-align: center;
+}
+
 div#sorting {
   float: left;
   width: 25px;

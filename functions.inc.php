@@ -13,7 +13,6 @@ function ProjectID()
 {
     /**
  * function ProjectID(), this function obtained the the names of projects that the user has
- * 
  */
     require 'db.php';
     if (isset($_SESSION['id'])) {
