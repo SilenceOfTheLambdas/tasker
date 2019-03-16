@@ -101,44 +101,38 @@ if (!isset($_SESSION['name'])) {
     <div class="container">
 
         <div class="to-do-container-wrapper">
-            <div id="sorting">
+            <h3 class="headerTitle">To Do</h3>
+            <hr>
+
+            <div class="sorting">
                 <form action="landing.php" method="get">
                     <input name="sorting" type="text" value="date-asc" style="display:none;">
                     <?php require_once 'functions.inc.php';
                     echo ('<input name="projects" value="' . ProjectID() . '" style="display: none;">'); ?>
-                    <button type="submit" title="sort by date ASC"><i class="fas fa-arrows-alt-v"></i>D</button><br />
+                    <button type="submit" title="sort by date ASC"><i class="fas fa-arrows-alt-v"></i>Date Asc</button><br />
                 </form>
                 <form action="landing.php" method="get">
                     <input name="sorting" type="text" value="priority-asc" style="display:none;">
                     <?php require_once 'functions.inc.php';
                     echo ('<input name="projects" value="' . ProjectID() . '" style="display: none;">'); ?>
-                    <button type="submit" title="sort by priority ASC"><i class="fas fa-arrows-alt-v"></i>P</button><br />
+                    <button type="submit" title="sort by priority ASC"><i class="fas fa-arrows-alt-v"></i>Priority Asc</button><br />
                 </form>
                 <form action="landing.php" method="get">
                     <input name="sorting" type="text" value="date-desc" style="display:none;">
                     <?php require_once 'functions.inc.php';
                     echo ('<input name="projects" value="' . ProjectID() . '" style="display: none;">'); ?>
-                    <button type="submit" title="sort by date DESC"><i class="fas fa-arrows-alt-v"></i>d</button><br />
+                    <button type="submit" title="sort by date DESC"><i class="fas fa-arrows-alt-v"></i>Date Desc</button><br />
                 </form>
                 <form action="landing.php" method="get">
                     <input name="sorting" type="text" value="priority-desc" style="display:none;">
                     <?php require_once 'functions.inc.php';
                     echo ('<input name="projects" value="' . ProjectID() . '" style="display: none;">'); ?>
-                    <button type="submit" title="sort by priority DESC"><i class="fas fa-arrows-alt-v"></i>p</button><br />
+                    <button type="submit" title="sort by priority DESC"><i class="fas fa-arrows-alt-v"></i>Priority Desc</button><br />
                 </form>
             </div>
 
-            <h3 class="headerTitle">To Do</h3>
-            <hr>
-
             <div class="box-1">
                 <!-- TODO Box -->
-                <div class="sorting">
-                    <p>1</p>
-                    <p>2</p>
-                    <p>3</p>
-                    <p>4</p>
-                </div>
                 <?php 
                 CheckProjects();
                 if (isset($_GET['edit-task'])) {

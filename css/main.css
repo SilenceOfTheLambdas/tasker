@@ -289,7 +289,7 @@ div.to-do-container-wrapper {
 
 div.completed-container-wrapper {
   width: 45%;
-  height: 60px;
+  height: 100%;
   flex-basis: 20%;
 }
 
@@ -309,14 +309,34 @@ div.container {
 
 div.sorting {
   width: 100%;
-  height: 30px;
-  background: green;
+  height: 50px;
+  background: none;
   text-align: left;
   margin-top: -10px;
 }
 
 div.sorting > p {
   text-align: center;
+}
+
+div.sorting > form {
+  float: left;
+  display: inline;
+}
+
+div.sorting > form > button {
+  background: none;
+  border: none;
+  color: white;
+  float: left;
+  margin-left: 20px;
+  margin-top: 6px;
+}
+
+div.sorting > form > button:hover {
+  transition: 0.3s;
+  background: #3fc4de;
+  cursor: pointer;
 }
 
 div#sorting {
@@ -345,7 +365,7 @@ div#sorting > form > button:hover {
 div.box-1 {
   /* To DO */
   background: var(--box-BG-color);
-  flex-basis: 80%;
+  flex-basis: 90%;
   height: 80vh;
   clear: both;
   overflow: auto;
@@ -356,8 +376,8 @@ div.box-1 {
 div.box-3 {
   /* Completed */
   background: var(--box-BG-color);
-  flex-basis: 20%;
-  height: 80vh;
+  flex-basis: 10%;
+  height: 85vh;
   overflow: auto;
   padding: 4px;
   border: white solid 2px;
@@ -687,8 +707,8 @@ form.add-item > button:hover {
 }
 
 .modalDialog > div > form {
-    width: auto;
-    height: 100%;
+  width: auto;
+  height: 100%;
 }
 
 .close {
