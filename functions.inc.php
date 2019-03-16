@@ -161,29 +161,29 @@ function EditTask()
  *  $TaskTitle  :   This the variable that stores the string value, just used to make things easier to read
  */
     if (isset($_GET['edit-task'])) {
-    require 'db.php';
+        require 'db.php';
 
-    $TaskID = $_GET['edit-task'];
+        $TaskID = $_GET['edit-task'];
 
-    // Obtain task details
-    $sql = "SELECT * FROM tasks WHERE task_id=" . $TaskID . "";
-    $result = $connection->query($sql);
-    if ($result->num_rows <= 0) {
-        // If the user does NOT have any tasks
-        echo ('<p>You Do Not Have Any Tasks</p>');
-    }
+        // Obtain task details
+        $sql = "SELECT * FROM tasks WHERE task_id=" . $TaskID . "";
+        $result = $connection->query($sql);
+        if ($result->num_rows <= 0) {
+            // If the user does NOT have any tasks
+            echo ('<p>You Do Not Have Any Tasks</p>');
+        }
 
-    // Gets all of the data about the task
-    $row = $result->fetch_assoc();
-    $task_id = $row['task_id'];
-    $task_title = $row['task_title'];
-    $task_priority = $row['task_priority'];
-    $task_desc = $row['task_desc'];
-    $task_date = $row['task_date'];
-    $task_time = $row['task_time'];
-    $task_state = $row['task_state'];
+        // Gets all of the data about the task
+        $row = $result->fetch_assoc();
+        $task_id = $row['task_id'];
+        $task_title = $row['task_title'];
+        $task_priority = $row['task_priority'];
+        $task_desc = $row['task_desc'];
+        $task_date = $row['task_date'];
+        $task_time = $row['task_time'];
+        $task_state = $row['task_state'];
 
-    $FormString = '
+        $FormString = '
             <div id="editModal" class="modalDialog">
                 <!-- The modal box that holds everything -->
                 <div>
@@ -210,9 +210,8 @@ function EditTask()
                 </div>
             </div>';
 
-    echo ($FormString);
+        echo ($FormString);
     }
-    
 }
 
 function AddTask()
@@ -431,8 +430,7 @@ function PrintTasks($type)
                     </form>
                 </div>
             
-                </div>
-                <hr style="width:100%;">');
+                </div>');
                     } elseif ($task_priority == "High") {
                     echo ('
                 <div class="item-high">
