@@ -323,20 +323,23 @@ div.sorting > p {
 div.sorting > form {
   float: left;
   display: inline;
+  margin-left: 20px;
 }
 
 div.sorting > form > button {
   background: none;
-  border: none;
+  border-radius: 48px;
+  border: #3fdaa49f solid 2px;
   color: white;
   float: left;
+  font-size: 20px;
   margin-left: 20px;
   margin-top: 6px;
 }
 
 div.sorting > form > button:hover {
   transition: 0.3s;
-  background: #3fc4de;
+  background: #3fdaa49f;
   cursor: pointer;
 }
 
