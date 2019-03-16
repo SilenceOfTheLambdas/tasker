@@ -291,6 +291,7 @@ div.completed-container-wrapper {
   width: 45%;
   height: 100%;
   flex-basis: 20%;
+  color: rgba(255, 255, 255, 0.603);
 }
 
 /* Container */
@@ -366,7 +367,7 @@ div.box-1 {
   /* To DO */
   background: var(--box-BG-color);
   flex-basis: 90%;
-  height: 80vh;
+  height: 75vh;
   clear: both;
   overflow: auto;
   padding: 4px;
@@ -380,7 +381,12 @@ div.box-3 {
   height: 85vh;
   overflow: auto;
   padding: 4px;
-  border: white solid 2px;
+  border: rgba(255, 255, 255, 0.664) solid 2px;
+}
+
+div.box-3 > div.item {
+  background: rgba(255, 255, 255, 0.651);
+  color: rgba(0, 0, 0, 0.822);
 }
 
 /* TASKS */
