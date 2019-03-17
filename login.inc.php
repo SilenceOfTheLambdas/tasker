@@ -50,6 +50,7 @@ if (isset($_POST['signin-submit'])) {
                             } else {
                                 $ID = intval($projectID_row['last_project']);
                             }
+                            $_SESSION['projects'] = $ID;
 
                             include_once "functions.inc.php";
                             $Project = LastSelectedProject();

@@ -108,25 +108,25 @@ if (!isset($_SESSION['name'])) {
                 <form action="landing.php" method="get">
                     <input name="sorting" type="text" value="date-asc" style="display:none;">
                     <?php require_once 'functions.inc.php';
-                    echo ('<input name="projects" value="' . ProjectID() . '" style="display: none;">'); ?>
+                    echo ('<input name="projects" value="' . $_SESSION['projects'] . '" style="display: none;">'); ?>
                     <button type="submit" title="sort by date ASC"><i class="fas fa-arrows-alt-v"></i>Date Asc</button><br />
                 </form>
                 <form action="landing.php" method="get">
                     <input name="sorting" type="text" value="priority-asc" style="display:none;">
                     <?php require_once 'functions.inc.php';
-                    echo ('<input name="projects" value="' . ProjectID() . '" style="display: none;">'); ?>
+                    echo ('<input name="projects" value="' . $_SESSION['projects'] . '" style="display: none;">'); ?>
                     <button type="submit" title="sort by priority ASC"><i class="fas fa-arrows-alt-v"></i>Priority Asc</button><br />
                 </form>
                 <form action="landing.php" method="get">
                     <input name="sorting" type="text" value="date-desc" style="display:none;">
                     <?php require_once 'functions.inc.php';
-                    echo ('<input name="projects" value="' . ProjectID() . '" style="display: none;">'); ?>
+                    echo ('<input name="projects" value="' . $_SESSION['projects'] . '" style="display: none;">'); ?>
                     <button type="submit" title="sort by date DESC"><i class="fas fa-arrows-alt-v"></i>Date Desc</button><br />
                 </form>
                 <form action="landing.php" method="get">
                     <input name="sorting" type="text" value="priority-desc" style="display:none;">
                     <?php require_once 'functions.inc.php';
-                    echo ('<input name="projects" value="' . ProjectID() . '" style="display: none;">'); ?>
+                    echo ('<input name="projects" value="' . $_SESSION['projects'] . '" style="display: none;">'); ?>
                     <button type="submit" title="sort by priority DESC"><i class="fas fa-arrows-alt-v"></i>Priority Desc</button><br />
                 </form>
             </div>

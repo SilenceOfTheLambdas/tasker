@@ -264,21 +264,17 @@ function LastSelectedProject()
     // Updates the users last selected project
     mysqli_query($connection, "UPDATE users SET last_project=" . $ID . " WHERE id=" . $_SESSION['id'] . "");
 
-    $last_project_sql = "SELECT last_project FROM users WHERE id=" . $_SESSION['id'] . ""; // Selects the project ID
-    $last_project_result = $connection->query($last_project_sql);
-    $last_project_row = $last_project_result->fetch_assoc();
-    $LastSelectedProject = $last_project_row['last_project'];
-
-    $returnSQL = mysqli_query($connection, "SELECT projectID FROM projects,users WHERE id=" . $_SESSION['id'] . "");
-    $returnROW = $returnSQL->fetch_assoc();
-    $return = $returnROW['projectID'];
-
-    if (!$LastSelectedProject) {
-        echo ('No Project Exists!');
-        $LastSelectedProject = $return;
+    $ProjectID = "SELECT * FROM projects,users WHERE user_id=" . $_SESSION['id'] . " AND projectID=users.last_project";
+    $projectID_result = $connection->query($ProjectID);
+    $projectID_row = $projectID_result->fetch_assoc();
+    if ($projectID_row['last_project'] == null) {
+        include_once 'functions.inc.php';
+        $ID = ProjectID();
+    } else {
+        $ID = intval($projectID_row['last_project']);
     }
 
-    return $LastSelectedProject;
+    return $ID;
 }
 
 function PrintCompletedTasks()
@@ -291,6 +287,16 @@ function PrintCompletedTasks()
 
     $sql = "SELECT * FROM tasks,users WHERE projectID=" . intval($LastSelectedProject) . " AND task_state='Completed' AND users.id=" . $_SESSION['id'] . "";
     $result = $connection->query($sql);
+
+    $ProjectID = "SELECT * FROM projects,users WHERE user_id=" . $_SESSION['id'] . " AND projectID=users.last_project";
+    $projectID_result = $connection->query($ProjectID);
+    $projectID_row = $projectID_result->fetch_assoc();
+    if ($projectID_row['last_project'] == null) {
+        include_once 'functions.inc.php';
+        $ID = ProjectID();
+    } else {
+        $ID = intval($projectID_row['last_project']);
+    }
 
     if ($result->num_rows <= 0) {
         // if the user does not have any completed tasks
@@ -321,7 +327,7 @@ function PrintCompletedTasks()
                     </div>
                     
                     <form action="landing.php" method="get">
-                        <input name="projects" value="' . ProjectID() . '" style="display: none;">
+                        <input name="projects" value="' . $ID . '" style="display: none;">
                         <button class="edit-buttons" type="submit" name="delete-task" value="' . $task_title . '"><span class="edit-task"><i class="fas fa-times"></i></span></button>
                     </form>
 
@@ -338,7 +344,7 @@ function PrintCompletedTasks()
 
                 <div class="u-button-holder">
                     <form action="landing.php" method="get">
-                        <input name="projects" value="' . ProjectID() . '" style="display: none;">
+                        <input name="projects" value="' . $ID . '" style="display: none;">
                         <button class="undo-buttons" type="submit" name="undo-task" value="' . $task_id . '"><span class="complete-task"><i class="fas fa-arrow-left"></i></span></button>
                     </form>
                 </div>
@@ -392,6 +398,16 @@ function PrintTasks($type)
 
                 $taskDate = strtotime($row['task_date']);
 
+                $ProjectID = "SELECT * FROM projects,users WHERE user_id=" . $_SESSION['id'] . " AND projectID=users.last_project";
+                $projectID_result = $connection->query($ProjectID);
+                $projectID_row = $projectID_result->fetch_assoc();
+                if ($projectID_row['last_project'] == null) {
+                    include_once 'functions.inc.php';
+                    $ID = ProjectID();
+                } else {
+                    $ID = intval($projectID_row['last_project']);
+                }
+
                 if (time() - (60 * 60 * 24) > $taskDate) // If there has been at least one day since the tasks date
                     {
                         echo ('
@@ -408,7 +424,7 @@ function PrintTasks($type)
                         </div>
                         
                         <form action="#editModal" method="get">
-                            <input name="projects" value="' . ProjectID() . '" style="display: none;">
+                            <input name="projects" value="' . $ID . '" style="display: none;">
                             <a href="#editModal" id="edit-button"><button class="edit-buttons" id="edit-button" type="submit" name="edit-task" value="' . $task_id . '"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button></a>
                         </form>
 
@@ -425,7 +441,7 @@ function PrintTasks($type)
 
                 <div class="c-button-holder">
                     <form action="landing.php" method="get">
-                        <input name="projects" value="' . ProjectID() . '" style="display: none;">
+                        <input name="projects" value="' . $ID . '" style="display: none;">
                         <button class="complete-buttons" type="submit" name="complete-task" value="' . $task_id . '"><span class="complete-task"><i class="fas fa-check"></i></span></button>
                     </form>
                 </div>
@@ -446,7 +462,7 @@ function PrintTasks($type)
                         </div>
                         
                         <form action="#editModal" method="get">
-                            <input name="projects" value="' . ProjectID() . '" style="display: none;">
+                            <input name="projects" value="' . $ID . '" style="display: none;">
                             <a href="#editModal" id="edit-button"><button class="edit-buttons" id="edit-button" type="submit" name="edit-task" value="' . $task_id . '"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button></a>
                         </form>
 
@@ -463,7 +479,7 @@ function PrintTasks($type)
 
                 <div class="c-button-holder">
                     <form action="landing.php" method="get">
-                        <input name="projects" value="' . ProjectID() . '" style="display: none;">
+                        <input name="projects" value="' . $ID . '" style="display: none;">
                         <button class="complete-buttons" type="submit" name="complete-task" value="' . $task_id . '"><span class="complete-task"><i class="fas fa-check"></i></span></button>
                     </form>
                 </div>
@@ -484,7 +500,7 @@ function PrintTasks($type)
                         </div>
                         
                         <form action="#editModal" method="get">
-                            <input name="projects" value="' . ProjectID() . '" style="display: none;">
+                            <input name="projects" value="' . $ID . '" style="display: none;">
                             <a href="#editModal" id="edit-button"><button class="edit-buttons" id="edit-button" type="submit" name="edit-task" value="' . $task_id . '"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button></a>
                         </form>
 
@@ -501,7 +517,7 @@ function PrintTasks($type)
 
                     <div class="c-button-holder">
                         <form action="landing.php" method="get">
-                            <input name="projects" value="' . ProjectID() . '" style="display: none;">
+                            <input name="projects" value="' . $ID . '" style="display: none;">
                             <button class="complete-buttons" type="submit" name="complete-task" value="' . $task_id . '"><span class="complete-task"><i class="fas fa-check"></i></span></button>
                         </form>
                     </div>
@@ -522,7 +538,7 @@ function PrintTasks($type)
                         </div>
                         
                         <form action="#editModal" method="get">
-                            <input name="projects" value="' . ProjectID() . '" style="display: none;">
+                            <input name="projects" value="' . $ID . '" style="display: none;">
                             <a href="#editModal" id="edit-button"><button class="edit-buttons" id="edit-button" type="submit" name="edit-task" value="' . $task_id . '"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button></a>
                         </form>
 
@@ -539,7 +555,7 @@ function PrintTasks($type)
 
                     <div class="c-button-holder">
                         <form action="landing.php" method="get">
-                            <input name="projects" value="' . ProjectID() . '" style="display: none;">
+                            <input name="projects" value="' . $ID . '" style="display: none;">
                             <button class="complete-buttons" type="submit" name="complete-task" value="' . $task_id . '"><span class="complete-task"><i class="fas fa-check"></i></span></button>
                         </form>
                     </div>

@@ -266,3 +266,8 @@ main {
   float: right;
   color: #ebebeb;
 }
+
+.fas:hover {
+  transition: 0.3s;
+  color: #ebebebaf;
+}

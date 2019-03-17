@@ -221,3 +221,11 @@ main#info {
   height: 100vh;
   background-color: #111111;
 }
+
+main#info > div {
+  height: 80%;
+  margin: 0 auto;
+  display: block;
+  width: 800px;
+  float: right;
+}

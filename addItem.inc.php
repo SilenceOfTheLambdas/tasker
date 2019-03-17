@@ -73,6 +73,16 @@ if (isset($_POST['add-task'])) {
     $_SESSION['newItem'] = $titleString;
     $_SESSION['item-added'] = true;
 
-    header("Location: landing.php?item-added&projects=" . ProjectID());
+    $ProjectID = "SELECT * FROM projects,users WHERE user_id=" . $_SESSION['id'] . " AND projectID=users.last_project";
+    $projectID_result = $connection->query($ProjectID);
+    $projectID_row = $projectID_result->fetch_assoc();
+    if ($projectID_row['last_project'] == null) {
+        include_once 'functions.inc.php';
+        $ID = ProjectID();
+    } else {
+        $ID = intval($projectID_row['last_project']);
+    }
+
+    header("Location: landing.php?projects=$ID");
     exit();
 }

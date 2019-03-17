@@ -61,12 +61,20 @@ if (isset($_SESSION['name']) && isset($_SESSION['id'])) // If the user already h
     <div id="info-box">
         <h2>INFO</h2>
         <hr>
-        <p>A free, no bullshit task management system.</p><br />
+        <p>A free, no bull$h*t task management system.</p><br />
         oh, and it's open source.
     </div>
 
     <main id="info">
-
+        <div>
+            <h2>Features</h2>
+            <ul>
+                <li>Easy to use</li>
+                <li>Customizable</li>
+                <li>Completely free</li>
+                <li>100% organic</li>
+            </ul>
+        </div>
     </main>
 
 </body>
