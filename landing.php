@@ -129,6 +129,26 @@ if (!isset($_SESSION['name'])) {
                     echo ('<input name="projects" value="' . $_SESSION['projects'] . '" style="display: none;">'); ?>
                     <button type="submit" title="sort by priority DESC"><i class="fas fa-arrows-alt-v"></i>Priority Desc</button><br />
                 </form>
+
+
+            <div class="addItem">
+                <!-- This holds the add item div-->
+
+                <a href="#openModal" id="open-modal"><button class="add-item-button" id="add-item"><i class="far fa-plus-square"></i> Add Task</button></a> <!-- button to activate modal -->
+
+                <div id="openModal" class="modalDialog" style="display: none;">
+                    <!-- The modal box that holds everything -->
+                    <div>
+                        <!-- the element inside -->
+                        <a href="#close" title="Close" class="close">X</a> <!-- The close button -->
+                        <h1>Add Task</h1>
+                        <?php 
+                        AddTask();
+                        ?>
+                    </div>
+                </div>
+
+            </div>
             </div>
 
             <div class="box-1">
@@ -172,24 +192,6 @@ if (!isset($_SESSION['name'])) {
 
             </div>
 
-            <div class="addItem">
-                <!-- This holds the add item div-->
-
-                <a href="#openModal" id="open-modal"><button class="add-item-button" id="add-item"><i class="far fa-plus-square"></i></button></a> <!-- button to activate modal -->
-
-                <div id="openModal" class="modalDialog" style="display: none;">
-                    <!-- The modal box that holds everything -->
-                    <div>
-                        <!-- the element inside -->
-                        <a href="#close" title="Close" class="close">X</a> <!-- The close button -->
-                        <h1>Add Task</h1>
-                        <?php 
-                        AddTask();
-                        ?>
-                    </div>
-                </div>
-
-            </div>
         </div>
 
 

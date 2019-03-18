@@ -408,7 +408,7 @@ function PrintTasks($type)
                     $ID = intval($projectID_row['last_project']);
                 }
 
-                if (time() - (60 * 60 * 24) > $taskDate) // If there has been at least one day since the tasks date
+                if (time() - (60 * 60 * 24) > $taskDate && time() - (60) > $task_time) // If there has been at least one day since the tasks date
                     {
                         echo ('
                 <div class="item-overdue">
