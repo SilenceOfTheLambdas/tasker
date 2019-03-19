@@ -26,7 +26,6 @@ session_start();
             </div>
             <div id="spacer"></div>
             <div id="delete">
-                <a href="#DeleteModal" id="open-modal"><button id="delete-account">Delete Account</button></a> <!-- button to activate modal -->
                 <?php
                 echo ('<form action="account.php" method="get">
                             <input type="hidden" name="return-home">
@@ -51,19 +50,6 @@ session_start();
                 echo (accountDetails("name"));
                 echo (accountDetails("email"));
                 ?>
-            </div>
-        </div>
-
-        <div id="DeleteModal" class="modalDialog" style="display: none;">
-            <!-- The modal box that holds everything -->
-            <div>
-                <!-- the element inside -->
-                <a href="#close" title="Close" class="close">X</a> <!-- The close button -->
-                <h1>Are You Sure?</h1>
-                <form action="delete-account.php" method="get">
-                    <button type="submit" name="account-del">Yes</button>
-                </form>
-                <a href="#close" title="Close"><button>No</button></a>
             </div>
         </div>
 

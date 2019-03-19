@@ -4,7 +4,7 @@
     This is the landing page, after the user has logged in.
     Created by: Callum-James Smith (cs18804)
  -->
-<!DOCTYPE html>
+<!DOCTYPE html lang="en">
 <!-- Checks to see if the user has a session -->
 <?php
 
@@ -19,7 +19,7 @@ if (!isset($_SESSION['name'])) {
 <head>
 
     <!-- Meta stuffs -->
-    <meta type='description' content='A task management website.'>
+    <meta name='description' content='A task management website.'>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -49,8 +49,8 @@ if (!isset($_SESSION['name'])) {
         </div>
 
         <div class="new-project">
-            <a href="#openModalProject" id="open-modal-project"><button><i class="fas fa-plus"></i></button></a>
-            <a href="#openProjectDelete" id="open-project-delete"><button><i class="fas fa-minus"></i></button></a>
+            <button><a href="#openModalProject" id="open-modal-project"><i class="fas fa-plus"></i></a></button>
+            <button><a href="#openProjectDelete" id="open-project-delete"><i class="fas fa-minus"></i></a></button>
         </div>
 
         <div id="openModalProject" style="display: none;" class="modalDialog">

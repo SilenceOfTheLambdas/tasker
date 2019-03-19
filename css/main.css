@@ -201,18 +201,18 @@ div.new-project /* This holds two buttons used to add and remove projects */
   color: white;
 }
 
-div.new-project > a > button,
-div.new-project > form > a > button {
+div.new-project > button,
+div.new-project > form > button {
   background: var(--search-BG-color);
   border: none;
-  color: white;
+  color: green;
   text-align: center;
   height: 100%;
   width: 25px;
   font-size: 14px;
   float: left;
 }
-div.new-project > a > button:hover {
+div.new-project > button:hover {
   transition: ease-in 0.2s;
   background: var(--button-hover-color);
 }
@@ -432,7 +432,7 @@ div.item-medium {
 div.title-wrapper {
   display: flex;
   width: 100%;
-  height: 100%;
+  height: 60px;
   flex-direction: row;
 }
 
@@ -579,7 +579,7 @@ button.undo-buttons:hover {
 /* Adding Items */
 
 form.add-item {
-  width: 100%;
+  width: 80%;
   height: auto;
   background-color: transparent;
 }
@@ -682,7 +682,7 @@ form.add-item > button:hover {
   position: fixed;
   display: block;
   width: 100%;
-  height: auto;
+  height: 100vh;
   top: 0;
   right: 0;
   bottom: 0;
@@ -705,6 +705,7 @@ form.add-item > button:hover {
 
 .modalDialog > div {
   width: 40%;
+  height: 50vh;
   position: relative;
   margin: 0 auto;
   transform: translateY(-20%);

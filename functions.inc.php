@@ -114,7 +114,7 @@ function ProjectSelector()
 
     echo ('
     <form name="ProjectSelection" action="landing.php" method="get">
-        <select name="projects" value="' . $LastSelectedProjectName . '" id="project_selector" onchange="this.form.submit()">
+        <select name="projects" id="project_selector" onchange="this.form.submit()">
     ');
     while ($PROJECT_NAME_ROW = $PROJECT_NAME_RESULT->fetch_assoc()) {
         $ProjectID = $PROJECT_NAME_ROW['projectID'];
@@ -224,14 +224,7 @@ function AddTask()
  *  $_GET['error']  :   Passed on of there is an error, in this case; if the user has chose a task name that already exists
  */
 
-    $NameTaken = "";
-    if (isset($_GET['error'])) {
-        if (strcmp($_GET['error'], "nametaken")) {
-            $NameTaken = "<p>Name Taken in project!<p>";
-        }
-    }
     echo ('<form class="add-item" action="addItem.inc.php" method="post">
-            ' . $NameTaken . '
             <input type="text" name="title" placeholder="Title..."><br/>
             <textarea class="description" name="task-desc" cols="26" rows="6" placeholder="Description..."></textarea><br/>
             Date <input type="date" name="task-date" placeholder="Choose a due date.."><br/>
