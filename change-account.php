@@ -1,4 +1,8 @@
 <?php
+/**
+ * change-account.php, this script allows the user to change their username and email address.
+ * Created by Callum-James Smith (cs18804)
+ */
 require_once 'db.php';
 session_start();
 if (isset($_GET['new-name'])) {
@@ -22,7 +26,7 @@ if (isset($_GET['new-name'])) {
 
     if (!filter_var($newEmail, FILTER_VALIDATE_EMAIL)) {
         header("Location: account.php?error=invalidemail");
-        // ^ throws an error and re-applies the data back into the fields if available
+        // ^ throws an error and returns the user back to the account page
         exit();
     }
 

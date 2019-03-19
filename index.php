@@ -3,7 +3,7 @@
     A task management system
     This is the login page.
     Created by: Callum-James Smith (cs18804)
-    files indicated with *.inc.php are used to process the information
+    files indicated with *.inc.php are used to process the information and is NOT seen by the user.
  -->
 <!DOCTYPE html>
 <!-- PHP Includes -->

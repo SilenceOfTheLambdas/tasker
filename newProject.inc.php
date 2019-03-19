@@ -1,5 +1,8 @@
 <?php 
-
+/**
+ * newProject.inc.php, this is responsible for making new projects and adding them to the database.
+ * Created by Callum-James Smith (cs18804)
+ */
 require 'db.php';
 
 if (isset($_POST['add-project'])) {
