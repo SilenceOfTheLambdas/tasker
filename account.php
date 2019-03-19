@@ -22,7 +22,7 @@ session_start();
 
         <div id="left-pane">
             <div id="image-holder">
-                <img src="img/adminLogo.png" alt="User Logo">
+                <img src="images/adminLogo.png" alt="User Logo">
             </div>
             <div id="spacer"></div>
             <div id="delete">

@@ -35,7 +35,7 @@ if (isset($_SESSION['name']) && isset($_SESSION['id'])) // If the user already h
 <body>
     <header id="index-header">
         <div id="top-logo">
-            <img src="img/Tasker.io_Transparent.png">
+            <img src="images/Tasker.io_Transparent.png">
         </div>
         <div id="buttons">
             <a href="#sign-in-modal" id="open-signin-modal"><button id='signin-button' type="submit" name="signin-submit">SIGN IN</button></a><br />
