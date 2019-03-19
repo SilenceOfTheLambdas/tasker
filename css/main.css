@@ -40,6 +40,7 @@ body {
   font-family: "Fira Code", "Source Code Pro";
   background-color: var(--background-color);
   color: white;
+  font-style: none;
 }
 
 /* LOGIN/Sign up PAGE */
@@ -490,6 +491,13 @@ button.add-item-button {
   border-radius: 48px;
   border: #c70f3a 2px solid;
   margin-top: 20px;
+}
+
+button.add-item-button > a {
+  /* The button itself */
+  color: white;
+  font-style: none;
+  text-decoration: none;
 }
 
 button.add-item-button:hover {
