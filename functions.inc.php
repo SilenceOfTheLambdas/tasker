@@ -196,14 +196,14 @@ function EditTask()
                         <input type="date" name="task-date" value="' . $task_date . '"><br/>
                         <input type="time" name="task-time" value="' . $task_time . '"><br/>
                         <select name="task-state" value="' . $task_state . '">
-                            <option name="To Do">To Do</option>
-                            <option name="In Progress">In Progress</option>
-                            <option name="Completed">Completed</option>
+                            <option id="To Do">To Do</option>
+                            <option id="In Progress">In Progress</option>
+                            <option id="Completed">Completed</option>
                         </select>
                         <select name="task-priority" value="' . $task_priority . '">
-                            <option name="high">High</option>
-                            <option name="medium">Medium</option>
-                            <option name="low">Low</option>
+                            <option id="high">High</option>
+                            <option id="medium">Medium</option>
+                            <option id="low">Low</option>
                         </select>
                         <button type="submit" name="finish-edit" value="' . $task_id . '">Finish</button>
                     </form>
@@ -231,9 +231,9 @@ function AddTask()
             Time(optional) <input type="time" name="task-time"><br/>
 
             Priority <select name="task-priority">
-                <option name="high">High</option>
-                <option name="medium">Medium</option>
-                <option name="low">Low</option>
+                <option id="high">High</option>
+                <option id="medium">Medium</option>
+                <option id="low">Low</option>
             </select>
 
             <button type="submit" name="add-task">Add Task</button>
