@@ -579,6 +579,7 @@ function DeleteProject()
     $result = $connection->query($sql);
     $row = $result->fetch_assoc();
     $Project_id = intval($row['last_project']);
+    $sql = mysqli_query($connection, "DELETE FROM tasks WHERE projectID=" . $Project_id . "");
 
     $sql = mysqli_query($connection, "DELETE FROM projects WHERE projectID=" . $Project_id . "");
 
