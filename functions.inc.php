@@ -136,11 +136,12 @@ function CheckProjects()
  */
     require 'db.php';
 
-    $ProjectSQL = "SELECT projectID FROM projects WHERE user_id='" . $_SESSION['id'] . "'";
-    $Project_Name = mysqli_query($connection, $ProjectSQL);
-    $ProjectNameRows = mysqli_num_rows($Project_Name);
+    $UserID = $_SESSION['id'];
 
-    if ($ProjectNameRows <= 0) // If the user does not have any projects, they are forced to make one
+    $sql = "SELECT projectID FROM projects WHERE user_id=$UserID";
+    $result = $connection->query($sql);
+
+    if ($result->num_rows <= 0) // If the user does not have any projects, they are forced to make one
         {
             echo ('<form class="add-item" action="newProject.inc.php" method="post">
                 <h3>Please make a new project</h3>
