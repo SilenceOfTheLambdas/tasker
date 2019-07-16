@@ -1,6 +1,6 @@
 /*
 * account.css, this is used for the account page.
-* Created by Callum-James Smith (cs18804)
+* This is not currently used in the live version.
 */
 
 :root {
@@ -11,12 +11,8 @@
 }
 
 @font-face {
-  font-family: "Fira Code";
-  src: url("eot/FiraCode-Regular.eot");
-  src: url("fonts/eot/FiraCode-Regular.eot") format("embedded-opentype"),
-    url("fonts/woff2/FiraCode-Regular.woff2") format("woff2"),
-    url("fonts/woff/FiraCode-Regular.woff") format("woff"),
-    url("fonts/ttf/FiraCode-Regular.ttf") format("truetype");
+  font-family: "SF-UI-Text-Regular";
+  src: url("fonts/otf/SF-UI-Text-Regular.otf") format("opentype");
   font-weight: 300;
   font-style: medium;
 }
@@ -26,7 +22,7 @@ html {
   transition: ease-in 0.3s;
   margin: 0;
   padding: 0;
-  font-family: "Fira Code", "monospace";
+  font-family: "SF-UI-Text-Regular", "monospace";
   background-color: rgb(29, 29, 29);
   color: white;
 }

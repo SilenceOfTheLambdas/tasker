@@ -1,22 +1,17 @@
 /*
 * index.css, this is for the index page
-* Created by Callum-James Smith (cs18804)
 */
 :root {
-  --modal-BG-color: rgba(34, 34, 34, 0.801);
-  --button-BG-color: #e95678;
-  --button-hover-color: rgba(34, 34, 34, 0.8);
-  --input-focus: #3fdaa4;
-  --button-submit: #3fc4de;
+  --modal-BG-color: rgba(34, 34, 34, 0.801); /* Used for the pop-up background */
+  --button-BG-color: #e95678; /* Background used for buttons */
+  --button-hover-color: rgba(34, 34, 34, 0.8); /* The hover colour used for buttons */
+  --input-focus: #3fdaa4; /* Colour when input box is focused */
+  --button-submit: #3fc4de; /* The colour of the submit button */
 }
 
 @font-face {
-  font-family: "Fira Code";
-  src: url("eot/FiraCode-Light.eot");
-  src: url("fonts/eot/FiraCode-Light.eot") format("embedded-opentype"),
-    url("fonts/woff2/FiraCode-Light.woff2") format("woff2"),
-    url("fonts/woff/FiraCode-Light.woff") format("woff"),
-    url("fonts/ttf/FiraCode-Light.ttf") format("truetype");
+  font-family: "SF-UI-Text-Regular";
+  src: url("fonts/otf/SF-UI-Text-Regular.otf") format("opentype");
   font-weight: 300;
   font-style: normal;
 }
@@ -25,7 +20,7 @@ body,
 html {
   padding: 0;
   margin: 0;
-  font-family: "Fira Code", "monospace";
+  font-family: "SF-UI-Text-Regular", "monospace";
   color: #ebebeb;
 }
 

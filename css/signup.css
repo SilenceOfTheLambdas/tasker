@@ -21,15 +21,10 @@ For the signup page
   --button-submit: #3fc4de;
 }
 /* Fonts */
-@import url("https://fonts.googleapis.com/css?family=Source+Code+Pro");
 
 @font-face {
-  font-family: "Fira Code";
-  src: url("eot/FiraCode-Light.eot");
-  src: url("fonts/eot/FiraCode-Light.eot") format("embedded-opentype"),
-    url("fonts/woff2/FiraCode-Light.woff2") format("woff2"),
-    url("fonts/woff/FiraCode-Light.woff") format("woff"),
-    url("fonts/ttf/FiraCode-Light.ttf") format("truetype");
+  font-family: "SF-UI-Text-Regular";
+  src: url("fonts/otf/SF-UI-Text-Regular.otf") format("opentype");
   font-weight: 300;
   font-style: normal;
 }
@@ -38,7 +33,7 @@ html,
 body {
   margin: 0;
   padding: 0;
-  font-family: "Fira Code", "Source Code Pro";
+  font-family: "SF-UI-Text-Regular", "Sans Serif";
   background-color: var(--background-color);
   color: white;
 }
