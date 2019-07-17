@@ -134,24 +134,23 @@ if (!isset($_SESSION['name'])) {
                 </form>
 
 
-            <div class="addItem">
-                <!-- This holds the add item div-->
+                <div class="addItem">
+                    <!-- This holds the add item div-->
+                    <button class="add-item-button" id="add-item"><a href="#openModal" id="open-modal"><i class="far fa-plus-square"></i> Add Task</a></button> <!-- button to activate modal -->
 
-                <button class="add-item-button" id="add-item"><a href="#openModal" id="open-modal"><i class="far fa-plus-square"></i> Add Task</a></button> <!-- button to activate modal -->
-
-                <div id="openModal" class="modalDialog" style="display: none;">
-                    <!-- The modal box that holds everything -->
-                    <div>
-                        <!-- the element inside -->
-                        <a href="#close" title="Close" class="close">X</a> <!-- The close button -->
-                        <h1>Add Task</h1>
-                        <?php 
-                        AddTask();
-                        ?>
+                    <div id="openModal" class="modalDialog" style="display: none;">
+                        <!-- The modal box that holds everything -->
+                        <div>
+                            <!-- the element inside -->
+                            <a href="#close" title="Close" class="close">X</a> <!-- The close button -->
+                            <h1>Add Task</h1>
+                            <?php 
+                            AddTask();
+                            ?>
+                        </div>
                     </div>
-                </div>
 
-            </div>
+                </div>
             </div>
 
             <div class="box-1">
