@@ -206,12 +206,17 @@ form#LoginForm button:hover {
 
 footer {
   background: rgb(20, 20, 20);
+  color: white;
+
   margin: 0;
   padding: 0;
   height: 40px;
   width: 100%;
 }
 
-footer > pre {
-  margin: 0;
+footer > p {
+  margin: 0 auto;
+  padding: 8px;
+  color: white;
+  text-align: center;
 }
