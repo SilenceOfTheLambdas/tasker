@@ -165,7 +165,7 @@ form#LoginForm input {
   text-align: center;
   border: 2px solid var(--button-BG-color);
   padding: 14px 10px;
-  width: 300px;
+  width: 70%;
   outline: none;
   color: white;
   border-radius: 22px;
@@ -178,7 +178,7 @@ form#LoginForm h1 {
 }
 
 form#LoginForm input:focus {
-  width: 340px;
+  width: 75%;
   border-color: #3fdaa4;
   transition: 0.25s;
 }
@@ -187,7 +187,7 @@ form#LoginForm button {
   background: none;
   text-align: center;
   border: 2px solid var(--button-submit);
-  width: 250px;
+  width: 80%;
   height: 50px;
   font-size: 18px;
   outline: none;
@@ -199,7 +199,7 @@ form#LoginForm button {
 
 form#LoginForm button:hover {
   transition: 0.2s;
-  width: 270px;
+  width: 85%;
   border: 2px solid #3fdaa4;
   cursor: pointer;
 }
