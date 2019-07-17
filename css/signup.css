@@ -48,30 +48,6 @@ header {
   box-shadow: black 2px 2px 2px;
 }
 
-/* Logo Section */
-#logo 
-  /* This holds the logo (.logo) in place */
- {
-  background-color: var(--logo-BG-color);
-  float: left;
-  text-align: center;
-  color: white;
-
-  width: auto;
-  height: 100%;
-  flex-basis: 5%;
-  float: left;
-}
-.logo 
-  /* The logo inside the header */
- {
-  height: 40px;
-  width: 200px;
-  overflow: hidden;
-  float: left;
-  transform: translateY(8px) translateX(10px);
-}
-
 /* SIGN UP FORM */
 form#SignupForm /* This is the sign page form */
  {
