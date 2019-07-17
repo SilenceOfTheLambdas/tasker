@@ -30,8 +30,8 @@
         <input type="password" name="password" placeholder="Password..."><br>
         <input type="Password" name="password-repeat" placeholder="Re-enter password..."><br>
 
-        <button id='signup-button-1' type="submit" name="signup-submit">Sign Up</button>
-        <button id='signup-button-1' type="submit" name="back">Return</button>
+        <button class='signup-button' type="submit" name="signup-submit">Sign Up</button>
+        <button class='return-button' type="submit" name="back">Return</button>
     </form>
 
 </body>
