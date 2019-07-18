@@ -38,62 +38,32 @@ body {
   color: white;
 }
 
-/* Header for the top bar */
-header {
-  background-color: var(--header-BG-color);
-  width: 100%;
-  height: 60px;
-  display: flex;
-  flex-direction: row;
-  box-shadow: black 2px 2px 2px;
-}
-
-/* Logo Section */
-#logo 
-  /* This holds the logo (.logo) in place */
- {
-  background-color: var(--logo-BG-color);
-  float: left;
-  text-align: center;
-  color: white;
-
-  width: auto;
-  height: 100%;
-  flex-basis: 5%;
-  float: left;
-}
-.logo 
-  /* The logo inside the header */
- {
-  height: 40px;
-  width: 200px;
-  overflow: hidden;
-  float: left;
-  transform: translateY(8px) translateX(10px);
-}
-
 /* SIGN UP FORM */
 form#SignupForm /* This is the sign page form */
  {
-  width: 600px;
-  padding: 40px;
-  height: 60vh;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: var(--background-color);
+  width: 100%;
+  height: 90vh;
+  padding-top: 10vh;
   text-align: center;
+
+  display: grid;
+  grid-template-areas: 
+  "inputs"
+  "buttons";
+  grid-template-columns: 100%;
+  grid-template-rows: 10% 15%;
 }
 
 form#SignupForm h1 /* The H1 inside the form */
  {
+  margin: 0;
   text-transform: uppercase;
   font-weight: 500;
 }
 
 form#SignupForm input /* The inputs inside the form */
  {
+  grid: inputs;
   border: 0;
   background: none;
   display: block;
@@ -101,27 +71,28 @@ form#SignupForm input /* The inputs inside the form */
   text-align: center;
   border: 2px solid var(--button-BG-color);
   padding: 14px 10px;
-  width: 300px;
+  width: 25%;
   outline: none;
   color: white;
   border-radius: 22px;
   transition: 0.2s;
 }
 
-form#SignupForm button {
+.signup-button {
+  grid: buttons;
   border: 0;
   background: none;
   display: block;
   text-align: center;
   border: 2px solid var(--button-submit);
   width: 150px;
-  margin: 10px 10px;
+  margin: 0 auto;
   font-size: 18px;
   outline: none;
   color: white;
   border-radius: 28px;
   transition: 0.2s;
-  transform: translateX(210px);
+  padding: 8px;
 }
 
 form#SignupForm input:focus 
@@ -132,40 +103,20 @@ form#SignupForm input:focus
   transition: 0.25s;
 }
 
-form#SignupForm button#signup-button-1 {
-  text-align: center;
-}
-
-#signup-button:hover {
+.signup-button:hover {
   background: rgba(0, 0, 0, 0.486);
+  width: 160px;
   cursor: pointer;
 }
 
-#signup-button-1:hover {
-  background: rgba(0, 0, 0, 0.486);
-  cursor: pointer;
+#SignupForm > p > a {
+  font-style: none;
+  color: white;
 }
 
-#signup-button {
-  width: 100%;
-  background: var(--background-color);
-  height: 50px;
-  margin: 0 none;
-  padding: 0 none;
-  border: none;
-  color: white;
-  text-align: center;
-}
-
-#signup-button-1 {
-  width: 100%;
-  background: var(--background-color);
-  height: 50px;
-  margin: 0 none;
-  padding: 0 none;
-  border: none;
-  color: white;
-  text-align: center;
+#SignupForm > p > a:hover {
+  transition: ease-out 0.2s;
+  color: rgba(218, 218, 218, 0.808);
 }
 
 /* Media Controls */
@@ -180,7 +131,7 @@ form#SignupForm button#signup-button-1 {
     width: 100%;
   }
 
-  form#SignupForm button#signup-button-1 {
+  form#SignupForm button#signup-button {
     transform: translateX(65%);
   }
 }
