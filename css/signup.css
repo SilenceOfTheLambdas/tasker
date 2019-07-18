@@ -78,8 +78,7 @@ form#SignupForm input /* The inputs inside the form */
   transition: 0.2s;
 }
 
-.signup-button,
-.return-button {
+.signup-button {
   grid: buttons;
   border: 0;
   background: none;
@@ -104,8 +103,7 @@ form#SignupForm input:focus
   transition: 0.25s;
 }
 
-.signup-button:hover,
-.return-button:hover {
+.signup-button:hover {
   background: rgba(0, 0, 0, 0.486);
   width: 160px;
   cursor: pointer;
