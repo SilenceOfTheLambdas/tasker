@@ -313,7 +313,7 @@ div.item {
   padding: 4px;
   background: var(--task-BG-color);
   box-shadow: black 2px 2px 1px;
-  color: rgb(14, 14, 14);
+  color: white;
 }
 
 div.item-overdue {
@@ -322,7 +322,7 @@ div.item-overdue {
   background: var(--task-BG-color);
   box-shadow: black 2px 2px 1px;
   border: solid var(--task-overdue) 4px;
-  color: rgb(14, 14, 14);
+  color: white;
 }
 
 div.item-high {
@@ -331,7 +331,7 @@ div.item-high {
   background: var(--task-BG-color);
   box-shadow: black 2px 2px 1px;
   border: solid var(--task-high) 2px;
-  color: rgb(14, 14, 14);
+  color: white;
 }
 
 div.item-medium {
@@ -340,7 +340,7 @@ div.item-medium {
   background: var(--task-BG-color);
   box-shadow: black 2px 2px 1px;
   border: solid var(--task-medium) 2px;
-  color: rgb(14, 14, 14);
+  color: white;
 }
 /* Task Title */
 
