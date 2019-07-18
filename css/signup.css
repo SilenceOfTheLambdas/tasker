@@ -111,6 +111,16 @@ form#SignupForm input:focus
   cursor: pointer;
 }
 
+#SignupForm > p > a {
+  font-style: none;
+  color: white;
+}
+
+#SignupForm > p > a:hover {
+  transition: ease-out 0.2s;
+  color: rgba(218, 218, 218, 0.808);
+}
+
 /* Media Controls */
 @media screen and (max-width: 636px) /* when the screen reaches less than 635px */ {
   form#SignupForm {
