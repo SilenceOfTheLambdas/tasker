@@ -6,7 +6,7 @@
 :root /* The variables */
  {
   --background-color: #f7f7f7;
-  --header-BG-color: #15171de6;
+  --header-BG-color: #15171d;
   --task-container-border: #15171d;
   --logo-BG-color: #15171de6;
   --box-BG-color: #ebebeb00;
@@ -615,6 +615,7 @@ form.add-item > button:hover {
   bottom: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.8);
+  color: white;
   z-index: 9999;
   width: 100%;
   opacity: 0;
@@ -706,6 +707,23 @@ textarea.description {
   transition: ease-in 0.2s;
   color: var(--button-hover-color);
   font-size: 1em;
+}
+
+footer {
+  background: rgb(20, 20, 20);
+  color: white;
+
+  margin: 0;
+  padding: 0;
+  height: 40px;
+  width: 100%;
+}
+
+footer > p {
+  margin: 0 auto;
+  padding: 8px;
+  color: white;
+  text-align: center;
 }
 
 /* Media Controls */

@@ -209,7 +209,10 @@ if (!isset($_SESSION['name'])) {
         </div>
 
     </div>
-
+    
+<footer>
+    <p>Callum-James Smith | <a href="mailto:csmith99@protonmail.com">csmith99@protonmail.com</a></p>
+</footer>
 </body>
 <script>
     document.getElementById("open-modal").onclick = function() // Stop the modal boxes from appearing quickly every time the page is refreshed
