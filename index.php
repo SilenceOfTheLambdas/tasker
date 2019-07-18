@@ -18,6 +18,8 @@ if (isset($_SESSION['name']) && isset($_SESSION['id'])) // If the user already h
 
 if (isset($_GET['verify'])) {
     echo '<div><p style="color:black">Please verify your account! (Check your email)<p></div>';
+} else if ($_GET['error'] == "accountnotactivated") {
+    echo '<div><p style="color:black">Account not activated yet!<p></div>';
 }
 
 if(isset($_GET['email']) && !empty($_GET['email']) AND isset($_GET['hash']) && !empty($_GET['hash'])){
