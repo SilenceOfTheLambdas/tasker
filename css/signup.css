@@ -87,14 +87,13 @@ form#SignupForm input /* The inputs inside the form */
   text-align: center;
   border: 2px solid var(--button-submit);
   width: 150px;
-  margin: 10px 10px;
+  margin: 0 auto;
   font-size: 18px;
   outline: none;
   color: white;
   border-radius: 28px;
   transition: 0.2s;
-  transform: translateX(210px);
-  text-align: center;
+  padding: 8px;
 }
 
 form#SignupForm input:focus 

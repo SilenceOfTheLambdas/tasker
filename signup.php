@@ -30,8 +30,8 @@
         <input type="password" name="password" placeholder="Password..."><br>
         <input type="Password" name="password-repeat" placeholder="Re-enter password..."><br>
 
-        <button class='signup-button' type="submit" name="signup-submit">Sign Up</button>
-        <button class='return-button' type="submit" name="back">Return</button>
+        <button class='signup-button' type="submit" name="signup-submit">Sign Up</button><br>
+        <p><a href="index.php"><i class="fas fa-reply"></i> return</a></p>
     </form>
 
 </body>
