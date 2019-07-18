@@ -15,6 +15,28 @@ if (isset($_SESSION['name']) && isset($_SESSION['id'])) // If the user already h
         $projectID = LastSelectedProject();
         header("Location: landing.php?projects=$projectID");
     }
+
+if (isset($_GET['verify'])) {
+    echo '<div><p style="color:black">Please verify your account! (Check your email)<p></div>';
+} else if ($_GET['error'] == "accountnotactivated") {
+    echo '<div><p style="color:black">Account not activated yet!<p></div>';
+}
+
+if(isset($_GET['email']) && !empty($_GET['email']) AND isset($_GET['hash']) && !empty($_GET['hash'])){
+    require 'db.php';
+    // Verify data
+    $email = $_GET['email']; // Set email variable
+    $hash = $_GET['hash']; // Set hash variable
+
+    $search = mysqli_query($connection,"SELECT email, hash, verfied FROM users WHERE email='".$email."' AND hash='".$hash."' AND verfied='0'") or die(mysqli_error($connection));
+    $match  = mysqli_num_rows($search);
+
+    if ($match) {
+        mysqli_query($connection,"UPDATE users SET verfied='1' WHERE email='".$email."' AND hash='".$hash."' AND verfied='0'") or die(mysqli_error($connection));
+        echo '<div>Your account has been activated, you can now login</div>';
+    }
+
+}
 ?>
 
 <head>

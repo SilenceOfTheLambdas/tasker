@@ -33,6 +33,16 @@ if (isset($_POST['signin-submit'])) {
                     $DBPasswordSQL = mysqli_query($connection, $PasswordQuery);
                     $row = mysqli_fetch_assoc($DBPasswordSQL);
                     $PasswordCheck = password_verify($password, $row['password']);
+                    
+                    $verify = "SELECT verfied FROM users WHERE email='" . $email . "'";
+                    $query = mysqli_query($connection, $verify);
+                    $verifyRow = mysqli_fetch_assoc($query);
+                    $Verified = $verifyRow['verfied'];
+
+                    if ($Verified == 0) {
+                        header("Location: index.php?error=accountnotactivated");
+                        exit();
+                    }
 
                     if ($PasswordCheck == true) // If so then check to see of the password for that user matches
                         {
@@ -66,8 +76,4 @@ if (isset($_POST['signin-submit'])) {
                 exit();
             }
         }
-} else if (isset($_POST['signup-submit'])) // If the user selects the signup-submit button
-    {
-        header("Location: signup.php");
-        exit();
-    }
+}
