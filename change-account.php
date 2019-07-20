@@ -5,7 +5,9 @@
  */
 require_once 'db.php';
 session_start();
-if (isset($_GET['new-name'])) {
+if (isset($_GET['new-name'])) 
+// Change users username
+{
 
     $newName = $_GET['new-name'];
 
@@ -20,17 +22,40 @@ if (isset($_GET['new-name'])) {
     $_SESSION['name'] =  $newName; // I changed the session variable value so the user hello section will work
     header("Location: account.php");
     exit();
-} else if (isset($_GET['new-email'])) {
+} 
+else if (isset($_GET['new-email'])) 
+// Change users email address
+{
 
     $newEmail = $_GET['new-email'];
-
     if (!filter_var($newEmail, FILTER_VALIDATE_EMAIL)) {
         header("Location: account.php?error=invalidemail");
         // ^ throws an error and returns the user back to the account page
         exit();
     }
 
-    mysqli_query($connection, "UPDATE users SET email='" . $newEmail . "' WHERE id=" . $_SESSION['id'] . "");
-    header("Location: account.php");
+    require 'send-mail.inc.php';
+    send_mail($newEmail, $_SESSION['name']);
+
+
+    // mysqli_query($connection, "UPDATE users SET email='" . $newEmail . "' WHERE id=" . $_SESSION['id'] . "");
+    header("Location: account.php?verify=newemail");
     exit();
+}
+
+if(isset($_GET['email']) && !empty($_GET['email']) AND isset($_GET['hash']) && !empty($_GET['hash'])){
+    require 'db.php';
+    // Verify data
+    $email = $_GET['email']; // Set email variable
+    $hash = $_GET['hash']; // Set hash variable
+
+    $search = mysqli_query($connection,"SELECT email, hash, verfied FROM users WHERE email='".$email."' AND hash='".$hash."' AND verfied='0'") or die(mysqli_error($connection));
+    $match  = mysqli_num_rows($search);
+
+    if ($match) {
+        mysqli_query($connection, "UPDATE users SET email='" . $newEmail . "' WHERE id=" . $_SESSION['id'] . "") or die(mysqli_error($connection));
+        header("Location: account.php?email_verified");
+        exit();
+    }
+
 }

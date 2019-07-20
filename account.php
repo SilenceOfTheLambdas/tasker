@@ -1,9 +1,17 @@
+<?php
+session_start();
+?>
 <!-- 
     User's account information will be display here. Allowing the user to edit details of they wish.
     Created by: Callum-James Smith (cs18804)
  -->
 <?php
-session_start();
+    if (isset($_GET['verify'])) {
+        echo '<div><p style="color:white">Please verify your new email! (Check your email)<p></div>';
+    }
+    if (isset($_GET['email_verified'])) {
+        echo '<div><p style="color:white">Your email has been successfully changed.<p></div>';
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">

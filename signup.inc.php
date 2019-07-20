@@ -78,7 +78,7 @@ if (isset($_POST['signup-submit'])) // Checks to see if user clicked "signup"
             $Project = ProjectID();
 
             // Send the email
-            $to      = 'techdragonsoft@gmail.com'; // Send email to our user
+            $to      = $email; // Send email to our user
             $subject = 'Tasker.io Sign Up'; // Give the email a subject 
             $message = '
             
