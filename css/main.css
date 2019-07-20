@@ -5,15 +5,15 @@
 
 :root /* The variables */
  {
-  --background-color: #15171d;
-  --header-BG-color: rgba(21, 23, 29, 0.9);
-  --logo-BG-color: rgba(21, 23, 29, 0.9);
-  --search-BG-color: rgba(21, 23, 29, 0.9);
+  --background-color: #f7f7f7;
+  --header-BG-color: #15171d;
+  --task-container-border: #15171d;
+  --logo-BG-color: #15171de6;
   --box-BG-color: #ebebeb00;
   --button-BG-color: #e95678;
   --button-hover-color: rgba(233, 86, 120, 0.39);
-  --task-BG-color: #ebebeb;
-  --task-overdue: #720b23;
+  --task-BG-color: #15171d;
+  --task-overdue: #070606;
   --task-high: #c70f3a;
   --task-medium: rgb(223, 77, 111);
   --input-focus: #3fdaa4;
@@ -34,111 +34,19 @@ body {
   padding: 0;
   font-family: "SF-UI-Text-Regular", "Sans Serif";
   background-color: var(--background-color);
-  color: white;
+  color: black;
   font-style: none;
 }
-
-/* LOGIN/Sign up PAGE */
-
-form#LoginForm input:focus 
-/* When the login form and signup form inputs are hovered over */
- {
-  width: 340px;
-  border-color: var(--input-focus);
-  transition: 0.25s;
-}
-
-form#LoginForm button#signin-button {
-  float: left;
-  clear: both;
-}
-
-#signin-button {
-  width: 100%;
-  background: var(--background-color);
-  height: 50px;
-  margin: 0 none;
-  padding: 0 none;
-  border: none;
-  color: white;
-  text-align: center;
-}
-#signin-button:hover {
-  background: rgba(0, 0, 0, 0.486);
-  cursor: pointer;
-}
-
-/* Footer */
-footer {
-  width: 100%;
-  height: 80px;
-  background: var(--header-BG-color);
-  box-shadow: black 0 -4px 4px -4px;
-
-  z-index: 99;
-  position: absolute;
-  bottom: 0;
-}
-
-footer > pre {
-  text-align: center;
-  transform: translateY(50%);
-}
-
-/* This changes the colour of the placeholder text */
-textarea::-webkit-input-placeholder {
-  color: rgba(255, 255, 255, 0.404);
-  border: none;
-}
-
-input:-moz-placeholder {
-  /* Firefox 18- */
-  color: rgba(255, 255, 255, 0.404);
-  border: none;
-}
-
-input::-moz-placeholder {
-  /* Firefox 19+ */
-  color: rgba(255, 255, 255, 0.404);
-  border: none;
-}
-
-input:-ms-input-placeholder {
-  color: rgba(255, 255, 255, 0.404);
-  border: none;
-}
-
-input::-webkit-input-placeholder {
-  color: rgba(255, 255, 255, 0.404);
-  border: none;
-}
-
-input:-moz-placeholder {
-  /* Firefox 18- */
-  color: rgba(255, 255, 255, 0.404);
-  border: none;
-}
-
-input::-moz-placeholder {
-  /* Firefox 19+ */
-  color: rgba(255, 255, 255, 0.404);
-  border: none;
-}
-
-input:-ms-input-placeholder {
-  color: rgba(255, 255, 255, 0.404);
-  border: none;
-}
-
-/* LOGIN PAGE ENDS */
 
 /* Header for the top bar */
 header {
   background-color: var(--header-BG-color);
   width: 100%;
   height: 60px;
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-areas:
+  "logo projects projects-add spacer hello sign-out";
+  grid-template-columns: 240px 150px 50px auto 100px 120px;
   box-shadow: black 2px 2px 2px;
 }
 
@@ -146,21 +54,18 @@ header {
 #logo 
 /* This holds the logo (.logo) in place */
  {
+  grid: logo;
   background-color: var(--logo-BG-color);
   float: left;
   text-align: center;
   color: white;
-
-  width: auto;
   height: 100%;
-  flex-basis: 5%;
-  float: left;
 }
 .logo 
 /* The logo inside the header */
  {
   height: 40px;
-  width: 200px;
+  width: auto;
   overflow: hidden;
   float: left;
   transform: translateY(8px) translateX(10px);
@@ -168,13 +73,14 @@ header {
 
 /* Project Selection */
 div.project-selector {
-  flex-basis: 10%;
+  grid: projects;
   height: 100%;
   transform: translateX(30px);
 }
 
 div.project-selector > form {
   height: 100%;
+  width: auto;
   text-align: center;
 }
 
@@ -187,10 +93,13 @@ div.project-selector > form > select > option {
 
 div.new-project /* This holds two buttons used to add and remove projects */
  {
+  grid: projects-add;
   position: relative; /* Used to center DIV vertically */
   top: 50%;
-  transform: translateX(100%) translateY(-100%);
+  transform: translateX(100%) translateY(-75%);
 
+  display: flex;
+  flex-direction: column;
   border: none;
   width: auto;
   height: 20px;
@@ -199,9 +108,9 @@ div.new-project /* This holds two buttons used to add and remove projects */
 
 div.new-project > button,
 div.new-project > form > button {
-  background: var(--search-BG-color);
+  background: none;
   border: none;
-  color: green;
+  color: white;
   text-align: center;
   height: 100%;
   width: 25px;
@@ -214,10 +123,11 @@ div.new-project > button:hover {
 }
 
 #project_selector {
+  grid: projects;
   position: relative; /* Used to center DIV vertically */
   top: 50%;
 
-  background: var(--search-BG-color);
+  background: none;
   border: none;
   width: auto;
   height: 30px;
@@ -234,18 +144,19 @@ div.new-project > button:hover {
   transition: ease-in 0.2s;
 }
 
+/* Spacer */
+#Spacer {
+  grid: spacer;
+}
+
 /* User Section */
 #user {
+  grid: hello;
   background-color: var(--header-BG-color);
   color: white;
   text-align: center;
-
-  width: 20%;
   height: 100%;
-
   border: none;
-  flex-basis: 80%;
-  float: right;
 }
 
 #userHello {
@@ -255,8 +166,8 @@ div.new-project > button:hover {
 }
 
 #signout {
+  grid: sign-out;
   background-color: #e95678;
-  color: black;
 
   width: auto;
   height: 100%;
@@ -268,7 +179,6 @@ div.new-project > button:hover {
 
 #account {
   background-color: #3fc4de;
-  color: black;
 
   width: auto;
   height: 100%;
@@ -287,7 +197,7 @@ div.completed-container-wrapper {
   width: 45%;
   height: 100%;
   flex-basis: 20%;
-  color: rgba(255, 255, 255, 0.603);
+  color: rgba(20, 20, 20, 0.603);
 }
 
 /* Container */
@@ -304,12 +214,15 @@ div.container {
   height: 5px;
 }
 
+/* Holds the sorting buttons */
 div.sorting {
   width: 100%;
   height: 50px;
+  display: grid;
+  grid-template-areas: "Buttons Add-Task";
+  grid-template-columns: 15% 20% 15% 20% 30%;
   background: none;
   text-align: left;
-  margin-top: -10px;
 }
 
 div.sorting > p {
@@ -317,8 +230,9 @@ div.sorting > p {
 }
 
 div.sorting > form {
-  float: left;
-  display: inline;
+  grid: Buttons;
+  float: left; /* is NOT ignored, keeps buttons as a row! */
+  /* display: inline; not Needed */
   margin-left: 20px;
 }
 
@@ -326,7 +240,7 @@ div.sorting > form > button {
   background: none;
   border-radius: 48px;
   border: #3fdaa49f solid 2px;
-  color: white;
+  color: black;
   float: left;
   font-size: 20px;
   margin-left: 20px;
@@ -337,6 +251,10 @@ div.sorting > form > button:hover {
   transition: 0.3s;
   background: #3fdaa49f;
   cursor: pointer;
+}
+
+div.addItem {
+  grid: Add-Task;
 }
 
 div#sorting {
@@ -370,7 +288,8 @@ div.box-1 {
   clear: both;
   overflow: auto;
   padding: 4px;
-  border: white solid 2px;
+  border: solid 2px;
+  border-color: var(--task-container-border);
 }
 
 div.box-3 {
@@ -380,7 +299,7 @@ div.box-3 {
   height: 85vh;
   overflow: auto;
   padding: 4px;
-  border: rgba(255, 255, 255, 0.664) solid 2px;
+  border: #15171dc2 solid 2px;
 }
 
 div.box-3 > div.item {
@@ -394,7 +313,7 @@ div.item {
   padding: 4px;
   background: var(--task-BG-color);
   box-shadow: black 2px 2px 1px;
-  color: rgb(14, 14, 14);
+  color: white;
 }
 
 div.item-overdue {
@@ -403,7 +322,7 @@ div.item-overdue {
   background: var(--task-BG-color);
   box-shadow: black 2px 2px 1px;
   border: solid var(--task-overdue) 4px;
-  color: rgb(14, 14, 14);
+  color: white;
 }
 
 div.item-high {
@@ -412,7 +331,7 @@ div.item-high {
   background: var(--task-BG-color);
   box-shadow: black 2px 2px 1px;
   border: solid var(--task-high) 2px;
-  color: rgb(14, 14, 14);
+  color: white;
 }
 
 div.item-medium {
@@ -421,7 +340,7 @@ div.item-medium {
   background: var(--task-BG-color);
   box-shadow: black 2px 2px 1px;
   border: solid var(--task-medium) 2px;
-  color: rgb(14, 14, 14);
+  color: white;
 }
 /* Task Title */
 
@@ -472,7 +391,7 @@ button {
 div.addItem,
 div.editItem {
   /* The holder for the add item button */
-  float: right;
+  margin: 0 auto;
   display: block;
   margin-top: -15px;
 }
@@ -481,7 +400,7 @@ button.add-item-button {
   /* The button itself */
   cursor: pointer;
   background: none;
-  color: white;
+  color: black;
   width: 200px;
   border-radius: 48px;
   border: #c70f3a 2px solid;
@@ -490,7 +409,7 @@ button.add-item-button {
 
 button.add-item-button > a {
   /* The button itself */
-  color: white;
+  color: black;
   font-style: none;
   text-decoration: none;
 }
@@ -583,7 +502,7 @@ button.undo-buttons:hover {
 
 form.add-item {
   width: 80%;
-  height: auto;
+  height: 100%;
   background-color: transparent;
 }
 
@@ -615,7 +534,7 @@ form.add-item > input {
   border-width: 0px 0px 1px 0px;
   background: transparent;
   border-color: white;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 
 #datepicker {
@@ -653,7 +572,7 @@ form.edit-item > select {
   border: none;
   border-bottom: #ebebeb 1px solid;
   width: auto;
-  height: 4vh;
+  height: 28px;
   margin-bottom: 12px;
   color: white;
 }
@@ -696,6 +615,7 @@ form.add-item > button:hover {
   bottom: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.8);
+  color: white;
   z-index: 9999;
   width: 100%;
   opacity: 0;
@@ -713,7 +633,7 @@ form.add-item > button:hover {
 
 .modalDialog > div {
   width: 40%;
-  height: 50vh;
+  height: 82%;
   position: relative;
   margin: 0 auto;
   transform: translateY(-20%);
@@ -787,6 +707,23 @@ textarea.description {
   transition: ease-in 0.2s;
   color: var(--button-hover-color);
   font-size: 1em;
+}
+
+footer {
+  background: rgb(20, 20, 20);
+  color: white;
+
+  margin: 0;
+  padding: 0;
+  height: 40px;
+  width: 100%;
+}
+
+footer > p {
+  margin: 0 auto;
+  padding: 8px;
+  color: white;
+  text-align: center;
 }
 
 /* Media Controls */

@@ -101,4 +101,8 @@ if (isset($_POST['signup-submit'])) // Checks to see if user clicked "signup"
             exit();
         }
     }
+else if (isset($_POST['back'])) {
+    header("Location: index.php");
+    exit();
+}
 

@@ -24,16 +24,6 @@ if (!isset($_SESSION['name'])) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script>
-    $( function() {
-        $( "#datepicker" ).datepicker({
-            dateFormat: "dd-mm-yy"
-        });
-    } );
-    </script>
-
     <!-- CSS -->
     <link rel='stylesheet' href="css/main.css" type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -90,6 +80,9 @@ if (!isset($_SESSION['name'])) {
             </div>
         </div>
 
+        <div id="Spacer">
+        </div>
+
         <div id="user">
             <?php 
             echo ('
@@ -142,24 +135,23 @@ if (!isset($_SESSION['name'])) {
                 </form>
 
 
-            <div class="addItem">
-                <!-- This holds the add item div-->
+                <div class="addItem">
+                    <!-- This holds the add item div-->
+                    <button class="add-item-button" id="add-item"><a href="#openModal" id="open-modal"><i class="far fa-plus-square"></i> Add Task</a></button> <!-- button to activate modal -->
 
-                <button class="add-item-button" id="add-item"><a href="#openModal" id="open-modal"><i class="far fa-plus-square"></i> Add Task</a></button> <!-- button to activate modal -->
-
-                <div id="openModal" class="modalDialog" style="display: none;">
-                    <!-- The modal box that holds everything -->
-                    <div>
-                        <!-- the element inside -->
-                        <a href="#close" title="Close" class="close">X</a> <!-- The close button -->
-                        <h1>Add Task</h1>
-                        <?php 
-                        AddTask();
-                        ?>
+                    <div id="openModal" class="modalDialog" style="display: none;">
+                        <!-- The modal box that holds everything -->
+                        <div>
+                            <!-- the element inside -->
+                            <a href="#close" title="Close" class="close">X</a> <!-- The close button -->
+                            <h1>Add Task</h1>
+                            <?php 
+                            AddTask();
+                            ?>
+                        </div>
                     </div>
-                </div>
 
-            </div>
+                </div>
             </div>
 
             <div class="box-1">
@@ -218,7 +210,10 @@ if (!isset($_SESSION['name'])) {
         </div>
 
     </div>
-
+    
+<footer>
+    <p>Callum-James Smith | <a href="mailto:csmith99@protonmail.com">csmith99@protonmail.com</a></p>
+</footer>
 </body>
 <script>
     document.getElementById("open-modal").onclick = function() // Stop the modal boxes from appearing quickly every time the page is refreshed

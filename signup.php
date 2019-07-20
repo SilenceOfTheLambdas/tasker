@@ -1,8 +1,5 @@
 <!-- 
-    Tasker.io
-    A task management system
     This is the signup page.
-    Created by: Callum-James Smith (cs18804)
  -->
 <!DOCTYPE html>
 
@@ -24,13 +21,6 @@
 
 <body>
 
-    <header>
-        <div id="logo">
-            <!-- Logo goes here -->
-            <img class="logo" src="images/Logo-header.png" alt="Tasker.io logo">
-        </div>
-    </header>
-
     <form id="SignupForm" action="signup.inc.php" method="post">
         <h1>Sign Up</h1>
         <?php
@@ -40,13 +30,9 @@
         <input type="password" name="password" placeholder="Password..."><br>
         <input type="Password" name="password-repeat" placeholder="Re-enter password..."><br>
 
-        <button id='signup-button-1' type="submit" name="signup-submit">Sign Up</button>
+        <button class='signup-button' type="submit" name="signup-submit">Sign Up</button><br>
+        <p><a href="index.php"><i class="fas fa-reply"></i> return</a></p>
     </form>
-    <div>
-        <form action="index.php">
-            <button id='signup-button-1' type="submit" name="back">Return</button>
-        </form>
-    </div>
 
 </body>
 
