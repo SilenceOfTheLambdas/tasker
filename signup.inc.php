@@ -63,17 +63,44 @@ if (isset($_POST['signup-submit'])) // Checks to see if user clicked "signup"
                 exit();
             } else {
 
-            $sql = "INSERT INTO users(name,email,password) VALUES(?, ?, ?)";
+            // Create a new activation hash
+            $hash = md5( rand(0,1000));
+
+            $sql = "INSERT INTO users(name,email,password,hash) VALUES(?, ?, ?,?)";
             $stmt = mysqli_stmt_init($connection);
             if (!mysqli_stmt_prepare($stmt, $sql)) {
                 header("Location: signup.php?sqlerror");
                 exit();
             }
-            mysqli_stmt_bind_param($stmt, "sss", $name, $email, $HashedPassword);
+            mysqli_stmt_bind_param($stmt, "ssss", $name, $email, $HashedPassword, $hash);
             mysqli_stmt_execute($stmt);
             include_once "functions.inc.php";
             $Project = ProjectID();
-            header("Location: index.php?signup=success&projects=$Project");
+
+            // Send the email
+            $to      = 'techdragonsoft@gmail.com'; // Send email to our user
+            $subject = 'Tasker.io Sign Up'; // Give the email a subject 
+            $message = '
+            
+            Thanks for signing up!
+            Your account has been created, you can login with the following credentials after you have activated your account by pressing the url below.
+            
+            Thanks for signing up!
+            Your account has been created, you can login with the following credentials after you have activated your account by pressing the url below.
+            
+            ------------------------
+            Username: '.$name.'
+            Password: '.$password.'
+            ------------------------
+            
+            Please click this link to activate your account:
+            http://localhost/index.php?email='.$email.'&hash='.$hash.'
+            
+            '; // Our message above including the link
+                                
+            $headers = 'From:admin@techanddragons.co.uk' . "\r\n"; // Set from headers
+            mail($to, $subject, $message, $headers); // Send our email
+            header("Location: index.php?signup=success&projects=$Project&verify=verifyemail");
             exit();
         }
     }
