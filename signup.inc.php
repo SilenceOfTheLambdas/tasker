@@ -85,16 +85,13 @@ if (isset($_POST['signup-submit'])) // Checks to see if user clicked "signup"
             Thanks for signing up!
             Your account has been created, you can login with the following credentials after you have activated your account by pressing the url below.
             
-            Thanks for signing up!
-            Your account has been created, you can login with the following credentials after you have activated your account by pressing the url below.
-            
             ------------------------
             Username: '.$name.'
             Password: '.$password.'
             ------------------------
             
             Please click this link to activate your account:
-            http://localhost/index.php?email='.$email.'&hash='.$hash.'
+            https://www.techanddragons.co.uk/TEMP/index.php?email='.$email.'&hash='.$hash.'
             
             '; // Our message above including the link
                                 

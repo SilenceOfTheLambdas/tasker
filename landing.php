@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!-- 
     Tasker.io
     A task management system
@@ -7,8 +10,6 @@
 <!DOCTYPE html lang="en">
 <!-- Checks to see if the user has a session -->
 <?php
-
-session_start();
 if (!isset($_SESSION['name'])) {
     header("Location: index.php?error=nosession");
     exit();
