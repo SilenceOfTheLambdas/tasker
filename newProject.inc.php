@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <?php 
 /**
  * newProject.inc.php, this is responsible for making new projects and adding them to the database.
@@ -13,7 +16,6 @@ if (isset($_POST['add-project'])) {
         exit();
     }
 
-    session_start();
     include_once "functions.inc.php";
     $Project = ProjectID();
 

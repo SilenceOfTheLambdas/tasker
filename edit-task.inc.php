@@ -1,11 +1,13 @@
 <?php
+session_start();
+?>
+<?php
 /**
  * edit-task.inc.php, This is used to apply changes to a task made by the user.
  * Created by Callum-James Smith (cs18804)
  */
 require 'db.php';
 require_once 'functions.inc.php';
-session_start();
 
 $Task_Title = $_GET['title'];
 $Task_Desc = $_GET['task-desc'];

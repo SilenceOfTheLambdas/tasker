@@ -1,4 +1,7 @@
 <?php
+session_start(); // You must have session_start() whenever adjusting the values for $_SESSION
+?>
+<?php
 /**
  * signout.inc.php 
  * Used to sign the user out and stop the session
@@ -7,8 +10,6 @@
 
 if (isset($_POST['signout'])) // if the user selects the sign out button
     {
-        session_start(); // You must have session_start() whenever adjusting the values for $_SESSION
-
         session_destroy(); // destroy the session 
         session_unset(); // unset any variables associated with the session
         unset($_SESSION['name']); // do this for both vars

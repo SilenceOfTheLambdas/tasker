@@ -1,4 +1,7 @@
 <?php
+session_start();
+?>
+<?php
  /*
  * login.inc.php
  * handles the login request from the user.
@@ -46,7 +49,6 @@ if (isset($_POST['signin-submit'])) {
 
                     if ($PasswordCheck == true) // If so then check to see of the password for that user matches
                         {
-                            session_start();
                             $_SESSION['id'] = $row['id'];
                             $_SESSION['name'] = $row['name'];
                             $_SESSION['email'] = $row['email'];

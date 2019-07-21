@@ -1,4 +1,7 @@
 <?php
+session_start();
+?>
+<?php
 /**
  * addItem.inc.php, this script is responsible for creating tasks and adding them into the tasks table.
  * Created by Callum-James Smith (cs18804)
@@ -7,7 +10,6 @@
 require 'db.php';
 
 if (isset($_POST['add-task'])) {
-    session_start();
     require_once 'functions.inc.php';
 
     $ProjectTitle = $_GET['add-task'];

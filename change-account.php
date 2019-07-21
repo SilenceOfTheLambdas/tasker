@@ -1,10 +1,12 @@
 <?php
+session_start();
+?>
+<?php
 /**
  * change-account.php, this script allows the user to change their username and email address.
  * Created by Callum-James Smith (cs18804)
  */
 require_once 'db.php';
-session_start();
 if (isset($_GET['new-name'])) 
 // Change users username
 {
