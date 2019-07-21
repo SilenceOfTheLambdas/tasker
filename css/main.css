@@ -55,12 +55,12 @@ header {
 /* This holds the logo (.logo) in place */
  {
   grid: logo;
-  /* background-color: var(--logo-BG-color); */
-  background-color: pink;
+  background-color: var(--logo-BG-color);
   float: left;
   text-align: center;
   color: white;
   height: 100%;
+  margin: 0;
 }
 .logo 
 /* The logo inside the header */
@@ -77,7 +77,6 @@ div.project-selector {
   grid: projects;
   height: 100%;
   transform: translateX(30px);
-  background-color: pink;
 }
 
 div.project-selector > form {

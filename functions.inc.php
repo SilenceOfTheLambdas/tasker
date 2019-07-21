@@ -1,4 +1,7 @@
 <?php
+session_start();
+?>
+<?php
 /**
  * functions.inc.php, a place for all functions that will be used.
  * Created by: Callum-James Smith (cs18804)
