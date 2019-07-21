@@ -16,4 +16,5 @@ if (isset($_POST['signout'])) // if the user selects the sign out button
         $_SESSION = array(); // set $_SESSION equal to an empty array
 
         header("location: index.php?logout=successful"); // then take them back to the login page
+        exit();
     }

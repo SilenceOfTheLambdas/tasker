@@ -34,7 +34,7 @@ else if (isset($_GET['new-email']))
         exit();
     }
 
-    require 'send-mail.inc.php';
+    require 'functions.inc.php';
     send_mail($newEmail, $_SESSION['name']);
 
 

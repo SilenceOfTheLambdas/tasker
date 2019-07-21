@@ -16,6 +16,7 @@ if (isset($_SESSION['name']) && isset($_SESSION['id'])) // If the user already h
         include_once 'functions.inc.php';
         $projectID = LastSelectedProject();
         header("Location: landing.php?projects=$projectID");
+        exit();
     }
 
 if (isset($_GET['verify'])) {
