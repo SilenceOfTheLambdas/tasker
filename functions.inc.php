@@ -108,8 +108,6 @@ function ProjectSelector()
 
     $last_project_name_sql = "SELECT * FROM projects,users WHERE user_id='" . $_SESSION['id'] . "' AND projectID=users.last_project"; // Selects the project ID
     $last_project_name_result = $connection->query($last_project_name_sql); // Stores the result
-    $last_project__name_row = $last_project_name_result->fetch_assoc();
-    $LastSelectedProjectName = $last_project__name_row['project_name'];
     $PROJECT_NAME_RESULT = $connection->query($PROJECT_NAME_SQL);
 
     echo ('
@@ -306,7 +304,6 @@ function PrintCompletedTasks()
                 $task_desc = $row['task_desc'];
                 $task_date = date('D-d-M-Y', strtotime($row['task_date'])); // Converts the date format to something better
                 $task_time = $row['task_time'];
-                $TaskState = $row['task_state'];
                 echo ('
             <div class="item">
 
