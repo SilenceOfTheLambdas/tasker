@@ -1,6 +1,6 @@
 # Tasker.io
 
-![alt](/images/Logo-header.png)
+![The offical Logo](/images/Tasker.io_Transparent.png)
 
 A task management website built with PHP, HTML5 and CSS3\. This was made as part of an assignment for University that I have decided to take further.
 
