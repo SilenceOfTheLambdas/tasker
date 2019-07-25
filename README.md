@@ -1,5 +1,7 @@
 # Tasker.io
 
+![alt](/images/Logo-header.png)
+
 A task management website built with PHP, HTML5 and CSS3\. This was made as part of an assignment for University that I have decided to take further.
 
 ---
@@ -10,6 +12,7 @@ A task management website built with PHP, HTML5 and CSS3\. This was made as part
 
 - Simple but beautiful design
 - Sort tasks by date and priority
+- Fully K.I.S.S compliant
 
 - Fully Responsive, well...kinda
 
