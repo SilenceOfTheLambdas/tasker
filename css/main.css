@@ -1,13 +1,11 @@
 /*
 * main.css, this is mainly used for the landing page; including the popup boxes etc.
-* Created by Callum-James Smith (cs18804)
 */
 
 :root /* The variables */
  {
   --background-color: #f7f7f7;
   --header-BG-color: #15171d;
-  --task-container-border: #15171d;
   --logo-BG-color: #15171de6;
   --box-BG-color: #ebebeb00;
   --button-BG-color: #e95678;
@@ -584,28 +582,28 @@ form.edit-item > select {
 }
 
 form.edit-item > button {
-  background: var(--button-BG-color);
-  border: none;
+  background: none;
+  border: #c70f3a 2px solid;
   color: white;
   cursor: pointer;
 }
 
 form.edit-item > button:hover {
   transition: ease-in 0.2s;
-  background: var(--button-hover-color);
+  background: #c70f3a;
   cursor: pointer;
 }
 
 form.add-item > button {
-  background: var(--button-BG-color);
-  border: none;
+  background: none;
+  border: #c70f3a 2px solid;
   color: white;
   cursor: pointer;
 }
 
 form.add-item > button:hover {
   transition: ease-in 0.2s;
-  background: var(--button-hover-color);
+  background: #c70f3a;
   cursor: pointer;
 }
 
