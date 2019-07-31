@@ -241,19 +241,17 @@ div.sorting > p {
 div.sorting > form {
   grid: Buttons;
   float: left; /* is NOT ignored, keeps buttons as a row! */
-  /* display: inline; not Needed */
   margin-left: 20px;
 }
 
 div.sorting > form > button {
   background: none;
-  border-radius: 48px;
+  border-radius: 0px;
   border: #3fdaa49f solid 2px;
   color: black;
   float: left;
   font-size: 20px;
   margin-left: 20px;
-  margin-top: 6px;
 }
 
 div.sorting > form > button:hover {
@@ -402,7 +400,6 @@ div.editItem {
   /* The holder for the add item button */
   margin: 0 auto;
   display: block;
-  margin-top: -15px;
 }
 
 button.add-item-button {
@@ -411,9 +408,8 @@ button.add-item-button {
   background: none;
   color: black;
   width: 200px;
-  border-radius: 48px;
+  border-radius: 0px;
   border: #c70f3a 2px solid;
-  margin-top: 20px;
 }
 
 button.add-item-button > a {
@@ -512,13 +508,13 @@ button.undo-buttons:hover {
 
 form.add-item {
   width: 80%;
-  height: 100%;
+  height: auto;
   background-color: transparent;
 }
 
 form.edit-item {
   width: 100%;
-  height: 100%;
+  height: auto;
   background: var(--header-BG-color);
 }
 
@@ -614,7 +610,6 @@ form.add-item > button:hover {
 }
 
 /* Adding Item Modal Box */
-
 .modalDialog {
   position: fixed;
   display: block;
@@ -715,8 +710,7 @@ textarea.description {
 
 .edit-buttons i:hover {
   transition: ease-in 0.2s;
-  color: var(--button-hover-color);
-  font-size: 1em;
+  color: rgb(160, 31, 84);
 }
 
 footer {

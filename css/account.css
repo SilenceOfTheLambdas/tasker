@@ -14,7 +14,7 @@
   font-family: "SF-UI-Text-Regular";
   src: url("fonts/otf/SF-UI-Text-Regular.otf") format("opentype");
   font-weight: 300;
-  font-style: medium;
+  font-style: normal;
 }
 
 body,
@@ -22,7 +22,7 @@ html {
   transition: ease-in 0.3s;
   margin: 0;
   padding: 0;
-  font-family: "SF-UI-Text-Regular", "monospace";
+  font-family: "SF-UI-Text-Regular", "Sans-serif";
   background-color: rgb(29, 29, 29);
   color: white;
 }

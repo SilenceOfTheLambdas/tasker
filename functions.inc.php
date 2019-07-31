@@ -1,4 +1,5 @@
 <?php
+
 /**
  * functions.inc.php, a place for all functions that will be used.
  * Created by: Callum-James Smith (cs18804)
@@ -12,8 +13,8 @@ if (isset($_GET['delete-project'])) {
 function ProjectID()
 {
     /**
- * function ProjectID(), this function obtained the the names of projects that the user has
- */
+     * function ProjectID(), this function obtained the the names of projects that the user has
+     */
     require 'db.php';
     if (isset($_SESSION['id'])) {
         $sql = "SELECT * FROM projects WHERE user_id=" . $_SESSION['id'] . "";
@@ -27,81 +28,81 @@ function ProjectID()
 function LoginForm()
 {
     /**
- * function LoginForm(), this function provides the form that the user fills in to sign-in.
- * 
- *Vars:
- *  $_GET['error']  :   Obtained from the form located at index.php, says if an error has occurred.
- *  $_GET['email']  :   Obtained from the form located at index.php, provided if only if an email is passed in.
- *  $_GET['emptyemail'] :   Obtained from the form located at index.php, provided if the user DOES NOT enter an email.
- */
+     * function LoginForm(), this function provides the form that the user fills in to sign-in.
+     * 
+     *Vars:
+     *  $_GET['error']  :   Obtained from the form located at index.php, says if an error has occurred.
+     *  $_GET['email']  :   Obtained from the form located at index.php, provided if only if an email is passed in.
+     *  $_GET['emptyemail'] :   Obtained from the form located at index.php, provided if the user DOES NOT enter an email.
+     */
 
     if (isset($_GET['error'])) // If there is an error
+    {
+        if (isset($_GET['email'])) // If email is passed on
         {
-            if (isset($_GET['email'])) // If email is passed on
-                {
-                    echo ('<input type="email" style="margin-bottom: 20px;" name="email" id="email" value="' . $_GET['email'] . '" placeholder="Email..."><br/>');
-                    echo ('<input style="border-color: red;" type="password" name="password" id="password" placeholder="Incorrect password..."><br>');
-                } else // if not return form as normal
-                {
-                    echo ('<input type="email" style="margin-bottom: 20px;" name="email" id="email" placeholder="Email..."><br/>');
-                    echo ('<input type="password" name="password" id="password" placeholder="Password..."><br>');
-                }
-        } elseif (isset($_GET['emptyemail'])) // If the user does not enter an email
-        {
-            echo ('<input style="border-color: red; margin-bottom: 20px;" type="email" name="email" id="email" placeholder="Please enter email..."><br/>');
-            echo ('<input type="password" name="password" id="password" placeholder="Password..."><br>');
-        } else // Otherwise, print form normally
+            echo ('<input type="email" style="margin-bottom: 20px;" name="email" id="email" value="' . $_GET['email'] . '" placeholder="Email..."><br/>');
+            echo ('<input style="border-color: red;" type="password" name="password" id="password" placeholder="Incorrect password..."><br>');
+        } else // if not return form as normal
         {
             echo ('<input type="email" style="margin-bottom: 20px;" name="email" id="email" placeholder="Email..."><br/>');
             echo ('<input type="password" name="password" id="password" placeholder="Password..."><br>');
         }
+    } elseif (isset($_GET['emptyemail'])) // If the user does not enter an email
+    {
+        echo ('<input style="border-color: red; margin-bottom: 20px;" type="email" name="email" id="email" placeholder="Please enter email..."><br/>');
+        echo ('<input type="password" name="password" id="password" placeholder="Password..."><br>');
+    } else // Otherwise, print form normally
+    {
+        echo ('<input type="email" style="margin-bottom: 20px;" name="email" id="email" placeholder="Email..."><br/>');
+        echo ('<input type="password" name="password" id="password" placeholder="Password..."><br>');
+    }
 }
 
 function SignUpForm()
 {
     /**
- * function SignUpForm(), this function provides a form that the user fills in to sign-up.
- * 
- *Vars:
- *  $_GET['error']  :   Obtained from the form located at signup.php, says if an error has occurred.
-*/
+     * function SignUpForm(), this function provides a form that the user fills in to sign-up.
+     * 
+     *Vars:
+     *  $_GET['error']  :   Obtained from the form located at signup.php, says if an error has occurred.
+     */
 
     if (isset($_GET['error'])) // If there is an error
+    {
+        if ($_GET['error'] == "invalidname") // If that error is equal to 'invalidname'
         {
-            if ($_GET['error'] == "invalidname") // If that error is equal to 'invalidname'
-                {
-                    echo ('<input style="border-color: red;" type="text" style="margin-bottom: 20px;" name="name" placeholder="Invalid Name..."><br>');
-                    echo ('<input type="email" style="margin-bottom: 20px;" value="' . $_GET['email'] . '" name="email" placeholder="Email..."><br>');
-                } else // Otherwise, print name and email form normally
-                {
-                    echo ('<input type="text" style="margin-bottom: 20px;" name="name" placeholder="Name..."><br>');
-                    echo ('<input type="email" style="margin-bottom: 20px;" name="email" placeholder="Email..."><br>');
-                }
-        } else // if there is no error, print name an email normally
+            echo ('<input style="border-color: red;" type="text" style="margin-bottom: 20px;" name="name" placeholder="Invalid Name..."><br>');
+            echo ('<input type="email" style="margin-bottom: 20px;" value="' . $_GET['email'] . '" name="email" placeholder="Email..."><br>');
+        } else // Otherwise, print name and email form normally
         {
             echo ('<input type="text" style="margin-bottom: 20px;" name="name" placeholder="Name..."><br>');
             echo ('<input type="email" style="margin-bottom: 20px;" name="email" placeholder="Email..."><br>');
         }
+    } else // if there is no error, print name an email normally
+    {
+        echo ('<input type="text" style="margin-bottom: 20px;" name="name" placeholder="Name..."><br>');
+        echo ('<input type="email" style="margin-bottom: 20px;" name="email" placeholder="Email..."><br>');
+    }
 }
 
 function ProjectSelector()
 {
     /**
- * function ProjectSelector(), this function is used to provide the user with a dropdown list of projects that belong to them.
- * 
- *Vars:
- *  $_SESSION['project_id'] :   The project ID that is stored in a $_SESSION variable.
- *  $PROJECT_NAME_SQL   :   This is the SQL query string that is used to fond all data stored in the table *projects*. This values varies *  depending on whether $_GET['projects'] is given.
- * 
- *  $_SESSION['id'] :   This is the user's ID that is assigned from login.in.php.
- *  $last_project_name_sql  :   Stores a query that will select the project ID from the user's last selected project.
- */
+     * function ProjectSelector(), this function is used to provide the user with a dropdown list of projects that belong to them.
+     * 
+     *Vars:
+     *  $_SESSION['project_id'] :   The project ID that is stored in a $_SESSION variable.
+     *  $PROJECT_NAME_SQL   :   This is the SQL query string that is used to fond all data stored in the table *projects*. This values varies *  depending on whether $_GET['projects'] is given.
+     * 
+     *  $_SESSION['id'] :   This is the user's ID that is assigned from login.in.php.
+     *  $last_project_name_sql  :   Stores a query that will select the project ID from the user's last selected project.
+     */
     require 'db.php';
 
     if (empty($_GET['projects'])) // If the project name is not passed on in the URL
-        {
-            $PROJECT_NAME_SQL = "SELECT * FROM projects WHERE user_id='" . $_SESSION['id'] . "'"; // The query will show all projects according to the user ID
-        } elseif (isset($_GET['projects'])) {
+    {
+        $PROJECT_NAME_SQL = "SELECT * FROM projects WHERE user_id='" . $_SESSION['id'] . "'"; // The query will show all projects according to the user ID
+    } elseif (isset($_GET['projects'])) {
         // If it's not empty, then it will print out the options with the last selected project at the top
         $PROJECT_NAME_SQL = "SELECT * FROM projects WHERE user_id=" . $_SESSION['id'] . " ORDER BY projectID='" . $_GET['projects'] . "' DESC";
     }
@@ -125,13 +126,13 @@ function ProjectSelector()
 function CheckProjects()
 {
     /**
- * function CheckProjects(), checks to see if the user has any projects, if they don't they are forced to make one.
- * 
- * Vars:
- *  $ProjectSQL :   The SQL string query that finds the projects names that belong to the user.
- *  $Project_Name   :   Parses the SQL query.
- *  $ProjectNameRows    :   Stores the number of rows that show from the SQL query.
- */
+     * function CheckProjects(), checks to see if the user has any projects, if they don't they are forced to make one.
+     * 
+     * Vars:
+     *  $ProjectSQL :   The SQL string query that finds the projects names that belong to the user.
+     *  $Project_Name   :   Parses the SQL query.
+     *  $ProjectNameRows    :   Stores the number of rows that show from the SQL query.
+     */
     require 'db.php';
 
     $UserID = $_SESSION['id'];
@@ -140,25 +141,25 @@ function CheckProjects()
     $result = $connection->query($sql);
 
     if ($result->num_rows <= 0) // If the user does not have any projects, they are forced to make one
-        {
-            echo ('<form class="add-item" action="newProject.inc.php" method="post">
+    {
+        echo ('<form class="add-item" action="newProject.inc.php" method="post">
                 <h3>Please make a new project</h3>
                 <input style="background-color: #ffff;color: black;" type="text" name="project-name">
                 <button type="submit" name="add-project">Add Project</button>
             </form>');
-            exit();
-        }
+        exit();
+    }
 }
 
 function EditTask()
 {
     /**
- * function EditTask(), this is used to provide a form the user can fill in to add a new task.
- * 
- *  Vars:
- *  $_GET['edit-task']  :   This is the name of the task, passed on from the edit button located on the task
- *  $TaskTitle  :   This the variable that stores the string value, just used to make things easier to read
- */
+     * function EditTask(), this is used to provide a form the user can fill in to add a new task.
+     * 
+     *  Vars:
+     *  $_GET['edit-task']  :   This is the name of the task, passed on from the edit button located on the task
+     *  $TaskTitle  :   This the variable that stores the string value, just used to make things easier to read
+     */
     if (isset($_GET['edit-task'])) {
         require 'db.php';
 
@@ -189,7 +190,7 @@ function EditTask()
                     <!-- the element inside -->
                     <a href="#close" title="Close" class="close">X</a> <!-- The close button -->
                     <h1>Edit Task</h1>
-                    <form class="edit-item" action="edit-task.inc.php" method="get">
+                    <form style="height:auto" class="edit-item" action="edit-task.inc.php" method="get">
                         <input type="text" name="title" value="' . $task_title . '" placeholder="Title..."><br/>
                         <textarea class="description" name="task-desc" cols="26" rows="6" placeholder="Description...">' . $task_desc . '</textarea><br/>
                         <input type="date" name="task-date" value="' . $task_date . '"><br/>
@@ -216,14 +217,14 @@ function EditTask()
 function AddTask()
 {
     /**
- * function AddTask(), this displays a pop-up box that will allow users to add tasks.
- * 
- *  Vars:
- *  $NameTaken  :   Initialized with an empty string at first, but is used to store the string that prints out an error
- *  $_GET['error']  :   Passed on of there is an error, in this case; if the user has chose a task name that already exists
- */
+     * function AddTask(), this displays a pop-up box that will allow users to add tasks.
+     * 
+     *  Vars:
+     *  $NameTaken  :   Initialized with an empty string at first, but is used to store the string that prints out an error
+     *  $_GET['error']  :   Passed on of there is an error, in this case; if the user has chose a task name that already exists
+     */
 
-    echo ('<form class="add-item" action="addItem.inc.php" method="post">
+    echo ('<form style="height: auto;" class="add-item" action="addItem.inc.php" method="post">
             <input type="text" name="title" placeholder="Title..."><br/>
             <textarea class="description" name="task-desc" cols="26" rows="6" placeholder="Description..."></textarea><br/>
             Date <input type="date" name="task-date" placeholder="Choose a due date.."><br/>
@@ -243,8 +244,8 @@ function AddTask()
 function LastSelectedProject()
 {
     /**
- * function LastSelectedProject(), This gets the name of the last project selected
- */
+     * function LastSelectedProject(), This gets the name of the last project selected
+     */
 
     require 'db.php';
 
@@ -296,15 +297,15 @@ function PrintCompletedTasks()
     }
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) // While there is data in the table
-            {
-                // Gets all of the data about the task
-                $task_id = $row['task_id'];
-                $task_title = $row['task_title'];
-                $task_priority = $row['task_priority'];
-                $task_desc = $row['task_desc'];
-                $task_date = date('D-d-M-Y', strtotime($row['task_date'])); // Converts the date format to something better
-                $task_time = $row['task_time'];
-                echo ('
+        {
+            // Gets all of the data about the task
+            $task_id = $row['task_id'];
+            $task_title = $row['task_title'];
+            $task_priority = $row['task_priority'];
+            $task_desc = $row['task_desc'];
+            $task_date = date('D-d-M-Y', strtotime($row['task_date'])); // Converts the date format to something better
+            $task_time = $row['task_time'];
+            echo ('
             <div class="item">
 
                 <div class="title-wrapper">
@@ -341,19 +342,19 @@ function PrintCompletedTasks()
                 </div>
         
             </div>');
-            }
+        }
     }
 }
 
 function PrintTasks($type)
 {
     /**
- * function PrintTasks()    :   Prints the tasks under 'To Do' in the 'To Do' section.
- * 
- * Vars:
- *  $LastSelectedProject    :   This stores the value of the users last selected project
- *  $type   :   Given by landing.php to specify the sorting method to use
- */
+     * function PrintTasks()    :   Prints the tasks under 'To Do' in the 'To Do' section.
+     * 
+     * Vars:
+     *  $LastSelectedProject    :   This stores the value of the users last selected project
+     *  $type   :   Given by landing.php to specify the sorting method to use
+     */
 
     require 'db.php';
 
@@ -378,30 +379,30 @@ function PrintTasks($type)
     }
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) // While there is data in the table
+        {
+            $task_id = $row['task_id'];
+            $task_title = $row['task_title'];
+            $task_priority = $row['task_priority'];
+            $task_desc = $row['task_desc'];
+            $task_date = $row['task_date'];
+            $task_date = date('D-d-M-Y', strtotime($row['task_date'])); // Reformats the time
+            $task_time = $row['task_time'];
+
+            $taskDate = strtotime($row['task_date']);
+
+            $ProjectID = "SELECT * FROM projects,users WHERE user_id=" . $_SESSION['id'] . " AND projectID=users.last_project";
+            $projectID_result = $connection->query($ProjectID);
+            $projectID_row = $projectID_result->fetch_assoc();
+            if ($projectID_row['last_project'] == null) {
+                include_once 'functions.inc.php';
+                $ID = ProjectID();
+            } else {
+                $ID = intval($projectID_row['last_project']);
+            }
+
+            if (time() - (60 * 60 * 24) > $taskDate && time() - (60) > $task_time) // If there has been at least one day since the tasks date
             {
-                $task_id = $row['task_id'];
-                $task_title = $row['task_title'];
-                $task_priority = $row['task_priority'];
-                $task_desc = $row['task_desc'];
-                $task_date = $row['task_date'];
-                $task_date = date('D-d-M-Y', strtotime($row['task_date'])); // Reformats the time
-                $task_time = $row['task_time'];
-
-                $taskDate = strtotime($row['task_date']);
-
-                $ProjectID = "SELECT * FROM projects,users WHERE user_id=" . $_SESSION['id'] . " AND projectID=users.last_project";
-                $projectID_result = $connection->query($ProjectID);
-                $projectID_row = $projectID_result->fetch_assoc();
-                if ($projectID_row['last_project'] == null) {
-                    include_once 'functions.inc.php';
-                    $ID = ProjectID();
-                } else {
-                    $ID = intval($projectID_row['last_project']);
-                }
-
-                if (time() - (60 * 60 * 24) > $taskDate && time() - (60) > $task_time) // If there has been at least one day since the tasks date
-                    {
-                        echo ('
+                echo ('
                 <div class="item-overdue">
 
                     <div class="title-wrapper">
@@ -438,8 +439,8 @@ function PrintTasks($type)
                 </div>
             
                 </div>');
-                    } elseif ($task_priority == "High") {
-                    echo ('
+            } elseif ($task_priority == "High") {
+                echo ('
                 <div class="item-high">
 
                     <div class="title-wrapper">
@@ -476,8 +477,8 @@ function PrintTasks($type)
                 </div>
             
                 </div>');
-                } elseif ($task_priority == "Medium") {
-                    echo ('
+            } elseif ($task_priority == "Medium") {
+                echo ('
                 <div class="item-medium">
 
                     <div class="title-wrapper">
@@ -514,8 +515,8 @@ function PrintTasks($type)
                     </div>
             
                 </div>');
-                } else {
-                    echo ('
+            } else {
+                echo ('
                 <div class="item">
 
                     <div class="title-wrapper">
@@ -552,23 +553,23 @@ function PrintTasks($type)
                     </div>
             
                 </div>');
-                }
             }
+        }
     }
 }
 
 function DeleteProject()
 {
     /**
- * function DeleteProject(), This is called when the user request the deletion of a project.
- * 
- * Vars:
- *  $sql    :   Stores the string that is executed in MySQL.
- *  $result :   Stores the result from the query.
- *  $row    :   Stores the value from the result into an indexed array.
- *  $Project_id :   Contains the integer value of the user's last selected project.
- *  $sql    :   This executes a query that deletes the row in table projects.
- */
+     * function DeleteProject(), This is called when the user request the deletion of a project.
+     * 
+     * Vars:
+     *  $sql    :   Stores the string that is executed in MySQL.
+     *  $result :   Stores the result from the query.
+     *  $row    :   Stores the value from the result into an indexed array.
+     *  $Project_id :   Contains the integer value of the user's last selected project.
+     *  $sql    :   This executes a query that deletes the row in table projects.
+     */
 
     require 'db.php';
 
@@ -590,13 +591,13 @@ function DeleteProject()
 function accountDetails($x)
 {
     /**
- * function accountDetails()    :   Called by account.php, this function obtains the user's details and prints them to the webpage
- * 
- * Vars:
- *  $x  :   This is used to specify the type of information to be returned, called in account.php
- *  $nameh3 :   Stores the string HTML tag that will print out the user's name in a H3 tag
- *  $emailh3    : Similar to $nameh3, this will print the user's email in a H3 tag
- */
+     * function accountDetails()    :   Called by account.php, this function obtains the user's details and prints them to the webpage
+     * 
+     * Vars:
+     *  $x  :   This is used to specify the type of information to be returned, called in account.php
+     *  $nameh3 :   Stores the string HTML tag that will print out the user's name in a H3 tag
+     *  $emailh3    : Similar to $nameh3, this will print the user's email in a H3 tag
+     */
     require 'db.php';
 
     $sql = "SELECT name,email FROM users WHERE id=" . $_SESSION['id'] . "";
@@ -628,9 +629,10 @@ function returnToLanding()
     exit();
 }
 
-function send_mail($email, $name) {
+function send_mail($email, $name)
+{
     // Create a new activation hash
-    $hash = md5( rand(0,1000));
+    $hash = md5(rand(0, 1000));
 
     // The message being sent to the user
     $to      = $email; // Send email to our user
@@ -640,16 +642,15 @@ function send_mail($email, $name) {
     Please visit the link below to activate your new email address.
     
     ------------------------
-    Username: '.$name.'
+    Username: ' . $name . '
     ------------------------
     
     Please click this link to activate your account:
-    https://www.techanddragons.co.uk/TEMP/change-account.php?email='.$email.'&hash='.$hash.'
+    https://www.techanddragons.co.uk/TEMP/change-account.php?email=' . $email . '&hash=' . $hash . '
     
     '; // Our message above including the link
-                        
+
     $headers = 'From:admin@techanddragons.co.uk' . "\r\n"; // Set from headers
     mail($to, $subject, $message, $headers); // Send our email
     exit();
-
 }

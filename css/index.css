@@ -4,7 +4,12 @@
 :root {
   --modal-BG-color: rgba(34, 34, 34, 0.801); /* Used for the pop-up background */
   --button-BG-color: #e95678; /* Background used for buttons */
-  --button-hover-color: rgba(34, 34, 34, 0.8); /* The hover colour used for buttons */
+  --button-hover-color: rgba(
+    34,
+    34,
+    34,
+    0.8
+  ); /* The hover colour used for buttons */
   --input-focus: #3fdaa4; /* Colour when input box is focused */
   --button-submit: #3fc4de; /* The colour of the submit button */
 }
@@ -28,9 +33,9 @@ header#index-header {
   height: 100vh;
   width: 100%;
   display: grid;
-  grid-template-areas: 
-  "logo"
-  "buttons";
+  grid-template-areas:
+    "logo"
+    "buttons";
   grid-template-columns: 100%;
   grid-template-rows: 25% 75%;
   background-image: url(../images/index_bg.jpg);
