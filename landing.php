@@ -58,7 +58,7 @@ if (!isset($_SESSION['name'])) {
             <div>
                 <a href="#close" title="Close" class="close">X</a>
                 <h1>New Project</h1>
-                <?php 
+                <?php
                 echo ('<form class="add-item" action="newProject.inc.php" method="post">
                             <h3>Please make a new project</h3>
                             <input type="text" name="project-name" placeholder="Project name...">
@@ -72,7 +72,7 @@ if (!isset($_SESSION['name'])) {
             <div>
                 <a href="#close" title="Close" class="close">X</a>
                 <h1>Delete Project?</h1>
-                <?php 
+                <?php
                 echo ('<form class="add-item" action="functions.inc.php" method="get">
                             <input type="submit" name="delete-project" value="delete-project">
                         </form>');
@@ -84,7 +84,7 @@ if (!isset($_SESSION['name'])) {
         </div>
 
         <div id="user">
-            <?php 
+            <?php
             echo ('
                 <div id="account">
                     <form action="account.php" method="get">
@@ -145,7 +145,7 @@ if (!isset($_SESSION['name'])) {
                             <!-- the element inside -->
                             <a href="#close" title="Close" class="close">X</a> <!-- The close button -->
                             <h1>Add Task</h1>
-                            <?php 
+                            <?php
                             AddTask();
                             ?>
                         </div>
@@ -156,7 +156,7 @@ if (!isset($_SESSION['name'])) {
 
             <div class="box-1">
                 <!-- TODO Box -->
-                <?php 
+                <?php
                 CheckProjects();
                 if (isset($_GET['edit-task'])) {
                     EditTask();
@@ -210,10 +210,10 @@ if (!isset($_SESSION['name'])) {
         </div>
 
     </div>
-    
-<footer>
-    <p>Callum-James Smith | <a href="mailto:csmith99@protonmail.com">csmith99@protonmail.com</a></p>
-</footer>
+
+    <footer>
+        <p>Callum-James Smith | <a href="mailto:csmith99@protonmail.com">csmith99@protonmail.com</a></p>
+    </footer>
 </body>
 <script>
     document.getElementById("open-modal").onclick = function() // Stop the modal boxes from appearing quickly every time the page is refreshed
@@ -232,4 +232,4 @@ if (!isset($_SESSION['name'])) {
     }
 </script>
 
-</html> 
+</html>

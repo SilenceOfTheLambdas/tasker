@@ -42,10 +42,9 @@ body {
 header {
   background-color: var(--header-BG-color);
   width: 100%;
-  height: 60px;
+  height: 50px;
   display: grid;
-  grid-template-areas:
-  "logo projects projects-add spacer hello sign-out";
+  grid-template-areas: "logo projects projects-add spacer hello sign-out";
   grid-template-columns: 210px 150px 50px auto auto 120px;
   box-shadow: black 2px 2px 2px;
 }
@@ -55,11 +54,11 @@ header {
 /* This holds the logo (.logo) in place */
  {
   grid: logo;
-  background-color: var(--logo-BG-color);
+  background-color: var(--header-BG-color);
   float: left;
   text-align: center;
   color: white;
-  height: 100%;
+  height: 45px;
   margin: 0;
 }
 .logo 
@@ -69,14 +68,13 @@ header {
   width: auto;
   overflow: hidden;
   float: left;
-  transform: translateY(8px) translateX(10px);
 }
 
 /* Project Selection */
 div.project-selector {
   grid: projects;
-  height: 100%;
-  transform: translateX(30px);
+  height: auto;
+  transform: translateX(40px);
 }
 
 div.project-selector > form {
@@ -97,7 +95,7 @@ div.new-project /* This holds two buttons used to add and remove projects */
   grid: projects-add;
   position: relative; /* Used to center DIV vertically */
   top: 50%;
-  transform: translateX(100%) translateY(-75%);
+  transform: translateX(100%) translateY(-100%);
 
   display: flex;
   flex-direction: column;
@@ -149,22 +147,28 @@ div.new-project > button:hover {
 #Spacer {
   grid: spacer;
   margin-left: 4px;
+  height: 50px;
   margin-right: 4px;
 }
 
 /* User Section */
-#user {
+#user,
+user > button {
   grid: hello;
   background-color: var(--header-BG-color);
-  color: white;
-  text-align: center;
-  height: 100%;
+  width: auto;
+  height: 50px;
+  float: right;
+
   border: none;
+  flex-basis: 10%;
 }
 
 #userHello {
   line-height: 0.5px;
+  font-size: 14px;
   transform: translateY(-10px);
+  height: 50px;
   float: right;
 }
 
@@ -173,21 +177,23 @@ div.new-project > button:hover {
   background-color: #e95678;
 
   width: auto;
-  height: 100%;
+  height: 50px;
   float: right;
 
   border: none;
   flex-basis: 10%;
 }
 
-#account {
-  background-color: #3fc4de;
+#account,
+#account > form,
+#account > form > button {
+  background-color: none;
 
   width: auto;
-  height: 100%;
+  height: 50px;
   float: right;
 
-  border: none;
+  border-bottom: 4px solid #3fc4de;
   flex-basis: 10%;
 }
 
@@ -388,7 +394,7 @@ hr.taskTitle {
 button {
   height: 40px;
   width: 100%;
-  font-size: 28px;
+  font-size: 20px;
 }
 
 div.addItem,
@@ -423,17 +429,18 @@ button.add-item-button:hover {
   transition: ease-in 0.2s;
 }
 
-button.signout {
+button.signout,
+#signout > form {
   /* The button located on the header thats allows the user to sign out */
   width: 100%;
-  height: 60px;
+  height: 100%;
 
-  font-size: 20px;
   background: var(--header-BG-color);
   border-style: none;
   color: white;
 
   float: left;
+  border-bottom: 4px solid #c70f3a;
 }
 
 button.signout:hover {
