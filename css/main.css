@@ -17,8 +17,8 @@
   --input-focus: #3fdaa4;
   --button-submit: #3fc4de;
 }
-/* Fonts */
 
+/* Fonts */
 @font-face {
   font-family: "SF-UI-Text-Regular";
   src: url("fonts/otf/SF-UI-Text-Regular.otf") format("opentype");
@@ -207,11 +207,59 @@ div.completed-container-wrapper {
   color: rgba(20, 20, 20, 0.603);
 }
 
-/* Container */
-div.container {
-  display: flex;
-  justify-content: space-around;
-  flex-flow: row wrap;
+/* Container that holds the completed and to-do tasks sections */
+.grid-container {
+  display: grid;
+  grid-template-columns: 1.5fr 0.5fr;
+  grid-template-rows: 1fr 1.7fr;
+  grid-template-areas: "todo-container completed-container";
+
+  height: calc(100vh - 52px);
+  width: 100%;
+}
+
+/* The todo container */
+.todo-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 40px 0.25fr 2.4fr;
+  grid-template-areas: "title" "sorting" "tasks";
+  grid-area: todo-container;
+  height: calc(100vh - 52px);
+
+  background: none;
+  /* border: #15171d solid 2px; */
+}
+
+.title { grid-area: title; }
+
+.sorting { grid-area: sorting; }
+
+.tasks { 
+  grid-area: tasks; 
+  overflow: scroll;
+}
+
+/* The completed tasks container */
+.completed-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 40px 1.8fr;
+  grid-template-areas: "completed-title" "completed-tasks";
+  grid-area: completed-container;
+
+  background: none;
+  border-left: #15171d solid 2px;
+  height: calc(100vh - 52px);
+}
+
+/* The title */
+.completed-title { grid-area: completed-title; }
+
+/* The tasks */
+.completed-tasks { 
+  grid-area: completed-tasks;
+  overflow: scroll;
 }
 
 .headerTitle 

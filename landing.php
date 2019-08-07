@@ -102,10 +102,12 @@ if (!isset($_SESSION['name'])) {
 
     </header>
 
-    <div class="container">
+    <div class="grid-container">
 
-        <div class="to-do-container-wrapper">
-            <h3 class="headerTitle">To Do</h3>
+        <div class="todo-container">
+            <div class="title">
+                <h3 class="headerTitle">To Do</h3>
+            </div>
             <hr>
 
             <div class="sorting">
@@ -154,7 +156,7 @@ if (!isset($_SESSION['name'])) {
                 </div>
             </div>
 
-            <div class="box-1">
+            <div class="tasks">
                 <!-- TODO Box -->
                 <?php
                 CheckProjects();
@@ -198,10 +200,11 @@ if (!isset($_SESSION['name'])) {
         </div>
 
 
-        <div class="completed-container-wrapper">
-            <h3 class="headerTitle">Completed</h3>
-            <hr>
-            <div class="box-3">
+        <div class="completed-container">
+            <div class="completed-title">
+                <h3 class="headerTitle">Completed</h3>
+            </div>
+            <div class="completed-tasks">
                 <!-- Completed Box -->
                 <?php
                 PrintCompletedTasks();
@@ -210,10 +213,6 @@ if (!isset($_SESSION['name'])) {
         </div>
 
     </div>
-
-    <footer>
-        <p>Callum-James Smith | <a href="mailto:csmith99@protonmail.com">csmith99@protonmail.com</a></p>
-    </footer>
 </body>
 <script>
     document.getElementById("open-modal").onclick = function() // Stop the modal boxes from appearing quickly every time the page is refreshed
