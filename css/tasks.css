@@ -92,7 +92,7 @@ div.item {
 
   display: grid;
   grid-template-columns: 2.1fr 0.6fr 0.3fr;
-  grid-template-rows: 0.5fr 2fr 0.5fr;
+  grid-template-rows: 0.5fr 2fr auto;
   grid-template-areas: "task-title task-priority edit-btn" "task-desc task-desc task-desc" "task-date-time task-date-time complete-btn";
 }
 
