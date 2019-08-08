@@ -403,35 +403,29 @@ function PrintTasks($type)
             if (time() - (60 * 60 * 24) > $taskDate && time() - (60) > $task_time) // If there has been at least one day since the tasks date
             {
                 echo ('
-                <div class="item-overdue">
-
-                    <div class="title-wrapper">
+                <div id="item" class="item-overdue">
             
-                        <div class="task-title">
-                            <h1 class="taskTitle">' . $task_title . '</h1>
-                        </div>
-            
-                        <div class="task-priority">
-                            <p class="task-priority">' . $task_priority . '</p>
-                        </div>
-                        
+                    <div class="task-title">
+                        <h1 class="taskTitle">' . $task_title . '</h1>
+                    </div>
+        
+                    <div class="task-priority">
+                        <p class="task-priority">' . $task_priority . '</p>
+                    </div>
+                    <div class="edit-btn">
                         <form action="#editModal" method="get">
                             <input name="projects" value="' . $ID . '" style="display: none;">
                             <a href="#editModal" id="edit-button"><button class="edit-buttons" id="edit-button" type="submit" name="edit-task" value="' . $task_id . '"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button></a>
                         </form>
-
                     </div>
-                    <hr class="taskTitle">
-            
                     <div id="task-desc" class="task-desc">
                         <p id="desc-text" class="task-desc">' . $task_desc . '</p>
                     </div>
-            
                     <div class="task-date-time">
                         <p class="task-date-time" style="color: red;">' . $task_date . ' ' . $task_time . '</p>
                     </div>
 
-                <div class="c-button-holder">
+                <div class="complete-btn">
                     <form action="landing.php" method="get">
                         <input name="projects" value="' . $ID . '" style="display: none;">
                         <button class="complete-buttons" type="submit" name="complete-task" value="' . $task_id . '"><span class="complete-task"><i class="fas fa-check"></i></span></button>
@@ -441,35 +435,29 @@ function PrintTasks($type)
                 </div>');
             } elseif ($task_priority == "High") {
                 echo ('
-                <div class="item-high">
-
-                    <div class="title-wrapper">
+                <div id="item" class="item-high">
             
-                        <div class="task-title">
-                            <h1 class="taskTitle">' . $task_title . '</h1>
-                        </div>
-            
-                        <div class="task-priority">
-                            <p class="task-priority">' . $task_priority . '</p>
-                        </div>
-                        
+                    <div class="task-title">
+                        <h1 class="taskTitle">' . $task_title . '</h1>
+                    </div>
+        
+                    <div class="task-priority">
+                        <p class="task-priority">' . $task_priority . '</p>
+                    </div>
+                    <div class="edit-btn">
                         <form action="#editModal" method="get">
                             <input name="projects" value="' . $ID . '" style="display: none;">
                             <a href="#editModal" id="edit-button"><button class="edit-buttons" id="edit-button" type="submit" name="edit-task" value="' . $task_id . '"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button></a>
                         </form>
-
                     </div>
-                    <hr class="taskTitle">
-            
                     <div id="task-desc" class="task-desc">
                         <p id="desc-text" class="task-desc">' . $task_desc . '</p>
                     </div>
-            
                     <div class="task-date-time">
                         <p class="task-date-time">' . $task_date . ' ' . $task_time . '</p>
                     </div>
 
-                <div class="c-button-holder">
+                <div class="complete-btn">
                     <form action="landing.php" method="get">
                         <input name="projects" value="' . $ID . '" style="display: none;">
                         <button class="complete-buttons" type="submit" name="complete-task" value="' . $task_id . '"><span class="complete-task"><i class="fas fa-check"></i></span></button>
@@ -479,9 +467,7 @@ function PrintTasks($type)
                 </div>');
             } elseif ($task_priority == "Medium") {
                 echo ('
-                <div class="item-medium">
-
-                    <div class="title-wrapper">
+                <div id="item" class="item-medium">
             
                         <div class="task-title">
                             <h1 class="taskTitle">' . $task_title . '</h1>
@@ -490,24 +476,20 @@ function PrintTasks($type)
                         <div class="task-priority">
                             <p class="task-priority">' . $task_priority . '</p>
                         </div>
-                        
-                        <form action="#editModal" method="get">
-                            <input name="projects" value="' . $ID . '" style="display: none;">
-                            <a href="#editModal" id="edit-button"><button class="edit-buttons" id="edit-button" type="submit" name="edit-task" value="' . $task_id . '"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button></a>
-                        </form>
-
-                    </div>
-                    <hr class="taskTitle">
-            
+                        <div class="edit-btn">
+                            <form action="#editModal" method="get">
+                                <input name="projects" value="' . $ID . '" style="display: none;">
+                                <a href="#editModal" id="edit-button"><button class="edit-buttons" id="edit-button" type="submit" name="edit-task" value="' . $task_id . '"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button></a>
+                            </form>
+                        </div>
                     <div id="task-desc" class="task-desc">
                         <p id="desc-text" class="task-desc">' . $task_desc . '</p>
                     </div>
-            
                     <div class="task-date-time">
                         <p class="task-date-time">' . $task_date . ' ' . $task_time . '</p>
                     </div>
 
-                    <div class="c-button-holder">
+                    <div class="complete-btn">
                         <form action="landing.php" method="get">
                             <input name="projects" value="' . $ID . '" style="display: none;">
                             <button class="complete-buttons" type="submit" name="complete-task" value="' . $task_id . '"><span class="complete-task"><i class="fas fa-check"></i></span></button>
@@ -517,26 +499,22 @@ function PrintTasks($type)
                 </div>');
             } else {
                 echo ('
-                <div class="item">
+                <div id="item" class="item">
 
-                    <div class="title-wrapper">
-            
-                        <div class="task-title">
-                            <h1 class="taskTitle">' . $task_title . '</h1>
-                        </div>
-            
-                        <div class="task-priority">
-                            <p class="task-priority">' . $task_priority . '</p>
-                        </div>
-                        
+                    <div class="task-title">
+                        <h1 class="taskTitle">' . $task_title . '</h1>
+                    </div>
+        
+                    <div class="task-priority">
+                        <p class="task-priority">' . $task_priority . '</p>
+                    </div>
+                    
+                    <div class="edit-btn">
                         <form action="#editModal" method="get">
                             <input name="projects" value="' . $ID . '" style="display: none;">
                             <a href="#editModal" id="edit-button"><button class="edit-buttons" id="edit-button" type="submit" name="edit-task" value="' . $task_id . '"><span class="edit-task"><i class="fas fa-pencil-alt"></i></span></button></a>
                         </form>
-
                     </div>
-                    <hr class="taskTitle">
-            
                     <div id="task-desc" class="task-desc">
                         <p id="desc-text" class="task-desc">' . $task_desc . '</p>
                     </div>
@@ -545,7 +523,7 @@ function PrintTasks($type)
                         <p class="task-date-time">' . $task_date . ' ' . $task_time . '</p>
                     </div>
 
-                    <div class="c-button-holder">
+                    <div class="complete-btn">
                         <form action="landing.php" method="get">
                             <input name="projects" value="' . $ID . '" style="display: none;">
                             <button class="complete-buttons" type="submit" name="complete-task" value="' . $task_id . '"><span class="complete-task"><i class="fas fa-check"></i></span></button>

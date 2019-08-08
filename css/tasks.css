@@ -1,0 +1,183 @@
+:root /* The variables */
+ {
+  --background-color: #f7f7f7;
+  --header-BG-color: #15171d;
+  --logo-BG-color: #15171de6;
+  --box-BG-color: #ebebeb00;
+  --button-BG-color: #e95678;
+  --button-hover-color: rgba(233, 86, 120, 0.39);
+  --task-BG-color: #15171d;
+  --task-overdue: #070606;
+  --task-high: #c70f3a;
+  --task-medium: rgb(223, 77, 111);
+  --input-focus: #3fdaa4;
+  --button-submit: #3fc4de;
+  --task-height: 40%;
+}
+
+/* Container that holds the completed and to-do tasks sections */
+.grid-container {
+  display: grid;
+  grid-template-columns: 1.5fr 0.5fr;
+  grid-template-rows: 1fr 1.7fr;
+  grid-template-areas: "todo-container completed-container";
+
+  height: calc(100vh - 52px);
+  width: 100%;
+}
+
+/* The todo container */
+.todo-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 40px 0.25fr 2.4fr;
+  grid-template-areas: "title" "sorting" "tasks";
+  grid-area: todo-container;
+  height: calc(100vh - 52px);
+
+  background: none;
+}
+
+.title {
+  grid-area: title;
+}
+
+.sorting {
+  grid-area: sorting;
+}
+
+.tasks {
+  grid-area: tasks;
+  overflow: scroll;
+}
+
+/* The completed tasks container */
+.completed-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 40px 1.8fr;
+  grid-template-areas: "completed-title" "completed-tasks";
+  grid-area: completed-container;
+
+  background: none;
+  border-left: #15171d solid 2px;
+  height: calc(100vh - 52px);
+}
+
+/* The title */
+.completed-title {
+  grid-area: completed-title;
+}
+
+/* The tasks */
+.completed-tasks {
+  grid-area: completed-tasks;
+  overflow: scroll;
+}
+/* header title for the boxes */
+.headerTitle {
+  text-align: center;
+  height: 5px;
+}
+
+/* The to-do section/tasks */
+div.item {
+  margin: 8px;
+  padding: 4px;
+  background: var(--task-BG-color);
+  box-shadow: black 2px 2px 1px;
+  color: white;
+
+  height: var(task-hight);
+
+  display: grid;
+  grid-template-columns: 2.1fr 0.6fr 0.3fr;
+  grid-template-rows: 0.5fr 2fr 0.5fr;
+  grid-template-areas: "task-title task-priority edit-btn" "task-desc task-desc task-desc" "task-date-time task-date-time complete-btn";
+}
+
+div.item-overdue {
+  margin: 8px;
+  padding: 4px;
+  background: var(--task-BG-color);
+  box-shadow: black 2px 2px 1px;
+  border: solid var(--task-overdue) 4px;
+  color: white;
+
+  height: var(task-hight);
+
+  display: grid;
+  grid-template-columns: 2.1fr 0.6fr 0.3fr;
+  grid-template-rows: 0.5fr 2fr 0.5fr;
+  grid-template-areas: "task-title task-priority edit-btn" "task-desc task-desc task-desc" "task-date-time task-date-time complete-btn";
+}
+
+div.item-high {
+  margin: 8px;
+  padding: 4px;
+  background: var(--task-BG-color);
+  box-shadow: black 2px 2px 1px;
+  border: solid var(--task-high) 2px;
+  color: white;
+
+  height: var(--task-height);
+
+  display: grid;
+  grid-template-columns: 2.1fr 0.6fr 0.3fr;
+  grid-template-rows: 0.5fr 2fr 0.5fr;
+  grid-template-areas: "task-title task-priority edit-btn" "task-desc task-desc task-desc" "task-date-time task-date-time complete-btn";
+}
+
+div.item-medium {
+  margin: 8px;
+  padding: 4px;
+  background: var(--task-BG-color);
+  box-shadow: black 2px 2px 1px;
+  border: solid var(--task-medium) 2px;
+  color: white;
+
+  height: var(--task-height);
+
+  display: grid;
+  grid-template-columns: 2.1fr 0.6fr 0.3fr;
+  grid-template-rows: 0.5fr 2fr 0.5fr;
+  grid-template-areas: "task-title task-priority edit-btn" "task-desc task-desc task-desc" "task-date-time task-date-time complete-btn";
+}
+/* Task Title */
+div.task-title {
+  grid-area: task-title;
+}
+
+h1.taskTitle {
+  font-size: 20px;
+  width: 50%;
+}
+
+/* Task description */
+div.task-desc {
+  grid-area: task-desc;
+}
+
+/* Task date-time */
+div.task-date-time {
+  grid-area: task-date-time;
+}
+
+/* Task Priority */
+div.task-priority {
+  grid-area: task-priority;
+}
+
+p.task-priority {
+  text-align: center;
+}
+
+div.complete-btn {
+  grid-area: complete-btn;
+  text-align: center;
+}
+
+div.edit-btn {
+  grid-area: edit-btn;
+  text-align: center;
+}
