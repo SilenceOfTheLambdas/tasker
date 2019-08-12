@@ -1,0 +1,33 @@
+{
+  "name": "tasker",
+  "version": "1.0.0",
+  "description": "A simple task manager made with php",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TechandDragons/tasker.git"
+  },
+  "keywords": [
+    "task",
+    "manager",
+    "php",
+    "simple"
+  ],
+  "author": "Callum-James Smith",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TechandDragons/tasker/issues"
+  },
+  "homepage": "https://github.com/TechandDragons/tasker#readme",
+  "dependencies": {
+    "gitignore": "^0.6.0",
+    "primeicons": "^2.0.0",
+    "primeng": "^8.0.2"
+  }
+}
